@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { CheckCircle2, FileText, ArrowRight } from 'lucide-react';
 import MetaSEO from '../components/MetaSEO';
+import ScrollReveal, { StaggerGrid } from '../components/ScrollReveal';
 
 export default function TurnkeyPage({ onOpenQuote }) {
   const packages = [
@@ -144,16 +145,16 @@ export default function TurnkeyPage({ onOpenQuote }) {
           </p>
         </div>
 
-        {/* Turnkey Packages Grid (Uniform Industrial Card Scheme) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-14 sm:mb-20">
+        {/* Turnkey Packages Grid (Uniform Industrial Card Scheme with Stagger Reveal) */}
+        <StaggerGrid className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-14 sm:mb-20">
           {packages.map((pkg) => (
             <div
               key={pkg.code}
-              className="p-5 sm:p-8 bg-white rounded-2xl flex flex-col justify-between transition-all border border-slate-300 hover:border-slate-400 shadow-2xs"
+              className="group p-5 sm:p-8 bg-white rounded-2xl flex flex-col justify-between transition-all duration-200 border border-slate-300 hover:border-blue-700 hover:shadow-md hover:-translate-y-1 shadow-2xs h-full"
             >
               <div>
                 <div className="flex justify-between items-start gap-3 mb-3 sm:mb-4">
-                  <span className="text-[11px] sm:text-xs font-mono font-bold px-2.5 py-0.5 rounded-full border text-slate-700 bg-slate-100 border-slate-200">
+                  <span className="text-[11px] sm:text-xs font-mono font-bold px-2.5 py-0.5 rounded-full border text-slate-700 bg-slate-100 border-slate-200 group-hover:border-slate-300 transition-colors">
                     {pkg.tag}
                   </span>
                   <span className="text-xs text-slate-500 font-mono">
@@ -168,7 +169,7 @@ export default function TurnkeyPage({ onOpenQuote }) {
                   {pkg.idealFor}
                 </p>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 p-3.5 sm:p-4 bg-slate-50 rounded-xl border border-slate-200 mb-4 sm:mb-6 text-xs">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 p-3.5 sm:p-4 bg-slate-50 rounded-xl border border-slate-200 group-hover:border-slate-300 mb-4 sm:mb-6 text-xs transition-colors">
                   <div>
                     <span className="text-[10px] text-slate-500 uppercase font-mono block">Rated Speed:</span>
                     <span className="text-slate-900 font-bold font-mono text-xs sm:text-sm">{pkg.speed}</span>
@@ -194,17 +195,17 @@ export default function TurnkeyPage({ onOpenQuote }) {
 
               <button
                 onClick={() => onOpenQuote(pkg.code)}
-                className="w-full flex items-center justify-center gap-2 bg-blue-700 hover:bg-blue-800 text-white font-semibold text-xs py-3 rounded-full shadow-sm hover:shadow transition-all cursor-pointer"
+                className="w-full flex items-center justify-center gap-2 bg-blue-700 hover:bg-blue-800 active:scale-[0.98] text-white font-semibold text-xs py-3 rounded-full shadow-2xs hover:shadow-xs transition-all cursor-pointer"
               >
                 <FileText className="w-3.5 h-3.5" />
                 <span>Request Project Proposal & CAD Layout</span>
               </button>
             </div>
           ))}
-        </div>
+        </StaggerGrid>
 
         {/* Dedicated Gateway to Interactive CAD Plant Layout */}
-        <div className="mb-16 sm:mb-24">
+        <ScrollReveal className="mb-16 sm:mb-24">
           <div className="p-6 sm:p-10 bg-slate-950 text-white rounded-2xl sm:rounded-3xl border border-slate-800 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 sm:gap-8 shadow-md">
             <div className="space-y-3 max-w-2xl">
               <span className="text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider text-blue-400 bg-blue-950 px-3 py-1 rounded-full border border-blue-800 inline-block">
@@ -221,55 +222,57 @@ export default function TurnkeyPage({ onOpenQuote }) {
             <div className="shrink-0 w-full lg:w-auto">
               <Link
                 to="/plant-layout"
-                className="w-full lg:w-auto inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs sm:text-sm py-3.5 px-6 rounded-full shadow-sm transition-all"
+                className="w-full lg:w-auto inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 active:scale-[0.98] text-white font-semibold text-xs sm:text-sm py-3.5 px-6 rounded-full shadow-sm transition-all"
               >
                 <span>Launch Interactive CAD Flow</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </div>
-        </div>
+        </ScrollReveal>
 
         {/* 8-Stage Turnkey Workflow */}
         <div className="pt-4 sm:pt-8 pb-12 sm:pb-16 border-t border-slate-200">
-          <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
+          <ScrollReveal className="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
             <h2 className="text-xl sm:text-3xl font-extrabold text-slate-950">
               The 8-Stage Turnkey Deployment Blueprint
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 mt-2">
               From bare concrete floor to licensed, revenue-generating beverage bottling operations.
             </p>
-          </div>
+          </ScrollReveal>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          <StaggerGrid className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {steps.map((st) => (
               <div 
                 key={st.num}
-                className="bg-slate-50 border border-slate-200 p-5 rounded-xl hover:border-blue-700 transition-colors"
+                className="bg-slate-50 border border-slate-200 p-5 rounded-2xl hover:border-blue-700 hover:shadow-sm hover:-translate-y-1 transition-all duration-200 h-full flex flex-col justify-between"
               >
-                <div className="text-xl sm:text-2xl font-black text-blue-700 font-mono mb-2">
-                  {st.num}
+                <div>
+                  <div className="text-xl sm:text-2xl font-black text-blue-700 font-mono mb-2">
+                    {st.num}
+                  </div>
+                  <h3 className="text-sm font-bold text-slate-900 mb-1.5">
+                    {st.title}
+                  </h3>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    {st.desc}
+                  </p>
                 </div>
-                <h3 className="text-sm font-bold text-slate-900 mb-1.5">
-                  {st.title}
-                </h3>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  {st.desc}
-                </p>
               </div>
             ))}
-          </div>
+          </StaggerGrid>
 
           {/* Clean Bottom Actions */}
-          <div className="mt-12 sm:mt-16 text-center">
+          <ScrollReveal delay={0.1} className="mt-12 sm:mt-16 text-center">
             <button
               onClick={() => onOpenQuote('TURNKEY-GENERAL')}
-              className="inline-flex items-center justify-center gap-2 bg-blue-700 hover:bg-blue-800 text-white font-semibold text-xs sm:text-sm py-3.5 px-7 rounded-full shadow-sm transition-all cursor-pointer"
+              className="inline-flex items-center justify-center gap-2 bg-blue-700 hover:bg-blue-800 active:scale-[0.98] text-white font-semibold text-xs sm:text-sm py-3.5 px-7 rounded-full shadow-sm hover:shadow-md transition-all cursor-pointer"
             >
               <FileText className="w-4 h-4" />
               <span>Request Turnkey Plant Feasibility Proposal & CAD Layout</span>
             </button>
-          </div>
+          </ScrollReveal>
         </div>
       </div>
     </div>

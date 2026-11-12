@@ -85,10 +85,10 @@ export default function BuyerGuidesPage({ onOpenQuote }) {
             <button
               key={g.id}
               onClick={() => setActiveGuide(g.id)}
-              className={`text-left p-4 rounded-xl border transition-all cursor-pointer ${
+              className={`text-left p-4 rounded-xl border transition-all duration-200 cursor-pointer active:scale-[0.98] ${
                 activeGuide === g.id
                   ? 'bg-blue-50/70 border-2 border-blue-700 shadow-xs'
-                  : 'bg-white border border-slate-300 hover:border-slate-400 hover:bg-slate-50'
+                  : 'bg-white border border-slate-300 hover:border-slate-400 hover:bg-slate-50 hover:shadow-2xs'
               }`}
             >
               <div className="flex items-center justify-between text-[10px] font-mono font-bold uppercase mb-2">

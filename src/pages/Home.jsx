@@ -15,6 +15,7 @@ import FaqSection from '../components/FaqSection';
 import IndustrialBottlingWorkflow from '../components/IndustrialBottlingWorkflow';
 import { VEDANTA_FAQS } from '../data/faqs';
 import { VEDANTA_CATALOG } from '../data/catalog';
+import ScrollReveal, { StaggerGrid } from '../components/ScrollReveal';
 
 const HERO_ROTATING_PHRASES = [
   'Flawless Bottling Automation.',
@@ -209,66 +210,74 @@ export default function Home({ onOpenQuote }) {
         </div>
       </section>
 
-      {/* Engineering Pillars (4 Clean Apple-style Grid Tiles) */}
+      {/* Engineering Pillars (4 Clean Apple-style Grid Tiles with Stagger Reveal) */}
       <section className="py-14 sm:py-20 bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16 space-y-2 sm:space-y-3">
+          <ScrollReveal className="text-center max-w-3xl mx-auto mb-10 sm:mb-16 space-y-2 sm:space-y-3">
             <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-950 tracking-tight">
               Precision Engineering Meets High-Output Reliability
             </h2>
             <p className="text-xs sm:text-base text-slate-600">
               Why commercial beverage bottlers and packaging converters partner with Vedanta Technologies.
             </p>
-          </div>
+          </ScrollReveal>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-            <div className="industrial-card p-5 sm:p-6 bg-slate-50/60 border border-slate-200 hover:border-slate-300 transition-all">
-              <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center mb-3 sm:mb-4">
-                <Gauge className="w-5 h-5 text-blue-700" />
+          <StaggerGrid className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            <div className="industrial-card p-5 sm:p-6 bg-slate-50/60 border border-slate-200 hover:border-blue-700 hover:shadow-md hover:-translate-y-1 transition-all duration-200 h-full flex flex-col justify-between">
+              <div>
+                <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center mb-3 sm:mb-4">
+                  <Gauge className="w-5 h-5 text-blue-700" />
+                </div>
+                <h3 className="text-base font-bold text-slate-950 mb-1.5">High Efficiency Output</h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Up to 8,000 bottles/hour on 6-cavity models with sub-second cycle indexing and consistent neck finish alignment.
+                </p>
               </div>
-              <h3 className="text-base font-bold text-slate-950 mb-1.5">High Efficiency Output</h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Up to 8,000 bottles/hour on 6-cavity models with sub-second cycle indexing and consistent neck finish alignment.
-              </p>
             </div>
 
-            <div className="industrial-card p-5 sm:p-6 bg-slate-50/60 border border-slate-200 hover:border-slate-300 transition-all">
-              <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center mb-3 sm:mb-4">
-                <Cpu className="w-5 h-5 text-blue-700" />
+            <div className="industrial-card p-5 sm:p-6 bg-slate-50/60 border border-slate-200 hover:border-blue-700 hover:shadow-md hover:-translate-y-1 transition-all duration-200 h-full flex flex-col justify-between">
+              <div>
+                <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center mb-3 sm:mb-4">
+                  <Cpu className="w-5 h-5 text-blue-700" />
+                </div>
+                <h3 className="text-base font-bold text-slate-950 mb-1.5">25% Air Recovery</h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Standard integrated air recycling systems channel 30-bar exhaust back to low-pressure pneumatic strokes.
+                </p>
               </div>
-              <h3 className="text-base font-bold text-slate-950 mb-1.5">25% Air Recovery</h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Standard integrated air recycling systems channel 30-bar exhaust back to low-pressure pneumatic strokes.
-              </p>
             </div>
 
-            <div className="industrial-card p-5 sm:p-6 bg-slate-50/60 border border-slate-200 hover:border-slate-300 transition-all">
-              <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center mb-3 sm:mb-4">
-                <ShieldCheck className="w-5 h-5 text-blue-700" />
+            <div className="industrial-card p-5 sm:p-6 bg-slate-50/60 border border-slate-200 hover:border-blue-700 hover:shadow-md hover:-translate-y-1 transition-all duration-200 h-full flex flex-col justify-between">
+              <div>
+                <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center mb-3 sm:mb-4">
+                  <ShieldCheck className="w-5 h-5 text-blue-700" />
+                </div>
+                <h3 className="text-base font-bold text-slate-950 mb-1.5">BIS IS:14543 Ready</h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Turnkey compliance with food-grade SS304/SS316 fluid paths, laminar flow capping zones, and in-house laboratory equipment.
+                </p>
               </div>
-              <h3 className="text-base font-bold text-slate-950 mb-1.5">BIS IS:14543 Ready</h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Turnkey compliance with food-grade SS304/SS316 fluid paths, laminar flow capping zones, and in-house laboratory equipment.
-              </p>
             </div>
 
-            <div className="industrial-card p-5 sm:p-6 bg-slate-50/60 border border-slate-200 hover:border-slate-300 transition-all">
-              <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center mb-3 sm:mb-4">
-                <Factory className="w-5 h-5 text-blue-700" />
+            <div className="industrial-card p-5 sm:p-6 bg-slate-50/60 border border-slate-200 hover:border-blue-700 hover:shadow-md hover:-translate-y-1 transition-all duration-200 h-full flex flex-col justify-between">
+              <div>
+                <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center mb-3 sm:mb-4">
+                  <Factory className="w-5 h-5 text-blue-700" />
+                </div>
+                <h3 className="text-base font-bold text-slate-950 mb-1.5">Vasai Manufacturing</h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Direct OEM factory pricing with no middleman markup, genuine spare parts in stock, and nationwide technician support.
+                </p>
               </div>
-              <h3 className="text-base font-bold text-slate-950 mb-1.5">Vasai Manufacturing</h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Direct OEM factory pricing with no middleman markup, genuine spare parts in stock, and nationwide technician support.
-              </p>
             </div>
-          </div>
+          </StaggerGrid>
         </div>
       </section>
 
-      {/* Flagship Showcases (Grid of Key Machines) */}
+      {/* Flagship Showcases (Grid of Key Machines with Stagger Reveal) */}
       <section className="py-14 sm:py-20 bg-slate-50/50 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 sm:mb-12 gap-3 sm:gap-4">
+          <ScrollReveal className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 sm:mb-12 gap-3 sm:gap-4">
             <div>
               <span className="text-[11px] sm:text-xs font-mono font-bold text-blue-800 uppercase tracking-wider">
                 FEATURED PRODUCTION EQUIPMENT
@@ -280,25 +289,25 @@ export default function Home({ onOpenQuote }) {
 
             <Link
               to="/machines"
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-700 hover:text-blue-800"
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-700 hover:text-blue-800 active:scale-95 transition-all"
             >
               <span>View All 15 Models with Pricing</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
-          </div>
+          </ScrollReveal>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          <StaggerGrid className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {flagships.map((prod) => (
               <div
                 key={prod.model_code}
-                className="industrial-card p-4 sm:p-5 bg-white border border-slate-200 flex flex-col justify-between group hover:border-blue-700 transition-colors"
+                className="industrial-card p-4 sm:p-5 bg-white border border-slate-200 flex flex-col justify-between group hover:border-blue-700 hover:shadow-md hover:-translate-y-1 transition-all duration-200 h-full"
               >
                 <div>
                   <div className="h-44 sm:h-48 bg-slate-50 rounded-xl p-3 sm:p-4 mb-3 sm:mb-4 flex items-center justify-center relative overflow-hidden">
                     <img
                       src={prod.image}
                       alt={`Vedanta ${prod.name} ${prod.model_code}`}
-                      className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300"
+                      className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300 ease-out"
                     />
                     <div className="absolute top-2.5 left-2.5 bg-white/95 px-2 py-0.5 rounded-full text-[10px] font-mono font-bold text-slate-700 border border-slate-200">
                       {prod.model_code}
@@ -324,7 +333,7 @@ export default function Home({ onOpenQuote }) {
                 <div className="grid grid-cols-2 gap-2 pt-3 sm:pt-4 mt-3 sm:mt-4 border-t border-slate-100">
                   <Link
                     to={`/machine/${prod.slug}`}
-                    className="w-full flex items-center justify-center gap-1 bg-white hover:bg-slate-50 text-slate-800 font-semibold text-xs py-2.5 rounded-full border border-slate-300 transition-colors shadow-2xs"
+                    className="w-full flex items-center justify-center gap-1 bg-white hover:bg-slate-50 active:scale-95 text-slate-800 font-semibold text-xs py-2.5 rounded-full border border-slate-300 transition-all shadow-2xs"
                   >
                     <span>Specs</span>
                     <ChevronRight className="w-3.5 h-3.5 text-slate-500" />
@@ -332,50 +341,52 @@ export default function Home({ onOpenQuote }) {
 
                   <button
                     onClick={() => onOpenQuote(prod.model_code)}
-                    className="w-full flex items-center justify-center gap-1 bg-blue-700 hover:bg-blue-800 text-white font-semibold text-xs py-2.5 rounded-full shadow-2xs transition-colors cursor-pointer"
+                    className="w-full flex items-center justify-center gap-1 bg-blue-700 hover:bg-blue-800 active:scale-95 text-white font-semibold text-xs py-2.5 rounded-full shadow-2xs hover:shadow-xs transition-all cursor-pointer"
                   >
                     <span>Get Quote</span>
                   </button>
                 </div>
               </div>
             ))}
-          </div>
+          </StaggerGrid>
         </div>
       </section>
 
       {/* CapEx Sizer Teaser Banner */}
       <section className="py-12 sm:py-16 bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-8">
-          <div className="p-6 sm:p-12 bg-slate-950 text-white flex flex-col md:flex-row justify-between items-start md:items-center gap-6 sm:gap-8 rounded-2xl sm:rounded-3xl border border-slate-800 shadow-md">
-            <div className="space-y-2.5 sm:space-y-3 max-w-2xl">
-              <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-blue-400 bg-blue-950 px-3 py-1 rounded-full border border-blue-800 inline-block">
-                DYNAMIC CAPEX ESTIMATOR
-              </span>
-              <h3 className="text-xl sm:text-3xl font-extrabold tracking-tight leading-snug">
-                Calculate Your Bottling Plant Investment & Daily ROI
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                Determine exact machine sizing, power requirements (kW), compressor CFM, factory floor area, and gross profit per bottle in seconds.
-              </p>
-            </div>
+          <ScrollReveal>
+            <div className="p-6 sm:p-12 bg-slate-950 text-white flex flex-col md:flex-row justify-between items-start md:items-center gap-6 sm:gap-8 rounded-2xl sm:rounded-3xl border border-slate-800 shadow-md">
+              <div className="space-y-2.5 sm:space-y-3 max-w-2xl">
+                <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-blue-400 bg-blue-950 px-3 py-1 rounded-full border border-blue-800 inline-block">
+                  DYNAMIC CAPEX ESTIMATOR
+                </span>
+                <h3 className="text-xl sm:text-3xl font-extrabold tracking-tight leading-snug">
+                  Calculate Your Bottling Plant Investment & Daily ROI
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                  Determine exact machine sizing, power requirements (kW), compressor CFM, factory floor area, and gross profit per bottle in seconds.
+                </p>
+              </div>
 
-            <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 w-full sm:w-auto shrink-0">
-              <Link
-                to="/calculator"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs sm:text-sm py-3 px-5 sm:px-6 rounded-full shadow-sm transition-all text-center"
-              >
-                <span>Launch Line Sizer Tool</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
+              <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 w-full sm:w-auto shrink-0">
+                <Link
+                  to="/calculator"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 active:scale-95 text-white font-semibold text-xs sm:text-sm py-3 px-5 sm:px-6 rounded-full shadow-sm transition-all text-center"
+                >
+                  <span>Launch Line Sizer Tool</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
 
-              <Link
-                to="/turnkey"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs sm:text-sm py-3 px-5 sm:px-6 rounded-full border border-slate-700 transition-all text-center"
-              >
-                <span>Explore Turnkey Plants</span>
-              </Link>
+                <Link
+                  to="/turnkey"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 active:scale-95 text-slate-200 font-semibold text-xs sm:text-sm py-3 px-5 sm:px-6 rounded-full border border-slate-700 transition-all text-center"
+                >
+                  <span>Explore Turnkey Plants</span>
+                </Link>
+              </div>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 

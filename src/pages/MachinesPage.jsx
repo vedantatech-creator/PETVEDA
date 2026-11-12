@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import MetaSEO from '../components/MetaSEO';
 import { VEDANTA_CATALOG } from '../data/catalog';
+import ScrollReveal, { StaggerGrid } from '../components/ScrollReveal';
 
 export default function MachinesPage({ onOpenQuote }) {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -184,18 +185,18 @@ export default function MachinesPage({ onOpenQuote }) {
             </span>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <StaggerGrid className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {bestSellers.map((item) => (
               <div 
                 key={`bestseller-${item.model_code}`}
-                className="bg-slate-50/70 border border-slate-200 rounded-2xl p-4 flex flex-col justify-between hover:border-blue-700 transition-colors shadow-2xs"
+                className="group bg-slate-50/70 border border-slate-200 rounded-2xl p-4 flex flex-col justify-between hover:border-blue-700 hover:shadow-md hover:-translate-y-1 transition-all duration-200 shadow-2xs h-full"
               >
                 <div>
-                  <div className="h-40 bg-white rounded-xl p-3 mb-3 flex items-center justify-center relative border border-slate-200/80">
+                  <div className="h-40 bg-white rounded-xl p-3 mb-3 flex items-center justify-center relative border border-slate-200/80 overflow-hidden">
                     <img
                       src={item.image}
                       alt={item.name}
-                      className="max-h-full max-w-full object-contain"
+                      className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300 ease-out"
                     />
                     <div className="absolute top-2 left-2 bg-blue-700 text-white px-2 py-0.5 rounded text-[10px] font-mono font-bold">
                       {item.model_code}
@@ -217,13 +218,13 @@ export default function MachinesPage({ onOpenQuote }) {
 
                   {/* Micro Specs */}
                   <div className="grid grid-cols-2 gap-1.5 text-[11px] font-mono mb-3">
-                    <div className="bg-white p-1.5 rounded border border-slate-200">
+                    <div className="bg-white p-1.5 rounded border border-slate-200 group-hover:border-slate-300 transition-colors">
                       <span className="text-[10px] text-slate-400 block uppercase">Speed</span>
                       <span className="font-bold text-slate-900 truncate block">
                         {item.bph_numeric ? `${item.bph_numeric.toLocaleString()} BPH` : 'Line Rated'}
                       </span>
                     </div>
-                    <div className="bg-white p-1.5 rounded border border-slate-200">
+                    <div className="bg-white p-1.5 rounded border border-slate-200 group-hover:border-slate-300 transition-colors">
                       <span className="text-[10px] text-slate-400 block uppercase">Power</span>
                       <span className="font-bold text-blue-800 truncate block">
                         {item.power_kw_numeric ? `${item.power_kw_numeric} kW` : 'Standard'}
@@ -235,7 +236,7 @@ export default function MachinesPage({ onOpenQuote }) {
                 <div className="grid grid-cols-2 gap-2 pt-2 border-t border-slate-200">
                   <Link
                     to={`/machine/${item.slug}`}
-                    className="flex items-center justify-center gap-1 bg-white hover:bg-slate-100 text-slate-800 font-semibold text-xs py-2 rounded-full border border-slate-300 transition-colors"
+                    className="flex items-center justify-center gap-1 bg-white hover:bg-slate-100 active:scale-95 text-slate-800 font-semibold text-xs py-2 rounded-full border border-slate-300 transition-all"
                   >
                     <span>Specs</span>
                     <ChevronRight className="w-3 h-3 text-slate-500" />
@@ -243,7 +244,7 @@ export default function MachinesPage({ onOpenQuote }) {
                   <button
                     type="button"
                     onClick={() => onOpenQuote(item.model_code)}
-                    className="flex items-center justify-center gap-1 bg-blue-700 hover:bg-blue-800 text-white font-semibold text-xs py-2 rounded-full transition-colors cursor-pointer"
+                    className="flex items-center justify-center gap-1 bg-blue-700 hover:bg-blue-800 active:scale-95 text-white font-semibold text-xs py-2 rounded-full transition-all cursor-pointer shadow-2xs hover:shadow-xs"
                   >
                     <FileText className="w-3 h-3" />
                     <span>Quote</span>
@@ -251,7 +252,7 @@ export default function MachinesPage({ onOpenQuote }) {
                 </div>
               </div>
             ))}
-          </div>
+          </StaggerGrid>
         </section>
 
         {/* ============================================================== */}
@@ -400,18 +401,18 @@ export default function MachinesPage({ onOpenQuote }) {
         {/* ============================================================== */}
         {/* FULL MACHINERY LISTING (Sorted Default: High to Low) */}
         {/* ============================================================== */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+        <StaggerGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           {sorted.map((prod) => (
             <div
               key={prod.model_code}
-              className="bg-white border border-slate-200 rounded-2xl p-5 flex flex-col justify-between hover:border-blue-700 transition-all hover:shadow-sm"
+              className="group bg-white border border-slate-200 rounded-2xl p-5 flex flex-col justify-between hover:border-blue-700 hover:shadow-md hover:-translate-y-1 transition-all duration-200 shadow-2xs h-full"
             >
               <div>
                 <div className="h-52 bg-slate-50 rounded-xl p-4 mb-4 flex items-center justify-center relative overflow-hidden border border-slate-100">
                   <img
                     src={prod.image}
                     alt={`Vedanta Technologies ${prod.name} ${prod.model_code} manufactured in Vasai Maharashtra`}
-                    className="max-h-full max-w-full object-contain hover:scale-105 transition-transform duration-300"
+                    className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300 ease-out"
                   />
                   <div className="absolute top-3 left-3 bg-white px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold text-slate-800 border border-slate-200 shadow-2xs">
                     {prod.model_code}
@@ -440,14 +441,14 @@ export default function MachinesPage({ onOpenQuote }) {
                 </div>
 
                 <div className="grid grid-cols-2 gap-2 text-xs mb-4">
-                  <div className="bg-slate-50 p-2 rounded-lg border border-slate-200">
+                  <div className="bg-slate-50 p-2 rounded-lg border border-slate-200 group-hover:border-slate-300 transition-colors">
                     <span className="text-[10px] text-slate-500 block font-mono uppercase font-semibold">Capacity</span>
                     <span className="text-slate-900 font-bold font-mono text-xs">
                       {prod.bph_numeric ? `${prod.bph_numeric.toLocaleString()} BPH` : (prod.production_capacity_bph ? prod.production_capacity_bph.split('(')[0] : 'Line Specific')}
                     </span>
                   </div>
 
-                  <div className="bg-slate-50 p-2 rounded-lg border border-slate-200">
+                  <div className="bg-slate-50 p-2 rounded-lg border border-slate-200 group-hover:border-slate-300 transition-colors">
                     <span className="text-[10px] text-slate-500 block font-mono uppercase font-semibold">Power Load</span>
                     <span className="text-blue-800 font-bold font-mono text-xs">
                       {prod.power_kw_numeric ? `${prod.power_kw_numeric} kW` : (prod.total_connected_load_kw || 'Custom')}
@@ -455,7 +456,7 @@ export default function MachinesPage({ onOpenQuote }) {
                   </div>
 
                   {prod.container_volume_range && (
-                    <div className="bg-slate-50 p-2 rounded-lg border border-slate-200">
+                    <div className="bg-slate-50 p-2 rounded-lg border border-slate-200 group-hover:border-slate-300 transition-colors">
                       <span className="text-[10px] text-slate-500 block font-mono uppercase font-semibold">Volume</span>
                       <span className="text-slate-900 font-bold font-mono text-xs truncate block">
                         {prod.container_volume_range.split('(')[0]}
@@ -464,7 +465,7 @@ export default function MachinesPage({ onOpenQuote }) {
                   )}
 
                   {prod.chiller_requirement_tr && (
-                    <div className="bg-slate-50 p-2 rounded-lg border border-slate-200">
+                    <div className="bg-slate-50 p-2 rounded-lg border border-slate-200 group-hover:border-slate-300 transition-colors">
                       <span className="text-[10px] text-slate-500 block font-mono uppercase font-semibold">Cooling</span>
                       <span className="text-slate-900 font-bold font-mono text-xs truncate block">
                         {prod.chiller_requirement_tr}
@@ -477,7 +478,7 @@ export default function MachinesPage({ onOpenQuote }) {
               <div className="grid grid-cols-2 gap-2 pt-3 border-t border-slate-100">
                 <Link
                   to={`/machine/${prod.slug}`}
-                  className="w-full flex items-center justify-center gap-1 bg-white hover:bg-slate-50 text-slate-800 font-semibold text-xs py-2 rounded-full border border-slate-300 transition-colors shadow-2xs"
+                  className="w-full flex items-center justify-center gap-1 bg-white hover:bg-slate-50 active:scale-95 text-slate-800 font-semibold text-xs py-2 rounded-full border border-slate-300 transition-all shadow-2xs"
                 >
                   <span>Specs</span>
                   <ChevronRight className="w-3.5 h-3.5 text-slate-500" />
@@ -486,7 +487,7 @@ export default function MachinesPage({ onOpenQuote }) {
                 <button
                   type="button"
                   onClick={() => onOpenQuote(prod.model_code)}
-                  className="w-full flex items-center justify-center gap-1 bg-blue-700 hover:bg-blue-800 text-white font-semibold text-xs py-2 rounded-full transition-colors shadow-2xs cursor-pointer"
+                  className="w-full flex items-center justify-center gap-1 bg-blue-700 hover:bg-blue-800 active:scale-95 text-white font-semibold text-xs py-2 rounded-full transition-all shadow-2xs hover:shadow-xs cursor-pointer"
                 >
                   <FileText className="w-3.5 h-3.5" />
                   <span>Get Quote</span>
@@ -494,7 +495,7 @@ export default function MachinesPage({ onOpenQuote }) {
               </div>
             </div>
           ))}
-        </div>
+        </StaggerGrid>
 
         {sorted.length === 0 && (
           <div className="text-center py-16 bg-slate-50 rounded-2xl border border-slate-200 text-slate-500 mb-16">
@@ -513,45 +514,49 @@ export default function MachinesPage({ onOpenQuote }) {
         )}
 
         {/* Transparent Pricing Disclaimer (2-Clause Regulatory Notice) */}
-        <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 sm:p-5 mb-10 text-xs font-mono text-slate-700 space-y-1.5">
-          <p className="font-semibold text-slate-900">
-            • Clause 1: Displayed machinery and turnkey plant prices are indicative factory benchmarks and are subject to revision based on raw material costs, component availability, and specific bottle/mold customization.
-          </p>
-          <p className="text-slate-600">
-            • Clause 2: Please submit a direct inquiry or contact our sales engineering desk for a verified commercial quotation before finalizing orders or relying on pricing.
-          </p>
-        </div>
-
-        {/* Clean Sizing Helper Bar */}
-        <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="space-y-1 text-center md:text-left">
-            <h3 className="text-base font-bold text-slate-900">
-              Need Exact Plant Sizing & Utility Estimates?
-            </h3>
-            <p className="text-xs text-slate-600 max-w-xl">
-              Calculate electrical power load (kW), high-pressure compressor CFM, and factory floor square footage with our interactive sizing engine.
+        <ScrollReveal>
+          <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 sm:p-5 mb-10 text-xs font-mono text-slate-700 space-y-1.5 shadow-2xs">
+            <p className="font-semibold text-slate-900">
+              • Clause 1: Displayed machinery and turnkey plant prices are indicative factory benchmarks and are subject to revision based on raw material costs, component availability, and specific bottle/mold customization.
+            </p>
+            <p className="text-slate-600">
+              • Clause 2: Please submit a direct inquiry or contact our sales engineering desk for a verified commercial quotation before finalizing orders or relying on pricing.
             </p>
           </div>
+        </ScrollReveal>
 
-          <div className="flex items-center gap-3 shrink-0">
-            <Link
-              to="/calculator"
-              className="inline-flex items-center gap-1.5 text-xs font-semibold bg-white hover:bg-slate-100 text-slate-800 px-4 py-2.5 rounded-full border border-slate-300 transition-colors shadow-2xs"
-            >
-              <Calculator className="w-3.5 h-3.5 text-blue-700" />
-              <span>Launch Line Sizer</span>
-            </Link>
+        {/* Clean Sizing Helper Bar */}
+        <ScrollReveal delay={0.1}>
+          <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xs">
+            <div className="space-y-1 text-center md:text-left">
+              <h3 className="text-base font-bold text-slate-900">
+                Need Exact Plant Sizing & Utility Estimates?
+              </h3>
+              <p className="text-xs text-slate-600 max-w-xl">
+                Calculate electrical power load (kW), high-pressure compressor CFM, and factory floor square footage with our interactive sizing engine.
+              </p>
+            </div>
 
-            <button
-              type="button"
-              onClick={() => onOpenQuote()}
-              className="inline-flex items-center gap-1.5 text-xs font-semibold bg-blue-700 hover:bg-blue-800 text-white px-4 py-2.5 rounded-full transition-colors shadow-2xs cursor-pointer"
-            >
-              <FileText className="w-3.5 h-3.5" />
-              <span>Request Quote</span>
-            </button>
+            <div className="flex items-center gap-3 shrink-0">
+              <Link
+                to="/calculator"
+                className="inline-flex items-center gap-1.5 text-xs font-semibold bg-white hover:bg-slate-100 active:scale-95 text-slate-800 px-4 py-2.5 rounded-full border border-slate-300 transition-all shadow-2xs"
+              >
+                <Calculator className="w-3.5 h-3.5 text-blue-700" />
+                <span>Launch Line Sizer</span>
+              </Link>
+
+              <button
+                type="button"
+                onClick={() => onOpenQuote()}
+                className="inline-flex items-center gap-1.5 text-xs font-semibold bg-blue-700 hover:bg-blue-800 active:scale-95 text-white px-4 py-2.5 rounded-full transition-all shadow-2xs hover:shadow-xs cursor-pointer"
+              >
+                <FileText className="w-3.5 h-3.5" />
+                <span>Request Quote</span>
+              </button>
+            </div>
           </div>
-        </div>
+        </ScrollReveal>
       </div>
     </div>
   );
