@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { 
   ArrowRight, 
   ShieldCheck, 
@@ -12,11 +12,27 @@ import {
 } from 'lucide-react';
 import MetaSEO from '../components/MetaSEO';
 import FaqSection from '../components/FaqSection';
-import KineticHeroVisualizer from '../components/KineticHeroVisualizer';
 import { VEDANTA_FAQS } from '../data/faqs';
 import { VEDANTA_CATALOG } from '../data/catalog';
 
+const HERO_ROTATING_PHRASES = [
+  'Flawless Bottling Automation.',
+  'Servo Linear Precision.',
+  'High-Speed 4,800 BPH.',
+  '25% Air Energy Recovery.',
+  'Turnkey BIS Engineering.'
+];
+
 export default function Home({ onOpenQuote }) {
+  const [phraseIndex, setPhraseIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setPhraseIndex((prev) => (prev + 1) % HERO_ROTATING_PHRASES.length);
+    }, 2800);
+    return () => clearInterval(timer);
+  }, []);
+
   const flagships = VEDANTA_CATALOG.filter(m => 
     ['VT-BLOW-A4', 'VT-BLOW-A2', 'VT-TURNKEY-60BPM', 'VT-BLOW-JAR20'].includes(m.model_code)
   );
@@ -51,9 +67,19 @@ export default function Home({ onOpenQuote }) {
         breadcrumbs={breadcrumbs}
       />
 
-      {/* Hero Section (Apple Style: Bold, Airy, Cinematic, Fully Phone Responsive) */}
+      {/* Hero Section (Industrial Precision Engineering, 100% Phone Native) */}
       <section className="relative overflow-hidden pt-8 pb-14 sm:pt-14 sm:pb-20 lg:pt-20 lg:pb-32 border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8">
+        {/* Engineering CAD Grid & Atmospheric Drafting Aura (Zero layout shift, pure visual depth) */}
+        <div 
+          aria-hidden="true" 
+          className="absolute inset-0 pointer-events-none opacity-[0.035] bg-[radial-gradient(#1d4ed8_1px,transparent_1px)] [background-size:24px_24px]" 
+        />
+        <div 
+          aria-hidden="true" 
+          className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/3 w-[500px] sm:w-[850px] h-[320px] sm:h-[450px] bg-gradient-to-b from-blue-100/70 via-blue-50/20 to-transparent blur-3xl pointer-events-none rounded-full" 
+        />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 relative z-10">
           <div className="text-center max-w-4xl mx-auto space-y-4 sm:space-y-6">
             <motion.div 
               initial={{ opacity: 0, y: 15 }}
@@ -76,14 +102,19 @@ export default function Home({ onOpenQuote }) {
               className="text-3xl sm:text-5xl lg:text-7xl font-black text-slate-950 tracking-tight leading-[1.12]"
             >
               High-Speed PET Blow Moulding. <br className="hidden sm:inline" />
-              <span className="relative inline-block text-blue-700">
-                Flawless Bottling Automation.
-                <motion.span 
-                  className="absolute left-0 -bottom-1 sm:-bottom-2 w-full h-1 sm:h-1.5 bg-gradient-to-r from-blue-700 via-blue-500 to-transparent rounded-full"
-                  initial={{ scaleX: 0, originX: 0 }}
-                  animate={{ scaleX: 1 }}
-                  transition={{ duration: 0.9, delay: 0.35, ease: 'easeOut' }}
-                />
+              <span className="block mt-1.5 sm:mt-2 min-h-[2.4em] sm:min-h-[1.25em] text-blue-700 relative">
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={phraseIndex}
+                    initial={{ opacity: 0, y: 20, filter: 'blur(5px)' }}
+                    animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                    exit={{ opacity: 0, y: -20, filter: 'blur(5px)' }}
+                    transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                    className="inline-block bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-800 bg-clip-text text-transparent"
+                  >
+                    {HERO_ROTATING_PHRASES[phraseIndex]}
+                  </motion.span>
+                </AnimatePresence>
               </span>
             </motion.h1>
 
@@ -95,6 +126,31 @@ export default function Home({ onOpenQuote }) {
             >
               Engineered with servo-stepping accuracy, 8-zone infrared quartz heating, and integrated high-pressure air recovery. From raw preform to palletized product.
             </motion.p>
+
+            {/* Phone-First Telemetry Chips (Zero extra height, pure industrial credibility) */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.25 }}
+              className="flex flex-wrap items-center justify-center gap-2 pt-1"
+            >
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-50 border border-slate-200 text-[11px] sm:text-xs font-semibold text-slate-800 shadow-2xs">
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-700 animate-pulse" />
+                <span>4,800 BPH Speed</span>
+              </div>
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-50 border border-slate-200 text-[11px] sm:text-xs font-semibold text-slate-800 shadow-2xs">
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-700" />
+                <span>30-Bar Air Recovery</span>
+              </div>
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-50 border border-slate-200 text-[11px] sm:text-xs font-semibold text-slate-800 shadow-2xs">
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-700" />
+                <span>Siemens PLC Servo</span>
+              </div>
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-50 border border-slate-200 text-[11px] sm:text-xs font-semibold text-slate-800 shadow-2xs">
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-700" />
+                <span>BIS & CE Ready</span>
+              </div>
+            </motion.div>
 
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
@@ -119,15 +175,6 @@ export default function Home({ onOpenQuote }) {
               </button>
             </motion.div>
           </div>
-
-          {/* Broad Interactive Kinetic Bottling Stage (Directly under the big text) */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            <KineticHeroVisualizer onOpenQuote={onOpenQuote} />
-          </motion.div>
 
           {/* Hero Flagship Hero Visual */}
           <motion.div 
