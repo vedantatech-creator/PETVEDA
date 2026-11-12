@@ -188,9 +188,15 @@ export default function ProductDetailPage({ onOpenQuote }) {
               <h2 className="text-xs sm:text-sm font-mono uppercase tracking-wider text-slate-500 font-bold mb-2">
                 Executive Overview
               </h2>
-              <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+              <p className="text-xs sm:text-sm text-slate-700 leading-relaxed whitespace-pre-line">
                 {product.description}
               </p>
+
+              {/* Price Disclaimer Clause */}
+              <div className="mt-4 p-3.5 bg-slate-50 border border-slate-200 rounded-xl text-[11px] sm:text-xs text-slate-700 font-mono space-y-1">
+                <p className="font-semibold text-slate-900">• Notice: Listed prices are indicative benchmarks and subject to change based on raw material costs, component availability, and container customization.</p>
+                <p className="text-slate-600">• Action: Please submit a direct inquiry or contact our sales engineering desk for a verified commercial quotation before finalizing orders.</p>
+              </div>
             </div>
 
             <div className="grid grid-cols-2 gap-2.5 sm:gap-3 text-xs">

@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import MetaSEO from '../components/MetaSEO';
 import FaqSection from '../components/FaqSection';
+import IndustrialBottlingWorkflow from '../components/IndustrialBottlingWorkflow';
 import { VEDANTA_FAQS } from '../data/faqs';
 import { VEDANTA_CATALOG } from '../data/catalog';
 
@@ -69,14 +70,10 @@ export default function Home({ onOpenQuote }) {
 
       {/* Hero Section (Industrial Precision Engineering, 100% Phone Native) */}
       <section className="relative overflow-hidden pt-8 pb-14 sm:pt-14 sm:pb-20 lg:pt-20 lg:pb-32 border-b border-slate-200">
-        {/* Engineering CAD Grid & Atmospheric Drafting Aura (Zero layout shift, pure visual depth) */}
+        {/* Engineering CAD Grid (Zero layout shift, pure visual depth) */}
         <div 
           aria-hidden="true" 
           className="absolute inset-0 pointer-events-none opacity-[0.035] bg-[radial-gradient(#1d4ed8_1px,transparent_1px)] [background-size:24px_24px]" 
-        />
-        <div 
-          aria-hidden="true" 
-          className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/3 w-[500px] sm:w-[850px] h-[320px] sm:h-[450px] bg-gradient-to-b from-blue-100/70 via-blue-50/20 to-transparent blur-3xl pointer-events-none rounded-full" 
         />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-8 relative z-10">
@@ -110,7 +107,7 @@ export default function Home({ onOpenQuote }) {
                     animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                     exit={{ opacity: 0, y: -20, filter: 'blur(5px)' }}
                     transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                    className="inline-block bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-800 bg-clip-text text-transparent"
+                    className="inline-block text-blue-700 font-black"
                   >
                     {HERO_ROTATING_PHRASES[phraseIndex]}
                   </motion.span>
@@ -218,6 +215,11 @@ export default function Home({ onOpenQuote }) {
               </div>
             </div>
           </motion.div>
+
+          {/* 21st.dev Style Industrial Bottling Pipeline Workflow */}
+          <div className="mt-8 sm:mt-12 max-w-5xl mx-auto">
+            <IndustrialBottlingWorkflow onOpenQuote={onOpenQuote} />
+          </div>
         </div>
       </section>
 

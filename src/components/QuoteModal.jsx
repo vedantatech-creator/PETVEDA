@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { 
   X, 
   MessageSquare, 
-  FileText, 
-  CheckCircle2 
+  CheckCircle2,
+  Download
 } from 'lucide-react';
 import { VEDANTA_CATALOG } from '../data/catalog';
 
@@ -33,6 +33,73 @@ export default function QuoteModal({ isOpen, onClose, defaultModel = '' }) {
 
   if (!isOpen) return null;
 
+  const downloadProposalSlip = (data) => {
+    const matchedMachine = VEDANTA_CATALOG.find(m => m.model_code === data.modelCode);
+    const content = `=====================================================
+VEDANTA TECHNOLOGIES - INDUSTRIAL MACHINERY OEM
+Manufacturing Plant: Gala No. 13 Ground Floor, Sankalp Sidhi Complex,
+Tirupati Venture Industrial Estate, Vasai Virar, Maharashtra - 401208
+GSTIN: 27CJGPS6985P1ZX | BIS IS:14543 Turnkey Project Specialists
+Helpline & WhatsApp: +91 8850848971 | info@vedantatechnologies.in
+=====================================================
+OFFICIAL QUOTATION & SPECIFICATION REQUEST SLIP
+Reference ID: VT-REQ-${Date.now().toString().slice(-6)}
+Timestamp: ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}
+-----------------------------------------------------
+1. CLIENT INFORMATION:
+   - Full Name: ${data.name}
+   - Contact / WhatsApp: ${data.phone}
+   - Company / Enterprise: ${data.company || 'New Bottling Venture'}
+   - Plant Location: ${data.city || 'Vasai / Mumbai'}, ${data.state}
+
+2. MACHINERY & SPECIFICATIONS REQUESTED:
+   - Model Code: ${data.modelCode}
+   - Model Name: ${matchedMachine ? matchedMachine.name : 'Custom Machinery / Turnkey Project'}
+   - Indicative Pricing: ${matchedMachine ? (matchedMachine.price_range || matchedMachine.price_indicative) : 'Custom Quote'}
+   - Container Size: ${data.bottleSize}
+   - Target Production: ${data.dailyTarget}
+   - Connected Electrical Load: ${matchedMachine ? (matchedMachine.power_kw_numeric ? `${matchedMachine.power_kw_numeric} kW` : matchedMachine.total_connected_load_kw) : 'Standard'}
+   - In-House BIS IS:14543 Lab: ${data.needsLab ? 'YES (Microbiology + Chemical Lab Equipment)' : 'NO (Machinery Only)'}
+   - Special Instructions: ${data.notes || 'Full itemized quotation, power SLD, and plant CAD layout requested.'}
+
+3. INQUIRY DISPATCH STATUS:
+   [✓] Logged in Vedanta Technologies Lead Registry
+   [✓] Dispatched via Instant WhatsApp to Chief Technical Engineer (+91 8850848971)
+   [✓] Technical Spec Slip Saved to Client Device
+
+NEXT STEPS:
+Our senior project engineer in Vasai will review your requirements and send
+the complete itemized commercial quotation and plant layout drawings directly
+to your WhatsApp within 2 to 4 business hours.
+=====================================================`;
+
+    const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `Vedanta_Quote_Request_${data.modelCode}_${Date.now().toString().slice(-4)}.txt`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
+
+  const handleSendWhatsApp = () => {
+    const matchedMachine = VEDANTA_CATALOG.find(m => m.model_code === formData.modelCode);
+    const text = encodeURIComponent(
+      `*New Machinery & Quotation Inquiry - Vedanta Technologies*\n\n` +
+      `*Client Name:* ${formData.name}\n` +
+      `*Phone / WhatsApp:* ${formData.phone}\n` +
+      `*Company / Brand:* ${formData.company || 'New Bottling Project'}\n` +
+      `*Location:* ${formData.city || 'India'}, ${formData.state}\n` +
+      `*Machine of Interest:* ${formData.modelCode} ${matchedMachine ? `(${matchedMachine.price_indicative})` : ''}\n` +
+      `*Container Size & Target:* ${formData.bottleSize} (${formData.dailyTarget})\n` +
+      `*Includes BIS IS:14543 Lab:* ${formData.needsLab ? 'Yes (Mandatory Microbiology Lab)' : 'No'}\n` +
+      `*Client Notes:* ${formData.notes || 'Please share detailed itemized quotation, power utility SLD, and CAD layout.'}`
+    );
+    window.open(`https://wa.me/918850848971?text=${text}`, '_blank');
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!formData.name || !formData.phone) {
@@ -40,27 +107,23 @@ export default function QuoteModal({ isOpen, onClose, defaultModel = '' }) {
       return;
     }
 
-    // Save to localStorage
-    const existing = JSON.parse(localStorage.getItem('vedanta_web_leads') || '[]');
-    existing.push({ ...formData, timestamp: new Date().toISOString() });
-    localStorage.setItem('vedanta_web_leads', JSON.stringify(existing));
+    // 1. Save to localStorage
+    try {
+      const existing = JSON.parse(localStorage.getItem('vedanta_web_leads') || '[]');
+      existing.push({ ...formData, timestamp: new Date().toISOString() });
+      localStorage.setItem('vedanta_web_leads', JSON.stringify(existing));
+    } catch {
+      // Ignore localStorage errors in private browsing
+    }
 
+    // 2. Trigger automatic proposal slip download
+    downloadProposalSlip(formData);
+
+    // 3. Directly open WhatsApp with complete filled message
+    handleSendWhatsApp();
+
+    // 4. Show submitted confirmation
     setSubmitted(true);
-  };
-
-  const handleSendWhatsApp = () => {
-    const text = encodeURIComponent(
-      `*New Machinery & Quotation Inquiry - Vedanta Technologies*\n\n` +
-      `*Client:* ${formData.name}\n` +
-      `*Phone:* ${formData.phone}\n` +
-      `*Company:* ${formData.company || 'Individual Entrepreneur'}\n` +
-      `*Location:* ${formData.city}, ${formData.state}\n` +
-      `*Interested Machine/Line:* ${formData.modelCode}\n` +
-      `*Target Container:* ${formData.bottleSize} (${formData.dailyTarget})\n` +
-      `*Includes BIS ISI Lab:* ${formData.needsLab ? 'Yes' : 'No'}\n` +
-      `*Notes:* ${formData.notes || 'Please share detailed itemized quotation and CAD layout.'}`
-    );
-    window.open(`https://wa.me/918850848971?text=${text}`, '_blank');
   };
 
   return (
@@ -88,7 +151,7 @@ export default function QuoteModal({ isOpen, onClose, defaultModel = '' }) {
                 Request Machine Pricing & CAD Layout
               </h3>
               <p className="text-xs text-slate-600">
-                Receive an itemized technical proposal, power/air utility requirements, and factory layout plan directly on your WhatsApp or email.
+                Receive an itemized technical proposal and plant CAD layout. Submitting directly opens WhatsApp with your full inquiry pre-filled and downloads your technical request slip.
               </p>
             </div>
 
@@ -210,8 +273,8 @@ export default function QuoteModal({ isOpen, onClose, defaultModel = '' }) {
                 type="submit"
                 className="w-full bg-blue-700 hover:bg-blue-800 text-white font-semibold text-xs py-3.5 rounded-xl transition-all shadow-sm flex items-center justify-center gap-2 cursor-pointer"
               >
-                <FileText className="w-4 h-4" />
-                <span>Submit & Download Proposal</span>
+                <MessageSquare className="w-4 h-4" />
+                <span>Submit, Download Slip & Open WhatsApp</span>
               </button>
             </div>
           </form>
@@ -221,37 +284,54 @@ export default function QuoteModal({ isOpen, onClose, defaultModel = '' }) {
               <CheckCircle2 className="w-7 h-7" />
             </div>
 
-            <h3 className="text-xl font-bold text-slate-950">
-              Quotation Request Received!
-            </h3>
+            <div className="space-y-1">
+              <span className="text-[10px] font-mono uppercase tracking-wider text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200 font-bold">
+                PROPOSAL DOWNLOADED & WHATSAPP OPENED
+              </span>
+              <h3 className="text-xl font-bold text-slate-950">
+                Quotation Request Logged!
+              </h3>
+            </div>
 
             <p className="text-xs text-slate-600 max-w-md mx-auto leading-relaxed">
-              Thank you, <strong className="text-slate-900">{formData.name}</strong>. Our senior plant engineering team has logged your inquiry for model <strong className="text-blue-800 font-mono">{formData.modelCode}</strong>.
+              Thank you, <strong className="text-slate-900">{formData.name}</strong>. Your official specification slip has been downloaded to your device, and WhatsApp has been directly opened with your pre-filled inquiry.
             </p>
 
             <div className="bg-slate-50 p-3.5 rounded-lg border border-slate-200 text-left text-xs space-y-1 max-w-sm mx-auto font-mono text-slate-700">
               <div>Phone: <span className="text-slate-900 font-bold">{formData.phone}</span></div>
-              <div>Location: <span className="text-slate-900 font-bold">{formData.city}, {formData.state}</span></div>
-              <div>Daily Target: <span className="text-blue-800 font-bold">{formData.dailyTarget}</span></div>
+              <div>Machine: <span className="text-blue-800 font-bold">{formData.modelCode}</span></div>
+              <div>Daily Target: <span className="text-slate-900 font-bold">{formData.dailyTarget}</span></div>
+              <div>Location: <span className="text-slate-900 font-bold">{formData.city || 'India'}, {formData.state}</span></div>
             </div>
 
-            <div className="pt-2 flex flex-col sm:flex-row gap-2.5 max-w-sm mx-auto">
+            <div className="pt-2 flex flex-col gap-2 max-w-sm mx-auto">
               <button
+                type="button"
                 onClick={handleSendWhatsApp}
-                className="flex-1 flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs py-3 px-4 rounded-xl shadow-sm transition-all cursor-pointer"
+                className="w-full flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs py-3 px-4 rounded-xl shadow-sm transition-all cursor-pointer"
               >
                 <MessageSquare className="w-4 h-4" />
-                <span>Open Instant WhatsApp Chat</span>
+                <span>Re-Open WhatsApp Chat</span>
               </button>
 
               <button
+                type="button"
+                onClick={() => downloadProposalSlip(formData)}
+                className="w-full flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-slate-800 border border-slate-300 font-semibold text-xs py-2.5 px-4 rounded-xl transition-colors cursor-pointer"
+              >
+                <Download className="w-4 h-4 text-blue-700" />
+                <span>Download Proposal Slip Again</span>
+              </button>
+
+              <button
+                type="button"
                 onClick={() => {
                   setSubmitted(false);
                   onClose();
                 }}
-                className="py-3 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-xs transition-colors cursor-pointer"
+                className="w-full py-2.5 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-xs transition-colors cursor-pointer"
               >
-                Done
+                Close Window
               </button>
             </div>
           </div>

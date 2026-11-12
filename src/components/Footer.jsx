@@ -108,29 +108,8 @@ export default function Footer({ onOpenQuote }) {
                 </Link>
               </li>
               <li>
-                <Link to="/plant-layout" className="hover:text-blue-700 transition-colors">
-                  Interactive CAD Plant Layout
-                </Link>
-              </li>
-              <li>
                 <Link to="/calculator" className="hover:text-blue-700 transition-colors">
                   Bottling Line Sizer & Utilities
-                </Link>
-              </li>
-              <li>
-                <Link to="/roi" className="hover:text-blue-700 transition-colors">
-                  Bottle Profit & ROI Calculator
-                </Link>
-              </li>
-              <li>
-                <Link to="/guides" className="text-blue-700 font-semibold hover:text-blue-800 transition-colors flex items-center gap-1">
-                  <span>Buyer Decision Guides</span>
-                  <span className="text-[10px] font-mono bg-blue-50 text-blue-800 px-1.5 py-0.2 rounded border border-blue-200">New</span>
-                </Link>
-              </li>
-              <li>
-                <Link to="/compliance" className="hover:text-blue-700 transition-colors">
-                  BIS IS:14543 Lab Equipment
                 </Link>
               </li>
               <li>
