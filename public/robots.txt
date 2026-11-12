@@ -7,7 +7,10 @@ Allow: /
 Allow: /machines
 Allow: /machine/*
 Allow: /turnkey
+Allow: /plant-layout
 Allow: /calculator
+Allow: /roi
+Allow: /guides
 Allow: /compliance
 Allow: /factory
 Allow: /contact
