@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import MetaSEO from '../components/MetaSEO';
 import FaqSection from '../components/FaqSection';
+import KineticHeroVisualizer from '../components/KineticHeroVisualizer';
 import { VEDANTA_FAQS } from '../data/faqs';
 import { VEDANTA_CATALOG } from '../data/catalog';
 
@@ -75,7 +76,15 @@ export default function Home({ onOpenQuote }) {
               className="text-3xl sm:text-5xl lg:text-7xl font-black text-slate-950 tracking-tight leading-[1.12]"
             >
               High-Speed PET Blow Moulding. <br className="hidden sm:inline" />
-              <span className="text-blue-700">Flawless Bottling Automation.</span>
+              <span className="relative inline-block text-blue-700">
+                Flawless Bottling Automation.
+                <motion.span 
+                  className="absolute left-0 -bottom-1 sm:-bottom-2 w-full h-1 sm:h-1.5 bg-gradient-to-r from-blue-700 via-blue-500 to-transparent rounded-full"
+                  initial={{ scaleX: 0, originX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ duration: 0.9, delay: 0.35, ease: 'easeOut' }}
+                />
+              </span>
             </motion.h1>
 
             <motion.p 
@@ -110,6 +119,15 @@ export default function Home({ onOpenQuote }) {
               </button>
             </motion.div>
           </div>
+
+          {/* Broad Interactive Kinetic Bottling Stage (Directly under the big text) */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            <KineticHeroVisualizer onOpenQuote={onOpenQuote} />
+          </motion.div>
 
           {/* Hero Flagship Hero Visual */}
           <motion.div 
