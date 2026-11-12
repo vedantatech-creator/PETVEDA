@@ -349,6 +349,14 @@ export default function Home({ onOpenQuote }) {
               </div>
             ))}
           </StaggerGrid>
+
+          {/* Pricing Notice */}
+          <ScrollReveal delay={0.1}>
+            <div className="mt-8 p-3.5 sm:p-4 bg-white border border-slate-200 rounded-xl text-[11px] font-mono text-slate-500 space-y-1 shadow-2xs">
+              <p className="font-semibold text-slate-700">• Notice: Displayed machinery and turnkey plant prices are indicative factory benchmarks and subject to raw material and customization revisions.</p>
+              <p className="text-slate-500">• Please submit an official inquiry or speak with our sales engineering desk for a verified commercial quotation before placing orders.</p>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 

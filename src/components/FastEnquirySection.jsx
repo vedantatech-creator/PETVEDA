@@ -214,14 +214,17 @@ export default function FastEnquirySection() {
                     />
                   </div>
 
-                  <div className="pt-2 flex flex-col sm:flex-row gap-3">
+                  <div className="pt-2 flex flex-col gap-2">
                     <button
                       type="submit"
-                      className="flex-1 bg-blue-700 hover:bg-blue-800 text-white font-semibold text-xs py-3 rounded-lg shadow-sm transition-all flex items-center justify-center gap-2"
+                      className="w-full bg-blue-700 hover:bg-blue-800 text-white font-semibold text-xs py-3 rounded-lg shadow-sm transition-all flex items-center justify-center gap-2 cursor-pointer"
                     >
                       <FileText className="w-4 h-4" />
                       <span>Submit RFQ & Get Instant PDF Proposal</span>
                     </button>
+                    <p className="text-[11px] text-slate-500 font-mono text-center pt-1 leading-tight">
+                      *Notice: Displayed machinery prices are indicative benchmarks subject to raw material and customization revisions. Official commercial quotation will be confirmed upon RFQ review.
+                    </p>
                   </div>
                 </form>
               ) : (

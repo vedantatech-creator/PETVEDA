@@ -209,6 +209,12 @@ export default function ProductDetailModal({ product, onClose, onOpenQuote }) {
           </div>
         )}
 
+        {/* Transparent Pricing Disclaimer (2-Clause Regulatory Notice at Machine Specs) */}
+        <div className="p-3 bg-slate-50 border border-slate-200 rounded-xl text-[11px] font-mono text-slate-500 space-y-1">
+          <p className="font-semibold text-slate-700">• Notice: Displayed machinery prices and technical outputs are indicative factory benchmarks and subject to raw material and customization revisions.</p>
+          <p className="text-slate-500">• Please submit a formal quotation request for verified commercial pricing before finalizing orders.</p>
+        </div>
+
         {/* Footer Actions */}
         <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-slate-200">
           <button

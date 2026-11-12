@@ -275,7 +275,7 @@ to your WhatsApp within 2 to 4 business hours.
               />
             </div>
 
-            <div className="pt-2 flex flex-col sm:flex-row gap-2.5">
+            <div className="pt-2 flex flex-col gap-2">
               <button
                 type="submit"
                 className="w-full bg-blue-700 hover:bg-blue-800 text-white font-semibold text-xs py-3.5 rounded-xl transition-all shadow-sm flex items-center justify-center gap-2 cursor-pointer"
@@ -283,6 +283,9 @@ to your WhatsApp within 2 to 4 business hours.
                 <MessageSquare className="w-4 h-4" />
                 <span>Submit, Download Slip & Open WhatsApp</span>
               </button>
+              <p className="text-[11px] text-slate-500 font-mono text-center pt-1 leading-tight">
+                *Notice: Displayed machinery prices are indicative benchmarks subject to raw material and customization revisions. Official commercial quotation with exact pricing will be provided upon inquiry review.
+              </p>
             </div>
           </form>
         ) : (

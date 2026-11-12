@@ -132,6 +132,12 @@ export default function RoiPage({ onOpenQuote }) {
             </div>
           </div>
         </div>
+
+        {/* Transparent Pricing Disclaimer (2-Clause Regulatory Notice) */}
+        <div className="mt-10 p-4 bg-slate-50 border border-slate-200 rounded-2xl text-[11px] font-mono text-slate-500 space-y-1 shadow-2xs">
+          <p className="font-semibold text-slate-700">• Notice: Operational costs, bottle margins, and CapEx figures are indicative financial models based on standard market rates and subject to variance.</p>
+          <p className="text-slate-500">• Please submit a project inquiry for an official site-specific financial model and machinery quotation before making capital investment decisions.</p>
+        </div>
       </div>
     </div>
   );

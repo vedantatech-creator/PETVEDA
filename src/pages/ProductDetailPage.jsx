@@ -191,12 +191,6 @@ export default function ProductDetailPage({ onOpenQuote }) {
               <p className="text-xs sm:text-sm text-slate-700 leading-relaxed whitespace-pre-line">
                 {product.description}
               </p>
-
-              {/* Price Disclaimer Clause (Single Clean Regulatory Notice) */}
-              <div className="mt-4 p-3.5 bg-slate-50 border border-slate-300 rounded-xl text-[11px] sm:text-xs text-slate-700 font-mono space-y-1">
-                <p className="font-semibold text-slate-900">• Notice: Listed prices are indicative benchmarks and subject to change based on raw material costs, component availability, and container customization.</p>
-                <p className="text-slate-600">• Action: Please submit a direct inquiry or contact our sales engineering desk for a verified commercial quotation before finalizing orders.</p>
-              </div>
             </div>
 
             <div className="grid grid-cols-2 gap-2.5 sm:gap-3 text-xs">
@@ -300,6 +294,12 @@ export default function ProductDetailPage({ onOpenQuote }) {
               ) : (
                 <p className="text-xs text-slate-500">Contact factory engineers for custom CAD drawings and parameter sheets.</p>
               )}
+
+              {/* Price Disclaimer Clause (Single Clean Regulatory Notice at Machine Specs) */}
+              <div className="mt-5 p-3.5 bg-slate-50 border border-slate-200 rounded-xl text-[11px] font-mono text-slate-500 space-y-1">
+                <p className="font-semibold text-slate-700">• Notice: Listed machinery prices and technical outputs are indicative factory benchmarks and subject to change based on raw material costs, component availability, and container customization.</p>
+                <p className="text-slate-500">• Action: Please submit a direct inquiry or contact our sales engineering desk for a verified commercial quotation before finalizing orders.</p>
+              </div>
             </div>
           )}
 

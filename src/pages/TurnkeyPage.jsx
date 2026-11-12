@@ -263,8 +263,8 @@ export default function TurnkeyPage({ onOpenQuote }) {
             ))}
           </StaggerGrid>
 
-          {/* Clean Bottom Actions */}
-          <ScrollReveal delay={0.1} className="mt-12 sm:mt-16 text-center">
+          {/* Clean Bottom Actions & 2-Clause Statutory Pricing Disclaimer */}
+          <ScrollReveal delay={0.1} className="mt-12 sm:mt-16 text-center space-y-6">
             <button
               onClick={() => onOpenQuote('TURNKEY-GENERAL')}
               className="inline-flex items-center justify-center gap-2 bg-blue-700 hover:bg-blue-800 active:scale-[0.98] text-white font-semibold text-xs sm:text-sm py-3.5 px-7 rounded-full shadow-sm hover:shadow-md transition-all cursor-pointer"
@@ -272,6 +272,15 @@ export default function TurnkeyPage({ onOpenQuote }) {
               <FileText className="w-4 h-4" />
               <span>Request Turnkey Plant Feasibility Proposal & CAD Layout</span>
             </button>
+
+            <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 sm:p-5 text-xs font-mono text-slate-700 space-y-1.5 text-left max-w-4xl mx-auto shadow-2xs">
+              <p className="font-semibold text-slate-900">
+                • Clause 1: Turnkey plant investment figures and machinery pricing are indicative factory benchmarks based on 2026 raw material pricing and standard configurations, subject to change.
+              </p>
+              <p className="text-slate-600">
+                • Clause 2: Please request an itemized project proposal or consult with our senior application engineers in Vasai for a verified commercial quotation tailored to your source water analysis and civil layout.
+              </p>
+            </div>
           </ScrollReveal>
         </div>
       </div>

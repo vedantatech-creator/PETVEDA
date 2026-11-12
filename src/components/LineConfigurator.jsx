@@ -452,6 +452,12 @@ export default function LineConfigurator({ onOpenQuote, hideHeader = false }) {
                 <span>WhatsApp Sizing</span>
               </a>
             </div>
+
+            {/* 2-Clause Sizing & CapEx Pricing Notice */}
+            <div className="mt-4 p-3 bg-slate-50 border border-slate-200 rounded-xl text-[11px] font-mono text-slate-500 space-y-1">
+              <p className="font-semibold text-slate-700">• Notice: Machinery, power load, and CapEx estimates are indicative engineering benchmarks based on standard factory setups and subject to change.</p>
+              <p className="text-slate-500">• Please submit a project inquiry or contact our sales engineering desk for a verified commercial quotation based on your exact layout and water test parameters.</p>
+            </div>
           </div>
         </div>
       </div>
