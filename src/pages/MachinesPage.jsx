@@ -5,7 +5,8 @@ import {
   FileText,
   ChevronRight,
   Calculator,
-  SlidersHorizontal
+  SlidersHorizontal,
+  X
 } from 'lucide-react';
 import MetaSEO from '../components/MetaSEO';
 import { VEDANTA_CATALOG } from '../data/catalog';
@@ -37,39 +38,53 @@ export default function MachinesPage({ onOpenQuote }) {
   // Best Sellers (Top Priority Flagships)
   const bestSellers = VEDANTA_CATALOG.filter(p => p.is_best_seller);
 
-  // Filter Catalog
+  // Normalization helper for universal typo-tolerant search
+  const normalizeQuery = (str) => {
+    return (str || '')
+      .toLowerCase()
+      .replace(/autometic/g, 'automatic')
+      .replace(/moulding/g, 'molding')
+      .replace(/[-_.,/\\+]/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+  };
+
+  // Filter Catalog (Universal when searching, Category-scoped when idle)
   const filtered = VEDANTA_CATALOG.filter((prod) => {
-    let matchCat = true;
-    if (activeCategory && activeCategory !== 'all') {
-      const catLower = prod.category.toLowerCase();
-      const subLower = prod.sub_category.toLowerCase();
-      const nameLower = prod.name.toLowerCase();
-      const filterLower = activeCategory.toLowerCase();
+    const rawSearch = searchTerm.trim();
 
-      if (filterLower === 'fully automatic') {
-        matchCat = subLower.includes('fully automatic') || nameLower.includes('fully automatic');
-      } else if (filterLower === 'semi-automatic') {
-        matchCat = subLower.includes('semi-automatic') || nameLower.includes('semi');
-      } else if (filterLower === 'large container') {
-        matchCat = subLower.includes('jar') || nameLower.includes('jar') || nameLower.includes('20-litre');
-      } else if (filterLower === 'turnkey') {
-        matchCat = catLower.includes('turnkey') || nameLower.includes('turnkey') || nameLower.includes('plant');
-      } else if (filterLower === 'packaging') {
-        matchCat = catLower.includes('labeling') || catLower.includes('packaging') || catLower.includes('utility') || catLower.includes('auxiliary') || catLower.includes('laboratory');
-      }
+    // Universal Search: When user types, search across ALL 15 models universally
+    if (rawSearch !== '') {
+      const normalizedQuery = normalizeQuery(rawSearch);
+      const queryWords = normalizedQuery.split(' ').filter(Boolean);
+
+      const targetText = normalizeQuery(
+        `${prod.name} ${prod.model_code} ${prod.category} ${prod.sub_category} ${prod.description} ${prod.production_capacity_bph || ''} ${prod.total_connected_load_kw || ''} ${prod.cavity || ''} cavity ${(prod.target_applications || []).join(' ')}`
+      );
+
+      return queryWords.every(word => targetText.includes(word));
     }
 
-    let matchSearch = true;
-    if (searchTerm.trim() !== '') {
-      const term = searchTerm.toLowerCase();
-      matchSearch =
-        prod.name.toLowerCase().includes(term) ||
-        prod.model_code.toLowerCase().includes(term) ||
-        prod.description.toLowerCase().includes(term) ||
-        prod.category.toLowerCase().includes(term);
-    }
+    // Category Filter: Applies when search query is empty
+    if (!activeCategory || activeCategory === 'all') return true;
 
-    return matchCat && matchSearch;
+    const catLower = prod.category.toLowerCase();
+    const subLower = prod.sub_category.toLowerCase();
+    const nameLower = prod.name.toLowerCase();
+    const filterLower = activeCategory.toLowerCase();
+
+    if (filterLower === 'fully automatic') {
+      return subLower.includes('fully automatic') || nameLower.includes('fully automatic');
+    } else if (filterLower === 'semi-automatic') {
+      return subLower.includes('semi-automatic') || nameLower.includes('semi');
+    } else if (filterLower === 'large container') {
+      return subLower.includes('jar') || nameLower.includes('jar') || nameLower.includes('20-litre');
+    } else if (filterLower === 'turnkey') {
+      return catLower.includes('turnkey') || nameLower.includes('turnkey') || nameLower.includes('plant');
+    } else if (filterLower === 'packaging') {
+      return catLower.includes('labeling') || catLower.includes('packaging') || catLower.includes('utility') || catLower.includes('auxiliary') || catLower.includes('laboratory');
+    }
+    return true;
   });
 
   // Sort Catalog:
@@ -242,41 +257,70 @@ export default function MachinesPage({ onOpenQuote }) {
         {/* ============================================================== */}
         {/* FILTER & SORT CONTROLS BAR */}
         {/* ============================================================== */}
-        <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 sm:p-5 mb-8">
-          <div className="flex flex-col lg:flex-row gap-4 items-stretch lg:items-center justify-between">
-            {/* Category Tabs */}
-            <div className="flex items-center gap-1.5 overflow-x-auto pb-1 lg:pb-0 scrollbar-none text-xs">
-              {categories.map((cat) => (
-                <button
-                  key={cat.id}
-                  onClick={() => handleSelectCategory(cat.id)}
-                  className={`px-3 py-1.5 rounded-full whitespace-nowrap font-medium transition-all cursor-pointer ${
-                    activeCategory === cat.id
-                      ? 'bg-blue-700 text-white font-semibold shadow-2xs'
-                      : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'
-                  }`}
-                >
-                  {cat.label}
-                </button>
-              ))}
-            </div>
-
-            {/* Live Search */}
-            <div className="relative min-w-[220px]">
-              <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
-              <input
-                type="text"
-                aria-label="Search machine models by name, cavity, or specs"
-                placeholder="Search model, cavity, kW..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-9 pr-4 py-2 bg-white border border-slate-200 rounded-full text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-700 transition-colors"
-              />
-            </div>
+        {/* ============================================================== */}
+        {/* FILTER & SORT CONTROLS BAR (100% Responsive, Zero Overlap) */}
+        {/* ============================================================== */}
+        <div className="bg-slate-50 border border-slate-300 rounded-2xl p-4 sm:p-5 mb-8 space-y-4">
+          {/* Universal Live Search Bar */}
+          <div className="relative w-full">
+            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <input
+              type="text"
+              aria-label="Universal search across all machinery models"
+              placeholder="Universal search: type keywords like 'semi automatic', '4 cavity', '20L', 'turnkey', 'compressor'..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full pl-10 pr-10 py-2.5 bg-white border border-slate-300 rounded-xl text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-700 shadow-2xs transition-colors"
+            />
+            {searchTerm.trim() !== '' && (
+              <button
+                type="button"
+                onClick={() => setSearchTerm('')}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 p-1 rounded-full cursor-pointer"
+                title="Clear search"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            )}
           </div>
 
+          {/* Dedicated Category Scroller Bar */}
+          <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none text-xs">
+            <span className="text-[10px] font-mono font-bold uppercase text-slate-500 shrink-0">
+              Filter:
+            </span>
+            {categories.map((cat) => (
+              <button
+                key={cat.id}
+                type="button"
+                onClick={() => handleSelectCategory(cat.id)}
+                className={`px-3.5 py-1.5 rounded-full whitespace-nowrap font-medium transition-all cursor-pointer ${
+                  activeCategory === cat.id && !searchTerm.trim()
+                    ? 'bg-blue-700 text-white font-semibold shadow-2xs'
+                    : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-300'
+                }`}
+              >
+                {cat.label}
+              </button>
+            ))}
+          </div>
+
+          {/* Search Result Feedback Indicator */}
+          {searchTerm.trim() !== '' && (
+            <div className="flex items-center justify-between text-xs font-mono text-slate-600 bg-blue-50/60 p-2.5 rounded-lg border border-blue-200">
+              <span>Showing <strong>{filtered.length}</strong> matching models across all categories for: "<em>{searchTerm}</em>"</span>
+              <button 
+                type="button" 
+                onClick={() => setSearchTerm('')}
+                className="text-blue-700 font-bold hover:underline cursor-pointer"
+              >
+                Reset Search
+              </button>
+            </div>
+          )}
+
           {/* Dedicated Sort Selector Bar (3 Low to High Options + Default High to Low) */}
-          <div className="mt-3 pt-3 border-t border-slate-200 flex flex-wrap items-center justify-between gap-3 text-xs">
+          <div className="pt-3 border-t border-slate-200 flex flex-wrap items-center justify-between gap-3 text-xs">
             <div className="flex items-center gap-2">
               <SlidersHorizontal className="w-3.5 h-3.5 text-blue-700" />
               <span className="font-mono font-bold text-slate-800 uppercase text-[11px]">
@@ -291,7 +335,7 @@ export default function MachinesPage({ onOpenQuote }) {
                 className={`px-2.5 py-1 rounded-full text-xs font-mono transition-colors cursor-pointer ${
                   sortBy === 'default'
                     ? 'bg-blue-700 text-white font-bold'
-                    : 'bg-white hover:bg-slate-100 text-slate-700 border border-slate-200'
+                    : 'bg-white hover:bg-slate-100 text-slate-700 border border-slate-300'
                 }`}
                 title="Default: High to Low Output, Power, and Price"
               >
@@ -304,7 +348,7 @@ export default function MachinesPage({ onOpenQuote }) {
                 className={`px-2.5 py-1 rounded-full text-xs font-mono transition-colors cursor-pointer ${
                   sortBy === 'bph_asc'
                     ? 'bg-blue-700 text-white font-bold'
-                    : 'bg-white hover:bg-slate-100 text-slate-700 border border-slate-200'
+                    : 'bg-white hover:bg-slate-100 text-slate-700 border border-slate-300'
                 }`}
                 title="Sort Bottle Quantity / Output Low to High"
               >
@@ -317,7 +361,7 @@ export default function MachinesPage({ onOpenQuote }) {
                 className={`px-2.5 py-1 rounded-full text-xs font-mono transition-colors cursor-pointer ${
                   sortBy === 'power_asc'
                     ? 'bg-blue-700 text-white font-bold'
-                    : 'bg-white hover:bg-slate-100 text-slate-700 border border-slate-200'
+                    : 'bg-white hover:bg-slate-100 text-slate-700 border border-slate-300'
                 }`}
                 title="Sort Motor Power / BHP Low to High"
               >
@@ -330,7 +374,7 @@ export default function MachinesPage({ onOpenQuote }) {
                 className={`px-2.5 py-1 rounded-full text-xs font-mono transition-colors cursor-pointer ${
                   sortBy === 'price_asc'
                     ? 'bg-blue-700 text-white font-bold'
-                    : 'bg-white hover:bg-slate-100 text-slate-700 border border-slate-200'
+                    : 'bg-white hover:bg-slate-100 text-slate-700 border border-slate-300'
                 }`}
                 title="Sort Price Low to High"
               >

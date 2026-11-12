@@ -3,7 +3,8 @@ import {
   X, 
   MessageSquare, 
   CheckCircle2,
-  Download
+  Download,
+  ChevronDown
 } from 'lucide-react';
 import { VEDANTA_CATALOG } from '../data/catalog';
 
@@ -210,36 +211,42 @@ to your WhatsApp within 2 to 4 business hours.
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
               <div>
                 <label htmlFor="quote-model" className="block text-slate-700 font-semibold mb-1 text-xs">Machine / Plant of Interest</label>
-                <select
-                  id="quote-model"
-                  value={formData.modelCode}
-                  onChange={(e) => setFormData({ ...formData, modelCode: e.target.value })}
-                  className="w-full bg-white border border-slate-300 rounded-lg px-3 py-2.5 text-base sm:text-xs text-slate-900 focus:outline-none focus:border-blue-700 font-mono"
-                >
-                  {VEDANTA_CATALOG.map((m) => (
-                    <option key={m.model_code} value={m.model_code}>
-                      {m.model_code} ({m.price_indicative})
-                    </option>
-                  ))}
-                  <option value="BIS-LAB">Complete In-House BIS IS:14543 Lab Equipment</option>
-                  <option value="CUSTOM-TURNKEY">Custom Turnkey Plant Project</option>
-                </select>
+                <div className="relative">
+                  <select
+                    id="quote-model"
+                    value={formData.modelCode}
+                    onChange={(e) => setFormData({ ...formData, modelCode: e.target.value })}
+                    className="w-full bg-white border border-slate-300 rounded-xl px-3 py-2.5 pr-8 text-xs text-slate-900 focus:outline-none focus:border-blue-700 focus:ring-1 focus:ring-blue-700 font-mono appearance-none cursor-pointer shadow-2xs"
+                  >
+                    {VEDANTA_CATALOG.map((m) => (
+                      <option key={m.model_code} value={m.model_code}>
+                        {m.model_code} ({m.price_indicative})
+                      </option>
+                    ))}
+                    <option value="BIS-LAB">Complete In-House BIS IS:14543 Lab Equipment</option>
+                    <option value="CUSTOM-TURNKEY">Custom Turnkey Plant Project</option>
+                  </select>
+                  <ChevronDown className="w-4 h-4 text-slate-400 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                </div>
               </div>
 
               <div>
                 <label htmlFor="quote-target" className="block text-slate-700 font-semibold mb-1 text-xs">Target Daily Output</label>
-                <select
-                  id="quote-target"
-                  value={formData.dailyTarget}
-                  onChange={(e) => setFormData({ ...formData, dailyTarget: e.target.value })}
-                  className="w-full bg-white border border-slate-300 rounded-lg px-3 py-2.5 text-base sm:text-xs text-slate-900 focus:outline-none focus:border-blue-700"
-                >
-                  <option value="10,000 Bottles/Day">Up to 10,000 Bottles/Day</option>
-                  <option value="25,000 Bottles/Day">20,000 - 30,000 Bottles/Day (40 BPM)</option>
-                  <option value="50,000 Bottles/Day">40,000 - 60,000 Bottles/Day (60-80 BPM)</option>
-                  <option value="100,000+ Bottles/Day">100,000+ Bottles/Day (Industrial 120+ BPM)</option>
-                  <option value="500 - 2,000 Jars/Day">20L Commercial Water Jars</option>
-                </select>
+                <div className="relative">
+                  <select
+                    id="quote-target"
+                    value={formData.dailyTarget}
+                    onChange={(e) => setFormData({ ...formData, dailyTarget: e.target.value })}
+                    className="w-full bg-white border border-slate-300 rounded-xl px-3 py-2.5 pr-8 text-xs text-slate-900 focus:outline-none focus:border-blue-700 focus:ring-1 focus:ring-blue-700 appearance-none cursor-pointer shadow-2xs"
+                  >
+                    <option value="10,000 Bottles/Day">Up to 10,000 Bottles/Day</option>
+                    <option value="25,000 Bottles/Day">20,000 - 30,000 Bottles/Day (40 BPM)</option>
+                    <option value="50,000 Bottles/Day">40,000 - 60,000 Bottles/Day (60-80 BPM)</option>
+                    <option value="100,000+ Bottles/Day">100,000+ Bottles/Day (Industrial 120+ BPM)</option>
+                    <option value="500 - 2,000 Jars/Day">20L Commercial Water Jars</option>
+                  </select>
+                  <ChevronDown className="w-4 h-4 text-slate-400 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                </div>
               </div>
             </div>
 

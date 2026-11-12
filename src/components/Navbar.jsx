@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { 
   Phone, 
-  MessageSquare, 
   FileText, 
+  MessageSquare,
   Menu, 
   X, 
-  ShieldCheck, 
+  MapPin,
   Layers,
   Calculator,
   Droplets,
@@ -29,15 +29,16 @@ export default function Navbar({ onOpenQuote }) {
       <div className="bg-slate-50/90 border-b border-slate-200/70 text-[11px] text-slate-500 py-1.5 px-4 sm:px-8">
         <div className="max-w-7xl mx-auto flex justify-between items-center gap-2">
           <div className="flex items-center gap-2 sm:gap-3 truncate">
-            <span className="flex items-center gap-1.5 text-blue-900 font-semibold text-[11px] sm:text-xs truncate">
-              <span className="inline-block w-2 h-2 rounded-full bg-emerald-600 shrink-0"></span>
-              <span className="truncate">OEM Plant: Vasai, Maharashtra</span>
-            </span>
-            <span className="hidden md:inline text-slate-300">|</span>
-            <span className="hidden md:flex items-center gap-1 text-slate-600">
-              <ShieldCheck className="w-3.5 h-3.5 text-blue-700 shrink-0" />
-              BIS IS:14543 Turnkey Ready
-            </span>
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=Sankalp+Sidhi+Complex+Tirupati+Venture+Ind+Estate+Vasai+Virar"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 text-blue-900 hover:text-blue-700 font-semibold text-[11px] sm:text-xs truncate transition-colors group"
+              title="Click to view OEM Factory on Google Maps: Gala no. 13 Ground Floor, Sankalp Sidhi Complex, Tirupati Venture Ind Estate, Vasai Virar"
+            >
+              <MapPin className="w-3.5 h-3.5 text-blue-700 shrink-0 group-hover:scale-110 transition-transform" />
+              <span className="truncate group-hover:underline">OEM Plant: Vasai, Maharashtra</span>
+            </a>
           </div>
 
           <div className="flex items-center gap-3 sm:gap-4 font-mono text-[11px] shrink-0">

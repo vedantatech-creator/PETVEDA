@@ -30,31 +30,31 @@ export default function FaqSection({ onOpenQuote, limit }) {
           </p>
         </div>
 
-        {/* Accordion List */}
-        <div className="space-y-3 sm:space-y-4">
+        {/* Accordion List (Selected Item gets prominent border, unselected are clean minimalist rows) */}
+        <div className="space-y-2">
           {displayFaqs.map((faq, idx) => {
             const isOpen = openIndex === idx;
             return (
               <div
                 key={idx}
-                className={`rounded-2xl border transition-all duration-200 ${
+                className={`transition-all duration-200 ${
                   isOpen
-                    ? 'border-blue-700 bg-slate-50/60 shadow-sm'
-                    : 'border-slate-200 bg-white hover:border-slate-300'
+                    ? 'border-2 border-blue-700 bg-slate-50/80 rounded-2xl shadow-xs'
+                    : 'border-b border-slate-200/80 bg-white hover:bg-slate-50/60 rounded-lg'
                 }`}
               >
                 <button
                   type="button"
                   onClick={() => toggleAccordion(idx)}
-                  className="w-full text-left px-4 sm:px-6 py-4 sm:py-5 flex items-center justify-between gap-3 sm:gap-4 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 rounded-xl"
+                  className="w-full text-left px-4 sm:px-6 py-3.5 sm:py-4 flex items-center justify-between gap-3 sm:gap-4 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 rounded-xl"
                   aria-expanded={isOpen}
                   aria-controls={`faq-answer-${idx}`}
                 >
                   <div className="flex-1 pr-1 sm:pr-2">
-                    <span className="inline-block text-[10px] sm:text-xs font-medium text-blue-700 uppercase tracking-wider mb-1">
+                    <span className="inline-block text-[10px] sm:text-xs font-mono font-semibold text-blue-700 uppercase tracking-wider mb-0.5">
                       {faq.category}
                     </span>
-                    <h3 className="text-sm sm:text-lg font-semibold text-slate-900 leading-snug">
+                    <h3 className="text-sm sm:text-base font-bold text-slate-900 leading-snug">
                       {faq.question}
                     </h3>
                   </div>
@@ -62,7 +62,7 @@ export default function FaqSection({ onOpenQuote, limit }) {
                     className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center shrink-0 border transition-transform duration-200 ${
                       isOpen
                         ? 'border-blue-700 bg-blue-700 text-white rotate-180'
-                        : 'border-slate-200 bg-white text-slate-500'
+                        : 'border-slate-300 bg-white text-slate-500'
                     }`}
                   >
                     <ChevronDown className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
@@ -79,7 +79,7 @@ export default function FaqSection({ onOpenQuote, limit }) {
                       transition={{ duration: 0.25, ease: 'easeInOut' }}
                       className="overflow-hidden"
                     >
-                      <div className="px-4 sm:px-6 pb-4 sm:pb-6 pt-1 text-xs sm:text-base text-slate-600 leading-relaxed border-t border-slate-100">
+                      <div className="px-4 sm:px-6 pb-4 sm:pb-5 pt-1 text-xs sm:text-sm text-slate-700 leading-relaxed border-t border-slate-200 font-sans">
                         {faq.answer}
                       </div>
                     </motion.div>

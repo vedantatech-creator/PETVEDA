@@ -78,7 +78,7 @@ export default function App() {
             title="Chat on WhatsApp (+91 8850848971)"
           >
             <MessageSquare className="w-4 h-4 text-white" />
-            <span className="font-sans">WhatsApp Live Support</span>
+            <span className="font-sans">WhatsApp Support</span>
           </a>
         </aside>
 

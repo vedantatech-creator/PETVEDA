@@ -27,7 +27,7 @@ export const VEDANTA_CATALOG = [
     chiller_requirement_tr: "5 TR @ 10°C",
     lead_time_days: "20 to 25 Days",
     warranty: "12 Months Comprehensive OEM Warranty",
-    description: "The Vedanta V-Blow A4 is our flagship 4-cavity high-speed linear stretch blow moulding machine engineered for 24/7 continuous industrial operation. Featuring a high-precision toggle clamping mechanism and servo-electric preform stepping, it achieves sub-millimeter indexing accuracy with zero parting-line flash. Standard equipment includes an automatic preform unscrambler elevator, 8-zone infrared NIR quartz heating tunnel with individual PID control, and an integrated high-pressure air recovery unit that saves up to 25% of compressor electricity consumption.\n\n* Notice: Prices are subject to change based on raw material costs, component availability, and specific bottle/mold customization.\n* Note: Please submit a direct inquiry or contact our sales engineering desk for an official verified quotation before finalizing orders.",
+    description: "The Vedanta V-Blow A4 is our flagship 4-cavity high-speed linear stretch blow moulding machine engineered for 24/7 continuous industrial operation. Featuring a high-precision toggle clamping mechanism and servo-electric preform stepping, it achieves sub-millimeter indexing accuracy with zero parting-line flash. Standard equipment includes an automatic preform unscrambler elevator, 8-zone infrared NIR quartz heating tunnel with individual PID control, and an integrated high-pressure air recovery unit that saves up to 25% of compressor electricity consumption.",
     target_applications: [
       "High-Speed Mineral Water Bottling Lines (60-80 BPM)",
       "Carbonated Soft Drinks (CSD) & Soda Plants",
@@ -82,7 +82,7 @@ export const VEDANTA_CATALOG = [
     chiller_requirement_tr: "3 TR @ 10°C",
     lead_time_days: "15 to 20 Days",
     warranty: "12 Months Comprehensive OEM Warranty",
-    description: "The Vedanta V-Blow A2 provides an automated, low-labor bottle blowing solution for expanding regional water bottlers. Engineered with automatic preform feeding, unscrambling, and continuous rotary heating, it eliminates the labor dependency of semi-automatic machines while keeping capital expenditure accessible. Ideal for 30 to 40 BPM turnkey bottling lines.\n\n* Notice: Prices are subject to change based on raw material costs, component availability, and specific bottle/mold customization.\n* Note: Please submit a direct inquiry or contact our sales engineering desk for an official verified quotation before finalizing orders.",
+    description: "The Vedanta V-Blow A2 provides an automated, low-labor bottle blowing solution for expanding regional water bottlers. Engineered with automatic preform feeding, unscrambling, and continuous rotary heating, it eliminates the labor dependency of semi-automatic machines while keeping capital expenditure accessible. Ideal for 30 to 40 BPM turnkey bottling lines.",
     target_applications: [
       "Startup & Mid-Sized Packaged Drinking Water Plants",
       "Regional Carbonated Soft Drink / Soda Bottlers",
@@ -137,7 +137,7 @@ export const VEDANTA_CATALOG = [
     chiller_requirement_tr: "7.5 TR @ 10°C",
     lead_time_days: "30 to 40 Days",
     warranty: "12 Months Comprehensive OEM Warranty",
-    description: "Built for industrial-scale beverage plants and national FMCG co-packers, the V-Blow A6 is a heavy-duty 6-cavity linear stretch blow moulder capable of reaching 8,000 bottles per hour. It features full servo-electric motion synchronization for preform stepping, clamping, and stretching, maintaining unmatched wall-thickness uniformity with minimal air and electrical consumption.\n\n* Notice: Prices are subject to change based on raw material costs, component availability, and specific bottle/mold customization.\n* Note: Please submit a direct inquiry or contact our sales engineering desk for an official verified quotation before finalizing orders.",
+    description: "Built for industrial-scale beverage plants and national FMCG co-packers, the V-Blow A6 is a heavy-duty 6-cavity linear stretch blow moulder capable of reaching 8,000 bottles per hour. It features full servo-electric motion synchronization for preform stepping, clamping, and stretching, maintaining unmatched wall-thickness uniformity with minimal air and electrical consumption.",
     target_applications: [
       "Large Commercial Bottling Plants (100 - 120 BPM)",
       "High-Volume National Beverage Brands",
@@ -191,7 +191,7 @@ export const VEDANTA_CATALOG = [
     chiller_requirement_tr: "2 TR",
     lead_time_days: "7 to 10 Days (Ready Stock Available)",
     warranty: "12 Months Comprehensive OEM Warranty",
-    description: "The V-Blow S2 is India's most dependable entry-level PET blow moulding machine for new packaged drinking water startups and small-scale soda manufacturers. Comprising an infrared rotating preform heater oven and a rugged pneumatic blow-clamping unit, it delivers high bottle clarity, easy operation, and immediate ROI with minimal initial capital investment.\n\n* Notice: Prices are subject to change based on raw material costs, component availability, and specific bottle/mold customization.\n* Note: Please submit a direct inquiry or contact our sales engineering desk for an official verified quotation before finalizing orders.",
+    description: "The V-Blow S2 is India's most dependable entry-level PET blow moulding machine for new packaged drinking water startups and small-scale soda manufacturers. Comprising an infrared rotating preform heater oven and a rugged pneumatic blow-clamping unit, it delivers high bottle clarity, easy operation, and immediate ROI with minimal initial capital investment.",
     target_applications: [
       "Startup Mineral Water Plants (15-24 BPM)",
       "Local Soda and Carbonated Drink Bottlers",
@@ -245,7 +245,7 @@ export const VEDANTA_CATALOG = [
     chiller_requirement_tr: "3 TR",
     lead_time_days: "10 to 15 Days",
     warranty: "12 Months Comprehensive OEM Warranty",
-    description: "Equipped with automatic bottle ejection, the V-Blow S4 Auto-Drop combines the low capital cost of semi-automatic machines with the labor efficiency of automated systems. As soon as the blowing cycle concludes, the mould opens and bottles automatically drop onto a conveyor chute, reducing operator cycle fatigue and doubling production capacity.\n\n* Notice: Prices are subject to change based on raw material costs, component availability, and specific bottle/mold customization.\n* Note: Please submit a direct inquiry or contact our sales engineering desk for an official verified quotation before finalizing orders.",
+    description: "Equipped with automatic bottle ejection, the V-Blow S4 Auto-Drop combines the low capital cost of semi-automatic machines with the labor efficiency of automated systems. As soon as the blowing cycle concludes, the mould opens and bottles automatically drop onto a conveyor chute, reducing operator cycle fatigue and doubling production capacity.",
     target_applications: [
       "Mid-Sized Packaged Drinking Water Bottlers (30-40 BPM)",
       "Regional Soft Drink and Flavored Water Bottlers",
@@ -294,7 +294,7 @@ export const VEDANTA_CATALOG = [
     chiller_requirement_tr: "3 TR",
     lead_time_days: "12 to 18 Days",
     warranty: "12 Months Comprehensive OEM Warranty",
-    description: "Engineered specifically for heavy preforms (650g - 750g), the V-Blow 20L produces sturdy, crystal-clear 20-litre commercial water dispenser jars and 5-litre edible oil cans. Features an intensified multi-tier quartz heating tunnel for thorough core penetration and reinforced hydro-pneumatic clamping that eliminates parting-line distortion under high blowing tonnage.\n\n* Notice: Prices are subject to change based on raw material costs, component availability, and specific bottle/mold customization.\n* Note: Please submit a direct inquiry or contact our sales engineering desk for an official verified quotation before finalizing orders.",
+    description: "Engineered specifically for heavy preforms (650g - 750g), the V-Blow 20L produces sturdy, crystal-clear 20-litre commercial water dispenser jars and 5-litre edible oil cans. Features an intensified multi-tier quartz heating tunnel for thorough core penetration and reinforced hydro-pneumatic clamping that eliminates parting-line distortion under high blowing tonnage.",
     target_applications: [
       "Commercial 20-Litre Water Jar Suppliers",
       "5-Litre Edible Oil and Lubricant Cans",
@@ -340,7 +340,7 @@ export const VEDANTA_CATALOG = [
     water_flow_rate_lph: "3,000 LPH Dual-Pass RO",
     lead_time_days: "25 to 30 Days",
     warranty: "12 Months Comprehensive On-Site Warranty + BIS Support",
-    description: "An end-to-end turnkey bottling solution designed for commercial packaged drinking water ventures. This package encompasses raw water testing, 3,000 LPH RO purification with UV/Ozone sterilization, a 4-cavity V-Blow moulding machine, automatic RFC 12-12-4 monoblock, continuous inkjet batch coding, roll-fed BOPP wrap-around labeler, and an automatic shrink bundling tunnel.\n\n* Notice: Prices are subject to change based on raw material costs, component availability, and specific bottle/mold customization.\n* Note: Please submit a direct inquiry or contact our sales engineering desk for an official verified quotation before finalizing orders.",
+    description: "An end-to-end turnkey bottling solution designed for commercial packaged drinking water ventures. This package encompasses raw water testing, 3,000 LPH RO purification with UV/Ozone sterilization, a 4-cavity V-Blow moulding machine, automatic RFC 12-12-4 monoblock, continuous inkjet batch coding, roll-fed BOPP wrap-around labeler, and an automatic shrink bundling tunnel.",
     target_applications: [
       "Packaged Drinking Water Brands (250ml, 500ml, 1L, 2L)",
       "Private Label Water Packaging for Hotels, Airlines, and Events"
@@ -385,7 +385,7 @@ export const VEDANTA_CATALOG = [
     water_flow_rate_lph: "5,000 LPH Dual-Pass RO",
     lead_time_days: "30 to 35 Days",
     warranty: "12 Months Comprehensive On-Site Warranty + BIS Support",
-    description: "India's most popular commercial capacity for regional drinking water brands. The 60 BPM turnkey plant produces over 30,000 to 35,000 bottles per 10-hour shift. Incorporating a 16-16-5 RFC Monoblock with magnetic torque capping, continuous air conveyors, and automated shrink packaging, this line operates with only 3 to 4 floor operators.\n\n* Notice: Prices are subject to change based on raw material costs, component availability, and specific bottle/mold customization.\n* Note: Please submit a direct inquiry or contact our sales engineering desk for an official verified quotation before finalizing orders.",
+    description: "India's most popular commercial capacity for regional drinking water brands. The 60 BPM turnkey plant produces over 30,000 to 35,000 bottles per 10-hour shift. Incorporating a 16-16-5 RFC Monoblock with magnetic torque capping, continuous air conveyors, and automated shrink packaging, this line operates with only 3 to 4 floor operators.",
     target_applications: [
       "Mid-to-Large Regional Bottled Water Manufacturers",
       "Contract Bottling Co-packers"
@@ -431,7 +431,7 @@ export const VEDANTA_CATALOG = [
     water_flow_rate_lph: "10,000 LPH RO System",
     lead_time_days: "45 to 60 Days",
     warranty: "12 Months Comprehensive On-Site Warranty + BIS Support",
-    description: "Engineered for high-volume beverage manufacturers, the 120 BPM rotary turnkey plant delivers world-class industrial bottling throughput. Featuring a 24-24-8 Rotary Monoblock, servo-synchronized 6-cavity blow moulder, rotary hot-melt BOPP labeler, and automated case packaging, it maximizes operating margin through continuous high-speed automation.\n\n* Notice: Prices are subject to change based on raw material costs, component availability, and specific bottle/mold customization.\n* Note: Please submit a direct inquiry or contact our sales engineering desk for an official verified quotation before finalizing orders.",
+    description: "Engineered for high-volume beverage manufacturers, the 120 BPM rotary turnkey plant delivers world-class industrial bottling throughput. Featuring a 24-24-8 Rotary Monoblock, servo-synchronized 6-cavity blow moulder, rotary hot-melt BOPP labeler, and automated case packaging, it maximizes operating margin through continuous high-speed automation.",
     target_applications: [
       "Large-Scale Mineral Water Producers",
       "National Beverage Distributors",
@@ -476,7 +476,7 @@ export const VEDANTA_CATALOG = [
     power_required_kw: "85 kW - 105 kW",
     lead_time_days: "35 to 45 Days",
     warranty: "12 Months Comprehensive On-Site Warranty",
-    description: "Designed for carbonated soft drinks, flavored sodas, sparkling water, and energy drinks. Incorporates an isobaric counter-pressure RFC Monoblock, high-capacity CO2 carbonator/blender, syrup preparation jacketed tanks, and specialized blow moulds featuring petaloid bases to withstand internal pressure up to 4.5 Gas Volumes.\n\n* Notice: Prices are subject to change based on raw material costs, component availability, and specific bottle/mold customization.\n* Note: Please submit a direct inquiry or contact our sales engineering desk for an official verified quotation before finalizing orders.",
+    description: "Designed for carbonated soft drinks, flavored sodas, sparkling water, and energy drinks. Incorporates an isobaric counter-pressure RFC Monoblock, high-capacity CO2 carbonator/blender, syrup preparation jacketed tanks, and specialized blow moulds featuring petaloid bases to withstand internal pressure up to 4.5 Gas Volumes.",
     target_applications: [
       "Carbonated Soft Drinks (Cola, Lemon, Orange, Jeera)",
       "Club Soda & Sparkling Mineral Water",
@@ -520,7 +520,7 @@ export const VEDANTA_CATALOG = [
     power_required_kw: "7.5 kW",
     lead_time_days: "15 to 20 Days",
     warranty: "12 Months Comprehensive OEM Warranty",
-    description: "The Vedanta Automatic BOPP Labeling Machine applies roll-fed wrap-around plastic labels using precision hot-melt adhesive. Roll-fed BOPP labels cost approximately ₹0.12 - ₹0.16 per bottle, cutting labeling expenditure by up to 60% compared to self-adhesive sticker labels (₹0.35 - ₹0.45). A critical cost-saving asset for any commercial bottling operation.\n\n* Notice: Prices are subject to change based on raw material costs, component availability, and specific bottle/mold customization.\n* Note: Please submit a direct inquiry or contact our sales engineering desk for an official verified quotation before finalizing orders.",
+    description: "The Vedanta Automatic BOPP Labeling Machine applies roll-fed wrap-around plastic labels using precision hot-melt adhesive. Roll-fed BOPP labels cost approximately ₹0.12 - ₹0.16 per bottle, cutting labeling expenditure by up to 60% compared to self-adhesive sticker labels (₹0.35 - ₹0.45). A critical cost-saving asset for any commercial bottling operation.",
     target_applications: [
       "Mineral Water Bottles (250ml to 2000ml)",
       "Carbonated Soft Drinks and Sodas",
@@ -563,7 +563,7 @@ export const VEDANTA_CATALOG = [
     power_required_kw: "18 kW - 24 kW (Tunnel heating)",
     lead_time_days: "10 to 15 Days",
     warranty: "12 Months Comprehensive OEM Warranty",
-    description: "An automated secondary packaging solution that collates bottles into 6, 12, or 24-bottle matrix bundles, wraps them in tough LDPE shrink film, and shrinks them inside a dual-recirculating heat tunnel. Replaces expensive corrugated cardboard cartons, saving up to ₹8 to ₹12 per transport pack.\n\n* Notice: Prices are subject to change based on raw material costs, component availability, and specific bottle/mold customization.\n* Note: Please submit a direct inquiry or contact our sales engineering desk for an official verified quotation before finalizing orders.",
+    description: "An automated secondary packaging solution that collates bottles into 6, 12, or 24-bottle matrix bundles, wraps them in tough LDPE shrink film, and shrinks them inside a dual-recirculating heat tunnel. Replaces expensive corrugated cardboard cartons, saving up to ₹8 to ₹12 per transport pack.",
     target_applications: [
       "Bundling Mineral Water Bottles (6, 12, 24 bottle packs)",
       "Soda, CSD, and Beverage Packs",
@@ -605,7 +605,7 @@ export const VEDANTA_CATALOG = [
     power_required_kw: "18.5 kW - 22 kW (25 - 30 HP)",
     lead_time_days: "7 to 10 Days (Ready Stock Available)",
     warranty: "12 Months Comprehensive OEM Warranty",
-    description: "Heavy-duty 3-stage high-pressure air compressor engineered specifically for stretch blow moulding machines. Delivers clean, oil-free, dry compressed air at 30 to 35 Bar pressure. Package includes a 500-Litre certified air receiver tank, refrigerated air dryer, and multi-stage 0.01 micron coalescing filters.\n\n* Notice: Prices are subject to change based on raw material costs, component availability, and specific bottle/mold customization.\n* Note: Please submit a direct inquiry or contact our sales engineering desk for an official verified quotation before finalizing orders.",
+    description: "Heavy-duty 3-stage high-pressure air compressor engineered specifically for stretch blow moulding machines. Delivers clean, oil-free, dry compressed air at 30 to 35 Bar pressure. Package includes a 500-Litre certified air receiver tank, refrigerated air dryer, and multi-stage 0.01 micron coalescing filters.",
     target_applications: [
       "Blowing Air Supply for 2-Cavity and 4-Cavity PET Blowers",
       "High-Pressure Industrial Pneumatic Applications"
@@ -646,7 +646,7 @@ export const VEDANTA_CATALOG = [
     power_required_kw: "5.5 kW (7.5 HP)",
     lead_time_days: "5 to 7 Days (Ready Stock Available)",
     warranty: "12 Months Comprehensive OEM Warranty",
-    description: "Compact, energy-efficient air-cooled industrial water chiller engineered for rapid mould cooling in PET stretch blow moulding machines. Fast, consistent mould chilling shortens bottle blowing cycle times by up to 20% and prevents hazy crystallization in bottle bottoms and neck finishes.\n\n* Notice: Prices are subject to change based on raw material costs, component availability, and specific bottle/mold customization.\n* Note: Please submit a direct inquiry or contact our sales engineering desk for an official verified quotation before finalizing orders.",
+    description: "Compact, energy-efficient air-cooled industrial water chiller engineered for rapid mould cooling in PET stretch blow moulding machines. Fast, consistent mould chilling shortens bottle blowing cycle times by up to 20% and prevents hazy crystallization in bottle bottoms and neck finishes.",
     target_applications: [
       "Blow Mould Chilling for 2-Cavity and 4-Cavity PET Blowers",
       "Injection Preform Mould Cooling",
@@ -688,7 +688,7 @@ export const VEDANTA_CATALOG = [
     automation_grade: "NABL Traceable Instruments & Chemist Training",
     lead_time_days: "10 to 14 Days",
     warranty: "12 Months Calibration & Instrument Warranty",
-    description: "In India, obtaining an ISI Mark license (IS:14543 for Packaged Drinking Water and IS:13428 for Natural Mineral Water) legally mandates an on-site, fully operational chemical and microbiological testing laboratory. Vedanta Technologies delivers complete laboratory design, certified equipment supply, NABL-traceable calibration, and chemist training for seamless Bureau of Indian Standards inspection clearance.\n\n* Notice: Prices are subject to change based on raw material costs, component availability, and specific bottle/mold customization.\n* Note: Please submit a direct inquiry or contact our sales engineering desk for an official verified quotation before finalizing orders.",
+    description: "In India, obtaining an ISI Mark license (IS:14543 for Packaged Drinking Water and IS:13428 for Natural Mineral Water) legally mandates an on-site, fully operational chemical and microbiological testing laboratory. Vedanta Technologies delivers complete laboratory design, certified equipment supply, NABL-traceable calibration, and chemist training for seamless Bureau of Indian Standards inspection clearance.",
     target_applications: [
       "Mandatory IS:14543 ISI Mark Licensing for Packaged Drinking Water",
       "FSSAI Compliance and Daily Batch Release Testing"

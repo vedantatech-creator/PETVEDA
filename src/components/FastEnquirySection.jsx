@@ -6,7 +6,8 @@ import {
   FileText, 
   CheckCircle2, 
   Clock,
-  ShieldCheck
+  ShieldCheck,
+  ChevronDown
 } from 'lucide-react';
 import { VEDANTA_CATALOG } from '../data/catalog';
 
@@ -164,18 +165,21 @@ export default function FastEnquirySection() {
 
                     <div>
                       <label htmlFor="rfq-model" className="block text-slate-700 font-semibold mb-1">Machine / Plant Category</label>
-                      <select
-                        id="rfq-model"
-                        value={formData.modelCode}
-                        onChange={(e) => setFormData({ ...formData, modelCode: e.target.value })}
-                        className="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-slate-900 focus:outline-none focus:border-blue-700 font-mono text-xs"
-                      >
-                        {VEDANTA_CATALOG.map((m) => (
-                          <option key={m.model_code} value={m.model_code}>
-                            {m.model_code} ({m.price_indicative})
-                          </option>
-                        ))}
-                      </select>
+                      <div className="relative">
+                        <select
+                          id="rfq-model"
+                          value={formData.modelCode}
+                          onChange={(e) => setFormData({ ...formData, modelCode: e.target.value })}
+                          className="w-full bg-white border border-slate-300 rounded-xl px-3.5 py-2.5 pr-9 text-slate-900 focus:outline-none focus:border-blue-700 focus:ring-1 focus:ring-blue-700 font-mono text-xs shadow-2xs appearance-none cursor-pointer"
+                        >
+                          {VEDANTA_CATALOG.map((m) => (
+                            <option key={m.model_code} value={m.model_code}>
+                              {m.model_code} ({m.price_indicative})
+                            </option>
+                          ))}
+                        </select>
+                        <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+                      </div>
                     </div>
                   </div>
 

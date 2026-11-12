@@ -68,8 +68,8 @@ export default function Home({ onOpenQuote }) {
         breadcrumbs={breadcrumbs}
       />
 
-      {/* Hero Section (Industrial Precision Engineering, 100% Phone Native) */}
-      <section className="relative overflow-hidden pt-8 pb-14 sm:pt-14 sm:pb-20 lg:pt-20 lg:pb-32 border-b border-slate-200">
+      {/* Hero Section (Industrial Precision Engineering, 100% Phone & Laptop Fold Optimized) */}
+      <section className="relative overflow-hidden pt-5 pb-8 sm:pt-8 sm:pb-12 lg:pt-10 lg:pb-16 border-b border-slate-200">
         {/* Engineering CAD Grid (Zero layout shift, pure visual depth) */}
         <div 
           aria-hidden="true" 
@@ -77,36 +77,22 @@ export default function Home({ onOpenQuote }) {
         />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-8 relative z-10">
-          <div className="text-center max-w-4xl mx-auto space-y-4 sm:space-y-6">
-            <motion.div 
+          <div className="text-center max-w-4xl mx-auto space-y-3 sm:space-y-4">
+            <motion.h1 
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-50 border border-slate-200 text-slate-700 text-xs font-medium"
-            >
-              <span className="w-2 h-2 rounded-full bg-blue-700 animate-pulse shrink-0"></span>
-              <span className="font-semibold text-blue-900 font-mono text-[10px] sm:text-[11px] uppercase tracking-wider">
-                Vasai OEM Engineering
-              </span>
-              <span className="text-slate-300">|</span>
-              <span className="text-[11px] sm:text-xs">BIS IS:14543 Ready</span>
-            </motion.div>
-
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-3xl sm:text-5xl lg:text-7xl font-black text-slate-950 tracking-tight leading-[1.12]"
+              transition={{ duration: 0.5, delay: 0.05 }}
+              className="text-2xl sm:text-4xl lg:text-5xl font-black text-slate-950 tracking-tight leading-tight"
             >
               High-Speed PET Blow Moulding. <br className="hidden sm:inline" />
-              <span className="block mt-1.5 sm:mt-2 min-h-[2.4em] sm:min-h-[1.25em] text-blue-700 relative">
+              <span className="block mt-1 sm:mt-1.5 min-h-[1.5em] text-blue-700 relative">
                 <AnimatePresence mode="wait">
                   <motion.span
                     key={phraseIndex}
-                    initial={{ opacity: 0, y: 20, filter: 'blur(5px)' }}
+                    initial={{ opacity: 0, y: 15, filter: 'blur(4px)' }}
                     animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                    exit={{ opacity: 0, y: -20, filter: 'blur(5px)' }}
-                    transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                    exit={{ opacity: 0, y: -15, filter: 'blur(4px)' }}
+                    transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                     className="inline-block text-blue-700 font-black"
                   >
                     {HERO_ROTATING_PHRASES[phraseIndex]}
@@ -116,48 +102,48 @@ export default function Home({ onOpenQuote }) {
             </motion.h1>
 
             <motion.p 
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-sm sm:text-lg lg:text-xl text-slate-600 max-w-2xl mx-auto font-normal leading-relaxed px-2"
+              transition={{ duration: 0.5, delay: 0.15 }}
+              className="text-xs sm:text-sm lg:text-base text-slate-600 max-w-xl mx-auto font-normal leading-relaxed px-2"
             >
               Engineered with servo-stepping accuracy, 8-zone infrared quartz heating, and integrated high-pressure air recovery. From raw preform to palletized product.
             </motion.p>
 
-            {/* Phone-First Telemetry Chips (Zero extra height, pure industrial credibility) */}
+            {/* Telemetry Indicator Chips */}
             <motion.div
-              initial={{ opacity: 0, y: 15 }}
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.25 }}
-              className="flex flex-wrap items-center justify-center gap-2 pt-1"
+              transition={{ duration: 0.4, delay: 0.2 }}
+              className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 pt-0.5"
             >
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-50 border border-slate-200 text-[11px] sm:text-xs font-semibold text-slate-800 shadow-2xs">
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-slate-50 border border-slate-200 text-[11px] font-semibold text-slate-800 shadow-2xs">
                 <span className="w-1.5 h-1.5 rounded-full bg-blue-700 animate-pulse" />
                 <span>4,800 BPH Speed</span>
               </div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-50 border border-slate-200 text-[11px] sm:text-xs font-semibold text-slate-800 shadow-2xs">
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-slate-50 border border-slate-200 text-[11px] font-semibold text-slate-800 shadow-2xs">
                 <span className="w-1.5 h-1.5 rounded-full bg-blue-700" />
                 <span>30-Bar Air Recovery</span>
               </div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-50 border border-slate-200 text-[11px] sm:text-xs font-semibold text-slate-800 shadow-2xs">
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-slate-50 border border-slate-200 text-[11px] font-semibold text-slate-800 shadow-2xs">
                 <span className="w-1.5 h-1.5 rounded-full bg-blue-700" />
                 <span>Siemens PLC Servo</span>
               </div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-50 border border-slate-200 text-[11px] sm:text-xs font-semibold text-slate-800 shadow-2xs">
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-slate-50 border border-slate-200 text-[11px] font-semibold text-slate-800 shadow-2xs">
                 <span className="w-1.5 h-1.5 rounded-full bg-blue-700" />
                 <span>BIS & CE Ready</span>
               </div>
             </motion.div>
 
             <motion.div 
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2 sm:pt-4"
+              transition={{ duration: 0.5, delay: 0.25 }}
+              className="flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-3 pt-1.5 sm:pt-2"
             >
               <Link
                 to="/machines"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-blue-700 hover:bg-blue-800 text-white font-semibold text-xs sm:text-sm py-3.5 px-6 sm:px-7 rounded-full shadow-sm hover:shadow transition-all"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-blue-700 hover:bg-blue-800 text-white font-semibold text-xs sm:text-sm py-2.5 sm:py-3 px-5 sm:px-6 rounded-full shadow-sm hover:shadow transition-all"
               >
                 <span>Explore Full Machinery Catalog</span>
                 <ArrowRight className="w-4 h-4" />
@@ -165,7 +151,7 @@ export default function Home({ onOpenQuote }) {
 
               <button
                 onClick={() => onOpenQuote()}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-slate-900 font-semibold text-xs sm:text-sm py-3.5 px-6 rounded-full border border-slate-300 transition-all shadow-2xs cursor-pointer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-slate-900 font-semibold text-xs sm:text-sm py-2.5 sm:py-3 px-5 sm:px-6 rounded-full border border-slate-300 transition-all shadow-2xs cursor-pointer"
               >
                 <FileText className="w-4 h-4 text-blue-700" />
                 <span>Request Quotation & CAD Layout</span>
@@ -360,7 +346,7 @@ export default function Home({ onOpenQuote }) {
       {/* CapEx Sizer Teaser Banner */}
       <section className="py-12 sm:py-16 bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-8">
-          <div className="industrial-card p-6 sm:p-12 bg-slate-900 text-white flex flex-col md:flex-row justify-between items-start md:items-center gap-6 sm:gap-8 rounded-2xl sm:rounded-3xl">
+          <div className="p-6 sm:p-12 bg-slate-950 text-white flex flex-col md:flex-row justify-between items-start md:items-center gap-6 sm:gap-8 rounded-2xl sm:rounded-3xl border border-slate-800 shadow-md">
             <div className="space-y-2.5 sm:space-y-3 max-w-2xl">
               <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-blue-400 bg-blue-950 px-3 py-1 rounded-full border border-blue-800 inline-block">
                 DYNAMIC CAPEX ESTIMATOR

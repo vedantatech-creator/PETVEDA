@@ -79,7 +79,7 @@ export default function BuyerGuidesPage({ onOpenQuote }) {
           </p>
         </div>
 
-        {/* Guide Switcher Tabs */}
+        {/* Guide Switcher Tabs (Nielsen Law #4: Consistency & Standards) */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-10">
           {guides.map((g) => (
             <button
@@ -87,166 +87,251 @@ export default function BuyerGuidesPage({ onOpenQuote }) {
               onClick={() => setActiveGuide(g.id)}
               className={`text-left p-4 rounded-xl border transition-all cursor-pointer ${
                 activeGuide === g.id
-                  ? 'bg-blue-50 border-blue-600 shadow-sm ring-1 ring-blue-600'
-                  : 'bg-white border-slate-200 hover:border-slate-300 hover:bg-slate-50'
+                  ? 'bg-blue-50/70 border-2 border-blue-700 shadow-xs'
+                  : 'bg-white border border-slate-300 hover:border-slate-400 hover:bg-slate-50'
               }`}
             >
               <div className="flex items-center justify-between text-[10px] font-mono font-bold uppercase mb-2">
-                <span className={activeGuide === g.id ? 'text-blue-800' : 'text-slate-500'}>
+                <span className={activeGuide === g.id ? 'text-blue-900 font-extrabold' : 'text-slate-500'}>
                   {g.tag}
                 </span>
-                <span className="text-slate-400">{g.readTime}</span>
+                <span className="text-slate-500 font-mono">{g.readTime}</span>
               </div>
-              <h3 className={`text-xs sm:text-sm font-bold line-clamp-2 ${activeGuide === g.id ? 'text-blue-950' : 'text-slate-800'}`}>
+              <h3 className={`text-xs sm:text-sm font-bold line-clamp-2 ${activeGuide === g.id ? 'text-blue-950 font-black' : 'text-slate-800'}`}>
                 {g.title}
               </h3>
             </button>
           ))}
         </div>
 
-        {/* Content Box */}
-        <div className="industrial-card p-6 sm:p-10 bg-white border border-slate-200 rounded-2xl shadow-sm mb-12">
-          {/* Guide 1: Semi vs Auto */}
+        {/* Content Box (Standardized Nielsen 10-Law Design Rhythm across all Guides) */}
+        <div className="p-6 sm:p-10 bg-white border border-slate-300 rounded-2xl shadow-sm mb-12">
+          {/* ============================================================== */}
+          {/* GUIDE 1: Semi vs Fully Automatic */}
+          {/* ============================================================== */}
           {activeGuide === 'semi-vs-auto' && (
             <div className="space-y-8 animate-fade-in text-slate-800 text-sm leading-relaxed">
-              <div className="border-b border-slate-200 pb-6">
-                <span className="text-xs font-mono font-bold text-blue-700 bg-blue-50 px-2.5 py-1 rounded">GUIDE 01</span>
-                <h2 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight mt-2 mb-2">
+              {/* 1. Header */}
+              <div className="border-b border-slate-200 pb-5">
+                <span className="text-xs font-mono font-bold text-blue-700 bg-blue-50 px-2.5 py-1 rounded border border-blue-200">
+                  GUIDE 01 • DECISION MATRIX
+                </span>
+                <h2 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight mt-2.5 mb-1.5">
                   Semi-Automatic vs Fully Automatic PET Blow Moulding Machine
                 </h2>
                 <p className="text-slate-600 text-xs sm:text-sm">
-                  Which machine matches your production volume, budget, and labor constraints?
+                  Compare output speed, labor dependency, rejection rates, power load, and initial investment before finalizing your purchase.
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="p-5 rounded-xl border border-slate-200 bg-slate-50 space-y-3">
-                  <div className="flex items-center justify-between">
-                    <span className="font-bold text-slate-950 text-base">Semi-Automatic (VT-BLOW-S2)</span>
-                    <span className="font-mono text-xs font-bold text-blue-700 bg-white px-2 py-0.5 rounded border border-slate-200">
-                      ₹3.50L - ₹4.80L
-                    </span>
-                  </div>
-                  <ul className="text-xs space-y-2 text-slate-700">
-                    <li>• <strong>Output:</strong> 800 - 1,200 Bottles/Hour (500ml/1000ml)</li>
-                    <li>• <strong>Labor:</strong> Requires 1 dedicated manual operator per shift to place preforms in the heater and transfer them into the mould</li>
-                    <li>• <strong>Rejection Rate:</strong> 1.5% - 3.0% (dependent on operator speed and heating transfer time)</li>
-                    <li>• <strong>Connected Power:</strong> 12 - 16 kW total (lower compressor demand)</li>
-                    <li>• <strong>Best For:</strong> Startups, regional water plants (&lt; 10,000 bottles/day), custom edible oil, or pesticide bottles</li>
-                  </ul>
-                  <button
-                    onClick={() => handleVideoRequest('Semi-Automatic 2-Cavity Blower')}
-                    className="w-full mt-2 inline-flex items-center justify-center gap-1.5 bg-white border border-slate-300 hover:bg-slate-100 text-slate-800 font-semibold text-xs py-2 px-3 rounded-lg transition-colors cursor-pointer"
-                  >
-                    <Play className="w-3.5 h-3.5 text-blue-700 fill-blue-700" />
-                    <span>Watch Semi-Auto Run Video on WhatsApp</span>
-                  </button>
+              {/* 2. Key Metric Scorecard */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                  <span className="text-[10px] text-slate-500 uppercase font-mono block font-semibold">Output Speed</span>
+                  <span className="text-base sm:text-lg font-black text-slate-900 font-mono mt-0.5 block">
+                    1K vs 4.8K BPH
+                  </span>
+                  <span className="text-[11px] text-slate-500 font-mono mt-0.5 block">Semi: 1,200 | Auto: 4,800 BPH</span>
                 </div>
 
-                <div className="p-5 rounded-xl border border-blue-200 bg-blue-50/40 space-y-3">
-                  <div className="flex items-center justify-between">
-                    <span className="font-bold text-slate-950 text-base">Fully Automatic (VT-BLOW-A4)</span>
-                    <span className="font-mono text-xs font-bold text-blue-800 bg-blue-100 px-2 py-0.5 rounded border border-blue-300">
-                      ₹14.50L - ₹18.00L
-                    </span>
-                  </div>
-                  <ul className="text-xs space-y-2 text-slate-700">
-                    <li>• <strong>Output:</strong> 3,600 - 4,800 Bottles/Hour continuous</li>
-                    <li>• <strong>Labor:</strong> 0 manual loading. Hopper elevator feeds preforms automatically; auto-ejection onto air conveyor</li>
-                    <li>• <strong>Rejection Rate:</strong> &lt; 0.2% (precision infrared quartz heating with Schneider/Delta PLC servo stretch)</li>
-                    <li>• <strong>Connected Power:</strong> 28 - 34 kW total (requires 30-bar high-pressure compressor)</li>
-                    <li>• <strong>Best For:</strong> Commercial water brands, high-speed bottling lines (&gt; 25,000 bottles/day), continuous 2-shift operations</li>
-                  </ul>
-                  <button
-                    onClick={() => handleVideoRequest('Fully Automatic 4-Cavity Blower')}
-                    className="w-full mt-2 inline-flex items-center justify-center gap-1.5 bg-blue-700 hover:bg-blue-800 text-white font-semibold text-xs py-2 px-3 rounded-lg transition-colors cursor-pointer"
-                  >
-                    <Play className="w-3.5 h-3.5 fill-white" />
-                    <span>Watch Auto 4-Cavity Run Video on WhatsApp</span>
-                  </button>
+                <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                  <span className="text-[10px] text-slate-500 uppercase font-mono block font-semibold">Connected Power</span>
+                  <span className="text-base sm:text-lg font-black text-blue-800 font-mono mt-0.5 block">
+                    14 kW vs 36 kW
+                  </span>
+                  <span className="text-[11px] text-slate-500 font-mono mt-0.5 block">20 HP vs 45 HP Sanctioned</span>
+                </div>
+
+                <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                  <span className="text-[10px] text-slate-500 uppercase font-mono block font-semibold">Machinery CapEx</span>
+                  <span className="text-base sm:text-lg font-black text-slate-900 font-mono mt-0.5 block">
+                    ₹3.5L vs ₹16.5L
+                  </span>
+                  <span className="text-[11px] text-slate-500 font-mono mt-0.5 block">Ex-factory benchmark rates</span>
                 </div>
               </div>
 
-              <div className="p-4 bg-slate-50 rounded-xl border border-slate-200 text-xs space-y-2">
-                <span className="font-bold text-slate-900 uppercase font-mono block">The Straight Truth Recommendation:</span>
-                <p>
-                  If you have less than ₹12 Lakhs total working capital, buy a Semi-Automatic unit with a good quality 30-bar compressor. You can blow bottles for regional supply, recover your capital within 4 to 6 months, and then upgrade to a Fully Automatic line once your daily sales cross 15,000 bottles.
-                </p>
+              {/* 3. Standardized Comparison Table */}
+              <div className="overflow-x-auto">
+                <table className="w-full text-xs text-left border border-slate-200 rounded-xl">
+                  <thead className="bg-slate-100 font-mono text-slate-700 uppercase">
+                    <tr>
+                      <th className="p-3">Parameter / Feature</th>
+                      <th className="p-3">Semi-Automatic (VT-BLOW-S2)</th>
+                      <th className="p-3">Fully Automatic (VT-BLOW-A4)</th>
+                      <th className="p-3">First-Time Buyer Impact</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-200 font-sans">
+                    <tr>
+                      <td className="p-3 font-semibold text-slate-900">Rated Output Speed</td>
+                      <td className="p-3 font-mono">800 - 1,200 Bottles / Hour</td>
+                      <td className="p-3 font-mono font-bold text-blue-900">3,600 - 4,800 Bottles / Hour</td>
+                      <td className="p-3 text-slate-600">Auto yields 4x higher daily volume</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-semibold text-slate-900">Operator Labor Required</td>
+                      <td className="p-3">1 dedicated manual loader per shift</td>
+                      <td className="p-3 font-semibold text-slate-900">0 manual loading (Hopper elevator)</td>
+                      <td className="p-3 text-slate-600">Saves ₹18,000/month operator wages on Auto</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-semibold text-slate-900">Defect & Rejection Rate</td>
+                      <td className="p-3 font-mono">1.5% - 3.0% (Manual timing)</td>
+                      <td className="p-3 font-mono font-bold text-emerald-700">&lt; 0.2% (Infrared PID + Servo)</td>
+                      <td className="p-3 text-slate-600">Consistent bottle wall distribution and zero parting flash</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-semibold text-slate-900">Blowing Air Pressure</td>
+                      <td className="p-3 font-mono">20 - 25 Bar</td>
+                      <td className="p-3 font-mono">28 - 35 Bar (with Air Recovery)</td>
+                      <td className="p-3 text-slate-600">Auto recycles 25% compressed air back to low-pressure</td>
+                    </tr>
+                    <tr className="bg-slate-50 font-bold">
+                      <td className="p-3 text-slate-900">Indicative Machine Cost</td>
+                      <td className="p-3 font-mono text-slate-900">₹3,50,000 - ₹4,80,000</td>
+                      <td className="p-3 font-mono text-blue-900">₹16,50,000 - ₹22,00,000</td>
+                      <td className="p-3 text-blue-900">Low upfront barrier vs long-term automation</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
 
-              <div className="flex flex-wrap items-center gap-3 pt-2">
+              {/* 4. First-Time Buyer Takeaways */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                  <span className="font-bold text-slate-900 uppercase font-mono block mb-1">Factory Space</span>
+                  <p className="text-slate-600 leading-relaxed">
+                    600 sq.ft for Semi-Auto setup vs 1,200 sq.ft for Fully Auto with automatic air conveying lines.
+                  </p>
+                </div>
+                <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                  <span className="font-bold text-slate-900 uppercase font-mono block mb-1">Commercial Power</span>
+                  <p className="text-slate-600 leading-relaxed">
+                    20 HP 3-phase connection for Semi-Auto vs 45 HP sanctioned commercial power for Fully Auto.
+                  </p>
+                </div>
+                <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                  <span className="font-bold text-slate-900 uppercase font-mono block mb-1">Recommended Payback</span>
+                  <p className="text-slate-600 leading-relaxed">
+                    Under ₹12L capital: start with Semi-Auto S2, recover costs in 4-6 months, then upgrade to Fully Auto A4.
+                  </p>
+                </div>
+              </div>
+
+              {/* 5. Standardized Dual-Action Buttons */}
+              <div className="flex flex-wrap items-center gap-3 pt-1">
                 <button
                   onClick={() => onOpenQuote('VT-BLOW-S2')}
-                  className="bg-blue-700 hover:bg-blue-800 text-white font-semibold text-xs py-2.5 px-4 rounded-full transition-colors cursor-pointer"
+                  className="bg-blue-700 hover:bg-blue-800 text-white font-semibold text-xs py-3 px-5 rounded-full transition-all cursor-pointer shadow-sm"
                 >
-                  Get Itemized Quotation for Both Models
+                  Request Itemized Quotation for Both Models
                 </button>
                 <button
-                  onClick={() => handleWhatsApp('Semi vs Auto Machine Pricing')}
-                  className="bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-300 font-semibold text-xs py-2.5 px-4 rounded-full transition-colors cursor-pointer flex items-center gap-1.5"
+                  onClick={() => handleWhatsApp('Semi vs Auto Machinery Comparison')}
+                  className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs py-3 px-5 rounded-full transition-all cursor-pointer flex items-center gap-1.5 shadow-sm"
                 >
-                  <MessageSquare className="w-3.5 h-3.5 text-emerald-700" />
-                  <span>Ask an Engineer on WhatsApp</span>
+                  <MessageSquare className="w-3.5 h-3.5 text-white" />
+                  <span>Discuss Sizing with Engineer on WhatsApp</span>
                 </button>
+              </div>
+
+              {/* 6. Pricing Disclaimer */}
+              <div className="p-3 bg-slate-50 border border-slate-200 rounded-lg text-[11px] font-mono text-slate-600 space-y-1">
+                <p className="font-semibold text-slate-900">• Clause 1: Prices and production rates are indicative benchmarks based on 2026 raw material pricing.</p>
+                <p className="text-slate-600">• Clause 2: Please submit an official inquiry or speak with our sales engineers for an exact, project-specific commercial proposal.</p>
               </div>
             </div>
           )}
 
-          {/* Guide 2: 20L Jar Plant */}
+          {/* ============================================================== */}
+          {/* GUIDE 2: 20L Jar Plant */}
+          {/* ============================================================== */}
           {activeGuide === '20l-jar-plant' && (
             <div className="space-y-8 animate-fade-in text-slate-800 text-sm leading-relaxed">
-              <div className="border-b border-slate-200 pb-6">
-                <span className="text-xs font-mono font-bold text-blue-700 bg-blue-50 px-2.5 py-1 rounded">GUIDE 02</span>
-                <h2 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight mt-2 mb-2">
+              {/* 1. Header */}
+              <div className="border-b border-slate-200 pb-5">
+                <span className="text-xs font-mono font-bold text-blue-700 bg-blue-50 px-2.5 py-1 rounded border border-blue-200">
+                  GUIDE 02 • PROJECT SPECIFICATION
+                </span>
+                <h2 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight mt-2.5 mb-1.5">
                   Complete Setup Guide for a 20-Litre Jar Bottling Plant
                 </h2>
                 <p className="text-slate-600 text-xs sm:text-sm">
-                  What equipment, utility power, factory area, and BIS IS:14543 compliance do you actually need?
+                  What equipment, utility power, factory floor area, and BIS IS:14543 compliance do you actually need to start commercial operations?
                 </p>
               </div>
 
+              {/* 2. Key Metric Scorecard */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                  <span className="text-[10px] text-slate-500 uppercase font-mono block font-semibold">Output Speed</span>
+                  <span className="text-base sm:text-lg font-black text-slate-900 font-mono mt-0.5 block">
+                    120 - 200 JPH
+                  </span>
+                  <span className="text-[11px] text-slate-500 font-mono mt-0.5 block">Handles 650g - 750g 20L preforms</span>
+                </div>
+
+                <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                  <span className="text-[10px] text-slate-500 uppercase font-mono block font-semibold">Connected Power</span>
+                  <span className="text-base sm:text-lg font-black text-blue-800 font-mono mt-0.5 block">
+                    ~38 kW Total
+                  </span>
+                  <span className="text-[11px] text-slate-500 font-mono mt-0.5 block">40 HP 3-Phase 415V connection</span>
+                </div>
+
+                <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                  <span className="text-[10px] text-slate-500 uppercase font-mono block font-semibold">Complete Turnkey CapEx</span>
+                  <span className="text-base sm:text-lg font-black text-slate-900 font-mono mt-0.5 block">
+                    ₹22,50,000
+                  </span>
+                  <span className="text-[11px] text-slate-500 font-mono mt-0.5 block">Ex-factory Vasai turnkey package</span>
+                </div>
+              </div>
+
+              {/* 3. Standardized Equipment Table */}
               <div className="overflow-x-auto">
                 <table className="w-full text-xs text-left border border-slate-200 rounded-xl">
                   <thead className="bg-slate-100 font-mono text-slate-700 uppercase">
                     <tr>
                       <th className="p-3">Required Equipment</th>
-                      <th className="p-3">Technical Rating</th>
+                      <th className="p-3">Technical Specification</th>
                       <th className="p-3">Connected Power</th>
-                      <th className="p-3">Indicative Cost</th>
+                      <th className="p-3">Indicative Investment</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-200">
+                  <tbody className="divide-y divide-slate-200 font-sans">
                     <tr>
-                      <td className="p-3 font-semibold">20L PET Jar Blow Moulding Machine</td>
+                      <td className="p-3 font-semibold text-slate-900">20L PET Jar Blow Moulding Machine</td>
                       <td className="p-3">120 - 180 JPH (Handles 650g - 750g preforms)</td>
                       <td className="p-3 font-mono">18 kW</td>
-                      <td className="p-3 font-mono font-bold">₹7,20,000</td>
+                      <td className="p-3 font-mono font-bold text-slate-900">₹7,20,000</td>
                     </tr>
                     <tr>
-                      <td className="p-3 font-semibold">20-Bar Reciprocating High Pressure Air Compressor</td>
+                      <td className="p-3 font-semibold text-slate-900">20-Bar Reciprocating High Pressure Air Compressor</td>
                       <td className="p-3">30 CFM with air receiver tank and refrigerated dryer</td>
                       <td className="p-3 font-mono">11 kW (15 HP)</td>
-                      <td className="p-3 font-mono font-bold">₹3,80,000</td>
+                      <td className="p-3 font-mono font-bold text-slate-900">₹3,80,000</td>
                     </tr>
                     <tr>
-                      <td className="p-3 font-semibold">20L Jar Internal/External Rinsing, Filling & Capping</td>
-                      <td className="p-3">100 - 200 Jars/Hour Monoblock (SS 304)</td>
+                      <td className="p-3 font-semibold text-slate-900">20L Jar Monoblock (Wash, Fill & Cap)</td>
+                      <td className="p-3">100 - 200 Jars/Hour automated SS 304 monoblock</td>
                       <td className="p-3 font-mono">3.5 kW</td>
-                      <td className="p-3 font-mono font-bold">₹5,50,000</td>
+                      <td className="p-3 font-mono font-bold text-slate-900">₹5,50,000</td>
                     </tr>
                     <tr>
-                      <td className="p-3 font-semibold">Commercial RO Water Treatment Plant</td>
-                      <td className="p-3">1,000 LPH output with Sand, Carbon & Micron Filters</td>
+                      <td className="p-3 font-semibold text-slate-900">Commercial RO Water Treatment Plant</td>
+                      <td className="p-3">1,000 LPH output with Sand, Carbon & Micron polishing</td>
                       <td className="p-3 font-mono">3.0 kW</td>
-                      <td className="p-3 font-mono font-bold">₹3,20,000</td>
+                      <td className="p-3 font-mono font-bold text-slate-900">₹3,20,000</td>
                     </tr>
                     <tr>
-                      <td className="p-3 font-semibold">In-House BIS IS:14543 Testing Laboratory</td>
+                      <td className="p-3 font-semibold text-slate-900">In-House BIS IS:14543 Testing Laboratory</td>
                       <td className="p-3">Laminar Air Flow, Autoclave, Incubator, Chemical Glassware</td>
                       <td className="p-3 font-mono">2.5 kW</td>
-                      <td className="p-3 font-mono font-bold">₹2,80,000</td>
+                      <td className="p-3 font-mono font-bold text-slate-900">₹2,80,000</td>
                     </tr>
-                    <tr className="bg-blue-50/60 font-bold">
+                    <tr className="bg-slate-50 font-bold">
                       <td className="p-3 text-blue-900" colSpan="2">Complete Turnkey 20L Plant Package (Ex-Factory)</td>
                       <td className="p-3 font-mono text-blue-900">~38 kW</td>
                       <td className="p-3 font-mono text-blue-900 text-sm">₹22,50,000</td>
@@ -255,231 +340,350 @@ export default function BuyerGuidesPage({ onOpenQuote }) {
                 </table>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
-                <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
-                  <span className="font-bold text-slate-900 uppercase font-mono block mb-1">Space Needed</span>
-                  <p className="text-slate-600">Minimum 1,500 to 2,000 sq.ft industrial shed with clean epoxy flooring and partitioned laboratory room.</p>
+              {/* 4. First-Time Buyer Takeaways */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                  <span className="font-bold text-slate-900 uppercase font-mono block mb-1">Factory Space</span>
+                  <p className="text-slate-600 leading-relaxed">
+                    1,500 to 2,000 sq.ft industrial shed with clean epoxy flooring and partitioned lab room.
+                  </p>
                 </div>
-                <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
                   <span className="font-bold text-slate-900 uppercase font-mono block mb-1">Commercial Power</span>
-                  <p className="text-slate-600">40 HP (30 kW) 3-phase 415V industrial electric connection required.</p>
+                  <p className="text-slate-600 leading-relaxed">
+                    40 HP (30 kW) 3-phase 415V industrial electric connection required.
+                  </p>
                 </div>
-                <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
                   <span className="font-bold text-slate-900 uppercase font-mono block mb-1">Profit Economics</span>
-                  <p className="text-slate-600">Cost to produce 1 filled 20L jar: ₹5.50 (water + cap + power). Wholesale dispatch price: ₹22 - ₹35.</p>
+                  <p className="text-slate-600 leading-relaxed">
+                    Cost to produce 1 filled 20L jar: ₹5.50 (water + cap + power). Wholesale dispatch: ₹22 - ₹35 (Net: ₹16.50 - ₹29.50/jar).
+                  </p>
                 </div>
               </div>
 
-              <div className="flex flex-wrap items-center gap-3">
+              {/* 5. Standardized Dual-Action Buttons */}
+              <div className="flex flex-wrap items-center gap-3 pt-1">
                 <button
                   onClick={() => onOpenQuote('VT-BLOW-JAR20')}
-                  className="bg-blue-700 hover:bg-blue-800 text-white font-semibold text-xs py-2.5 px-4 rounded-full transition-colors cursor-pointer"
+                  className="bg-blue-700 hover:bg-blue-800 text-white font-semibold text-xs py-3 px-5 rounded-full transition-all cursor-pointer shadow-sm"
                 >
                   Request 20L Jar Plant Quotation & Layout
                 </button>
                 <button
-                  onClick={() => handleVideoRequest('20 Litre Jar Blowing Machine')}
-                  className="bg-white border border-slate-300 hover:bg-slate-50 text-slate-800 font-semibold text-xs py-2.5 px-4 rounded-full transition-colors cursor-pointer flex items-center gap-1.5"
+                  onClick={() => handleWhatsApp('20L Jar Bottling Plant Inquiry')}
+                  className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs py-3 px-5 rounded-full transition-all cursor-pointer flex items-center gap-1.5 shadow-sm"
                 >
-                  <Play className="w-3.5 h-3.5 text-blue-700 fill-blue-700" />
-                  <span>Watch 20L Jar Machine Video</span>
+                  <MessageSquare className="w-3.5 h-3.5 text-white" />
+                  <span>Discuss 20L Project with Engineer on WhatsApp</span>
                 </button>
+              </div>
+
+              {/* 6. Pricing Disclaimer */}
+              <div className="p-3 bg-slate-50 border border-slate-200 rounded-lg text-[11px] font-mono text-slate-600 space-y-1">
+                <p className="font-semibold text-slate-900">• Clause 1: Prices and production rates are indicative benchmarks based on 2026 raw material pricing.</p>
+                <p className="text-slate-600">• Clause 2: Please submit an official inquiry or speak with our sales engineers for an exact, project-specific commercial proposal.</p>
               </div>
             </div>
           )}
 
-          {/* Guide 3: Water Plant Cost */}
+          {/* ============================================================== */}
+          {/* GUIDE 3: Water Plant Cost Breakdown */}
+          {/* ============================================================== */}
           {activeGuide === 'water-plant-cost' && (
             <div className="space-y-8 animate-fade-in text-slate-800 text-sm leading-relaxed">
-              <div className="border-b border-slate-200 pb-6">
-                <span className="text-xs font-mono font-bold text-blue-700 bg-blue-50 px-2.5 py-1 rounded">GUIDE 03</span>
-                <h2 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight mt-2 mb-2">
+              {/* 1. Header */}
+              <div className="border-b border-slate-200 pb-5">
+                <span className="text-xs font-mono font-bold text-blue-700 bg-blue-50 px-2.5 py-1 rounded border border-blue-200">
+                  GUIDE 03 • PRODUCTION UNIT ECONOMICS
+                </span>
+                <h2 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight mt-2.5 mb-1.5">
                   Packaged Drinking Water Plant (40 / 60 / 120 BPM) Cost Breakdown
                 </h2>
                 <p className="text-slate-600 text-xs sm:text-sm">
-                  What does a single bottle actually cost to manufacture in India?
+                  What does a single bottle actually cost to manufacture in India? Complete breakdown of raw materials, power, and margins.
                 </p>
               </div>
 
-              <div className="p-5 bg-slate-50 rounded-xl border border-slate-200 space-y-4">
-                <h3 className="text-xs font-bold font-mono uppercase tracking-wider text-slate-900">
-                  Raw Material & Production Cost per 500ml Packaged Water Bottle (2026 Mumbai/Maharashtra Benchmark)
-                </h3>
-
-                <div className="overflow-x-auto">
-                  <table className="w-full text-xs text-left border border-slate-200 rounded-lg">
-                    <thead className="bg-white font-mono text-slate-700 uppercase">
-                      <tr>
-                        <th className="p-2.5">Cost Component</th>
-                        <th className="p-2.5">Specification</th>
-                        <th className="p-2.5 text-right">Cost Per Bottle (₹)</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-slate-200">
-                      <tr>
-                        <td className="p-2.5 font-semibold">PET Preform</td>
-                        <td className="p-2.5">11.5 gram (28mm PCO 1881 neck @ ₹125/kg)</td>
-                        <td className="p-2.5 text-right font-mono font-bold">₹1.44</td>
-                      </tr>
-                      <tr>
-                        <td className="p-2.5 font-semibold">Plastic Cap</td>
-                        <td className="p-2.5">28mm 1-piece with tamper ring</td>
-                        <td className="p-2.5 text-right font-mono font-bold">₹0.35</td>
-                      </tr>
-                      <tr>
-                        <td className="p-2.5 font-semibold">BOPP Roll Label</td>
-                        <td className="p-2.5">Pearlized / Metallic printed roll film</td>
-                        <td className="p-2.5 text-right font-mono font-bold">₹0.22</td>
-                      </tr>
-                      <tr>
-                        <td className="p-2.5 font-semibold">Water Treatment & Disinfection</td>
-                        <td className="p-2.5">RO filtration, Micron polishing, Ozone dosing</td>
-                        <td className="p-2.5 text-right font-mono font-bold">₹0.08</td>
-                      </tr>
-                      <tr>
-                        <td className="p-2.5 font-semibold">Power & High-Pressure Air</td>
-                        <td className="p-2.5">Compressor, blower, chiller, conveyor power</td>
-                        <td className="p-2.5 text-right font-mono font-bold">₹0.16</td>
-                      </tr>
-                      <tr>
-                        <td className="p-2.5 font-semibold">Secondary Packaging (Shrink Film)</td>
-                        <td className="p-2.5">LDPE film for 24-bottle matrix bundle</td>
-                        <td className="p-2.5 text-right font-mono font-bold">₹0.30</td>
-                      </tr>
-                      <tr className="bg-emerald-50/70 font-bold text-emerald-950">
-                        <td className="p-3" colSpan="2">TOTAL DIRECT MANUFACTURING COST (500ml)</td>
-                        <td className="p-3 text-right font-mono text-sm">₹2.55</td>
-                      </tr>
-                    </tbody>
-                  </table>
+              {/* 2. Key Metric Scorecard */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                  <span className="text-[10px] text-slate-500 uppercase font-mono block font-semibold">Standard Bottling Line</span>
+                  <span className="text-base sm:text-lg font-black text-slate-900 font-mono mt-0.5 block">
+                    60 BPM (3,600 BPH)
+                  </span>
+                  <span className="text-[11px] text-slate-500 font-mono mt-0.5 block">28,000 - 36,000 Bottles / Shift</span>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 text-xs">
-                  <div className="bg-white p-3 rounded-lg border border-slate-200">
-                    <span className="text-slate-500 font-mono block">Wholesale Dispatch Price to Distributors:</span>
-                    <span className="text-base font-black text-slate-950 font-mono">₹4.50 - ₹5.50 / bottle</span>
-                    <span className="text-[11px] text-slate-500 block mt-0.5">(Net manufacturer margin: ₹1.95 - ₹2.95 per bottle)</span>
-                  </div>
-                  <div className="bg-white p-3 rounded-lg border border-slate-200">
-                    <span className="text-slate-500 font-mono block">Consumer MRP:</span>
-                    <span className="text-base font-black text-slate-950 font-mono">₹10.00 / bottle</span>
-                    <span className="text-[11px] text-slate-500 block mt-0.5">(Standard retailer & dealer margin applies)</span>
-                  </div>
+                <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                  <span className="text-[10px] text-slate-500 uppercase font-mono block font-semibold">Direct Cost / 500ml Bottle</span>
+                  <span className="text-base sm:text-lg font-black text-emerald-700 font-mono mt-0.5 block">
+                    ₹2.55 / Bottle
+                  </span>
+                  <span className="text-[11px] text-slate-500 font-mono mt-0.5 block">Preform + Cap + Label + Power + Water</span>
+                </div>
+
+                <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                  <span className="text-[10px] text-slate-500 uppercase font-mono block font-semibold">Wholesale Dispatch Price</span>
+                  <span className="text-base sm:text-lg font-black text-blue-800 font-mono mt-0.5 block">
+                    ₹4.50 - ₹5.50
+                  </span>
+                  <span className="text-[11px] text-slate-500 font-mono mt-0.5 block">Gross Margin: ₹1.95 - ₹2.95 / bottle</span>
                 </div>
               </div>
 
-              <div className="flex flex-wrap items-center gap-3">
-                <button
-                  onClick={() => onOpenQuote('VT-TURNKEY-60')}
-                  className="bg-blue-700 hover:bg-blue-800 text-white font-semibold text-xs py-2.5 px-4 rounded-full transition-colors cursor-pointer"
-                >
-                  Get Complete Turnkey Plant Quotation
-                </button>
-                <button
-                  onClick={() => handleWhatsApp('Packaged Drinking Water Plant Quotation')}
-                  className="bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-300 font-semibold text-xs py-2.5 px-4 rounded-full transition-colors cursor-pointer flex items-center gap-1.5"
-                >
-                  <MessageSquare className="w-3.5 h-3.5 text-emerald-700" />
-                  <span>Discuss Project with Sales Engineer</span>
-                </button>
-              </div>
-            </div>
-          )}
-
-          {/* Guide 4: Preform Sizing */}
-          {activeGuide === 'preform-sizing' && (
-            <div className="space-y-8 animate-fade-in text-slate-800 text-sm leading-relaxed">
-              <div className="border-b border-slate-200 pb-6">
-                <span className="text-xs font-mono font-bold text-blue-700 bg-blue-50 px-2.5 py-1 rounded">GUIDE 04</span>
-                <h2 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight mt-2 mb-2">
-                  PET Preform Grammage & Neck Selection Guide
-                </h2>
-                <p className="text-slate-600 text-xs sm:text-sm">
-                  How light-weighting your preforms saves ₹1,50,000+ per month in raw material expenses.
-                </p>
-              </div>
-
+              {/* 3. Standardized Cost Breakdown Table */}
               <div className="overflow-x-auto">
                 <table className="w-full text-xs text-left border border-slate-200 rounded-xl">
                   <thead className="bg-slate-100 font-mono text-slate-700 uppercase">
                     <tr>
-                      <th className="p-3">Bottle Size</th>
-                      <th className="p-3">Optimal Weight Range</th>
-                      <th className="p-3">Recommended Neck Standard</th>
-                      <th className="p-3">Application Type</th>
+                      <th className="p-3">Cost Component</th>
+                      <th className="p-3">Engineering Specification</th>
+                      <th className="p-3">Material Standard</th>
+                      <th className="p-3 text-right">Cost Per Bottle (₹)</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-200">
+                  <tbody className="divide-y divide-slate-200 font-sans">
                     <tr>
-                      <td className="p-3 font-semibold">200ml - 250ml</td>
-                      <td className="p-3 font-mono font-bold">9.0g - 11.0g</td>
-                      <td className="p-3 font-mono">28mm Alaska / PCO 1881</td>
-                      <td className="p-3">Packaged Water, Airlines, Events</td>
+                      <td className="p-3 font-semibold text-slate-900">PET Preform</td>
+                      <td className="p-3">11.5 gram (28mm PCO 1881 short-neck)</td>
+                      <td className="p-3">Virgin Food-Grade Resin @ ₹125/kg</td>
+                      <td className="p-3 text-right font-mono font-bold text-slate-900">₹1.44</td>
                     </tr>
                     <tr>
-                      <td className="p-3 font-semibold">500ml</td>
-                      <td className="p-3 font-mono font-bold">11.5g - 13.5g</td>
-                      <td className="p-3 font-mono">28mm PCO 1881 (Short Neck)</td>
-                      <td className="p-3">Still Mineral Water (Standard)</td>
+                      <td className="p-3 font-semibold text-slate-900">Plastic Cap</td>
+                      <td className="p-3">28mm 1-piece with tamper evident ring</td>
+                      <td className="p-3">Food Grade HDPE / PP</td>
+                      <td className="p-3 text-right font-mono font-bold text-slate-900">₹0.35</td>
                     </tr>
                     <tr>
-                      <td className="p-3 font-semibold">1,000ml (1 Litre)</td>
-                      <td className="p-3 font-mono font-bold">17.5g - 20.0g</td>
-                      <td className="p-3 font-mono">28mm PCO 1881</td>
-                      <td className="p-3">Retail Water, Juice, FMCG</td>
+                      <td className="p-3 font-semibold text-slate-900">BOPP Roll Label</td>
+                      <td className="p-3">Pearlized / metallic printed roll film</td>
+                      <td className="p-3">Hot-Melt Cut & Stack Application</td>
+                      <td className="p-3 text-right font-mono font-bold text-slate-900">₹0.22</td>
                     </tr>
                     <tr>
-                      <td className="p-3 font-semibold">2,000ml (2 Litre)</td>
-                      <td className="p-3 font-mono font-bold">32.0g - 36.0g</td>
-                      <td className="p-3 font-mono">28mm PCO 1810 / 1881</td>
-                      <td className="p-3">Bulk Household Water, Soft Drinks</td>
+                      <td className="p-3 font-semibold text-slate-900">Water Treatment & Disinfection</td>
+                      <td className="p-3">RO filtration, micron polishing, ozone dosing</td>
+                      <td className="p-3">Borehole Raw Water</td>
+                      <td className="p-3 text-right font-mono font-bold text-slate-900">₹0.08</td>
                     </tr>
                     <tr>
-                      <td className="p-3 font-semibold">5 Litre Can / Jar</td>
-                      <td className="p-3 font-mono font-bold">85g - 95g</td>
-                      <td className="p-3 font-mono">38mm / 45mm Neck</td>
-                      <td className="p-3">Edible Oil, Institutional Water</td>
+                      <td className="p-3 font-semibold text-slate-900">Power & Compressed Air</td>
+                      <td className="p-3">Compressor, blower, chiller, conveyor power</td>
+                      <td className="p-3">65 kW industrial connected load</td>
+                      <td className="p-3 text-right font-mono font-bold text-slate-900">₹0.16</td>
                     </tr>
                     <tr>
-                      <td className="p-3 font-semibold">20 Litre Commercial Bubble Top</td>
-                      <td className="p-3 font-mono font-bold">680g - 740g</td>
-                      <td className="p-3 font-mono">55mm Snap-on Neck</td>
-                      <td className="p-3">Office & Household Water Delivery</td>
+                      <td className="p-3 font-semibold text-slate-900">Secondary Packaging (Shrink Film)</td>
+                      <td className="p-3">LDPE film bundle for 24-bottle matrix</td>
+                      <td className="p-3">Automated Secondary Wrapper</td>
+                      <td className="p-3 text-right font-mono font-bold text-slate-900">₹0.30</td>
+                    </tr>
+                    <tr className="bg-slate-50 font-bold">
+                      <td className="p-3 text-emerald-950" colSpan="3">TOTAL DIRECT MANUFACTURING COST (500ml)</td>
+                      <td className="p-3 text-right font-mono text-sm text-emerald-700">₹2.55</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
 
-              <div className="p-4 bg-blue-50 rounded-xl border border-blue-200 text-xs text-blue-950 space-y-2">
-                <span className="font-bold uppercase font-mono block">The Preform Lightweighting Rule:</span>
-                <p>
-                  Every 1.0 gram reduction in preform weight saves approximately ₹0.12 per bottle. On a 4-cavity machine blowing 30,000 bottles per day, a 1-gram optimization saves ₹3,600 every day—which is <strong>₹1,08,000 per month straight into your bottom line</strong>.
+              {/* 4. First-Time Buyer Takeaways */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                  <span className="font-bold text-slate-900 uppercase font-mono block mb-1">Factory Space</span>
+                  <p className="text-slate-600 leading-relaxed">
+                    2,500 - 3,500 sq.ft industrial shed for 60 BPM line including raw storage and finished goods staging.
+                  </p>
+                </div>
+                <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                  <span className="font-bold text-slate-900 uppercase font-mono block mb-1">Commercial Power</span>
+                  <p className="text-slate-600 leading-relaxed">
+                    65 kW (80 HP connection) sanctioned power for continuous 2-shift operations.
+                  </p>
+                </div>
+                <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                  <span className="font-bold text-slate-900 uppercase font-mono block mb-1">Net Monthly Profit</span>
+                  <p className="text-slate-600 leading-relaxed">
+                    At 30,000 bottles/day x 26 days = 7,80,000 bottles/month. Net manufacturer profit: ₹15.2L to ₹23.0L / month.
+                  </p>
+                </div>
+              </div>
+
+              {/* 5. Standardized Dual-Action Buttons */}
+              <div className="flex flex-wrap items-center gap-3 pt-1">
+                <button
+                  onClick={() => onOpenQuote('VT-TURNKEY-60BPM')}
+                  className="bg-blue-700 hover:bg-blue-800 text-white font-semibold text-xs py-3 px-5 rounded-full transition-all cursor-pointer shadow-sm"
+                >
+                  Get Complete Turnkey Plant Quotation
+                </button>
+                <button
+                  onClick={() => handleWhatsApp('Packaged Drinking Water Plant Quotation')}
+                  className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs py-3 px-5 rounded-full transition-all cursor-pointer flex items-center gap-1.5 shadow-sm"
+                >
+                  <MessageSquare className="w-3.5 h-3.5 text-white" />
+                  <span>Discuss Project with Sales Engineer on WhatsApp</span>
+                </button>
+              </div>
+
+              {/* 6. Pricing Disclaimer */}
+              <div className="p-3 bg-slate-50 border border-slate-200 rounded-lg text-[11px] font-mono text-slate-600 space-y-1">
+                <p className="font-semibold text-slate-900">• Clause 1: Production unit costs and machinery rates are indicative benchmarks based on 2026 raw material pricing.</p>
+                <p className="text-slate-600">• Clause 2: Please submit an official inquiry or speak with our sales engineers for an exact, project-specific commercial proposal.</p>
+              </div>
+            </div>
+          )}
+
+          {/* ============================================================== */}
+          {/* GUIDE 4: Preform Sizing */}
+          {/* ============================================================== */}
+          {activeGuide === 'preform-sizing' && (
+            <div className="space-y-8 animate-fade-in text-slate-800 text-sm leading-relaxed">
+              {/* 1. Header */}
+              <div className="border-b border-slate-200 pb-5">
+                <span className="text-xs font-mono font-bold text-blue-700 bg-blue-50 px-2.5 py-1 rounded border border-blue-200">
+                  GUIDE 04 • MATERIAL OPTIMIZATION
+                </span>
+                <h2 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight mt-2.5 mb-1.5">
+                  PET Preform Grammage & Neck Selection Guide
+                </h2>
+                <p className="text-slate-600 text-xs sm:text-sm">
+                  How light-weighting your preforms saves ₹1,50,000+ per month in recurring raw material expenses without compromising bottle strength.
                 </p>
               </div>
 
-              <div className="flex flex-wrap items-center gap-3">
+              {/* 2. Key Metric Scorecard */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                  <span className="text-[10px] text-slate-500 uppercase font-mono block font-semibold">Standard 500ml Weight</span>
+                  <span className="text-base sm:text-lg font-black text-slate-900 font-mono mt-0.5 block">
+                    11.5g - 12.5g
+                  </span>
+                  <span className="text-[11px] text-slate-500 font-mono mt-0.5 block">28mm PCO 1881 short-neck standard</span>
+                </div>
+
+                <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                  <span className="text-[10px] text-slate-500 uppercase font-mono block font-semibold">Standard 1000ml Weight</span>
+                  <span className="text-base sm:text-lg font-black text-blue-800 font-mono mt-0.5 block">
+                    17.5g - 19.5g
+                  </span>
+                  <span className="text-[11px] text-slate-500 font-mono mt-0.5 block">Optimal retail drop-test strength</span>
+                </div>
+
+                <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                  <span className="text-[10px] text-slate-500 uppercase font-mono block font-semibold">Monthly Savings</span>
+                  <span className="text-base sm:text-lg font-black text-emerald-700 font-mono mt-0.5 block">
+                    ~₹1.08 Lakhs
+                  </span>
+                  <span className="text-[11px] text-slate-500 font-mono mt-0.5 block">Per 1 gram reduction at 30K bottles/day</span>
+                </div>
+              </div>
+
+              {/* 3. Standardized Preform Table */}
+              <div className="overflow-x-auto">
+                <table className="w-full text-xs text-left border border-slate-200 rounded-xl">
+                  <thead className="bg-slate-100 font-mono text-slate-700 uppercase">
+                    <tr>
+                      <th className="p-3">Bottle Volume</th>
+                      <th className="p-3">Optimal Weight Range</th>
+                      <th className="p-3">Recommended Neck Standard</th>
+                      <th className="p-3">Primary Commercial Application</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-200 font-sans">
+                    <tr>
+                      <td className="p-3 font-semibold text-slate-900">200ml - 250ml</td>
+                      <td className="p-3 font-mono font-bold text-slate-900">9.0g - 11.0g</td>
+                      <td className="p-3 font-mono">28mm Alaska / PCO 1881</td>
+                      <td className="p-3 text-slate-600">Packaged Water, Airlines, Event Catering</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-semibold text-slate-900">500ml (Standard)</td>
+                      <td className="p-3 font-mono font-bold text-slate-900">11.5g - 13.5g</td>
+                      <td className="p-3 font-mono">28mm PCO 1881 (Short Neck)</td>
+                      <td className="p-3 text-slate-600">Still Mineral Water (India Standard)</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-semibold text-slate-900">1,000ml (1 Litre)</td>
+                      <td className="p-3 font-mono font-bold text-slate-900">17.5g - 20.0g</td>
+                      <td className="p-3 font-mono">28mm PCO 1881</td>
+                      <td className="p-3 text-slate-600">Retail Bottled Water, FMCG, Juices</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-semibold text-slate-900">2,000ml (2 Litre)</td>
+                      <td className="p-3 font-mono font-bold text-slate-900">32.0g - 36.0g</td>
+                      <td className="p-3 font-mono">28mm PCO 1810 / 1881</td>
+                      <td className="p-3 text-slate-600">Bulk Household Water, Carbonated Soda</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-semibold text-slate-900">5 Litre Can / Jar</td>
+                      <td className="p-3 font-mono font-bold text-slate-900">85g - 95g</td>
+                      <td className="p-3 font-mono">38mm / 45mm Neck</td>
+                      <td className="p-3 text-slate-600">Edible Oil, Institutional Water Dispensers</td>
+                    </tr>
+                    <tr className="bg-slate-50 font-bold">
+                      <td className="p-3 text-slate-900">20 Litre Bubble Top</td>
+                      <td className="p-3 font-mono text-blue-900">680g - 740g</td>
+                      <td className="p-3 font-mono text-blue-900">55mm Snap-on Neck</td>
+                      <td className="p-3 text-blue-900">Commercial 20L Water Jars</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              {/* 4. First-Time Buyer Takeaways */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                  <span className="font-bold text-slate-900 uppercase font-mono block mb-1">Neck Selection</span>
+                  <p className="text-slate-600 leading-relaxed">
+                    PCO 1881 short-neck saves 1.2g plastic per bottle compared to legacy PCO 1810.
+                  </p>
+                </div>
+                <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                  <span className="font-bold text-slate-900 uppercase font-mono block mb-1">Polymer Quality</span>
+                  <p className="text-slate-600 leading-relaxed">
+                    Always source IV 0.80 - 0.84 beverage-grade virgin PET resin for maximum wall strength and burst resistance.
+                  </p>
+                </div>
+                <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                  <span className="font-bold text-slate-900 uppercase font-mono block mb-1">Annual Cost Impact</span>
+                  <p className="text-slate-600 leading-relaxed">
+                    Light-weighting by just 1.0g saves 780 kg of resin/month—adding ₹1,08,000 cash straight into monthly profits.
+                  </p>
+                </div>
+              </div>
+
+              {/* 5. Standardized Dual-Action Buttons */}
+              <div className="flex flex-wrap items-center gap-3 pt-1">
                 <button
                   onClick={() => onOpenQuote('PREFORM-CONSULTATION')}
-                  className="bg-blue-700 hover:bg-blue-800 text-white font-semibold text-xs py-2.5 px-4 rounded-full transition-colors cursor-pointer"
+                  className="bg-blue-700 hover:bg-blue-800 text-white font-semibold text-xs py-3 px-5 rounded-full transition-all cursor-pointer shadow-sm"
                 >
                   Consult on Preform Molds & Grammage
                 </button>
                 <button
-                  onClick={() => handleWhatsApp('Preform Mold Sizing and Preform Sourcing')}
-                  className="bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-300 font-semibold text-xs py-2.5 px-4 rounded-full transition-colors cursor-pointer flex items-center gap-1.5"
+                  onClick={() => handleWhatsApp('Preform Mold Sizing and Sourcing')}
+                  className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs py-3 px-5 rounded-full transition-all cursor-pointer flex items-center gap-1.5 shadow-sm"
                 >
-                  <MessageSquare className="w-3.5 h-3.5 text-emerald-700" />
-                  <span>Ask Preform Sourcing Questions</span>
+                  <MessageSquare className="w-3.5 h-3.5 text-white" />
+                  <span>Discuss Preforms with Engineer on WhatsApp</span>
                 </button>
+              </div>
+
+              {/* 6. Pricing Disclaimer */}
+              <div className="p-3 bg-slate-50 border border-slate-200 rounded-lg text-[11px] font-mono text-slate-600 space-y-1">
+                <p className="font-semibold text-slate-900">• Clause 1: Prices and production rates are indicative benchmarks based on 2026 raw material pricing.</p>
+                <p className="text-slate-600">• Clause 2: Please submit an official inquiry or speak with our sales engineers for an exact, project-specific commercial proposal.</p>
               </div>
             </div>
           )}
         </div>
 
         {/* Live Factory Video & Visit Callout */}
-        <div className="industrial-card p-6 sm:p-8 bg-slate-900 text-white rounded-2xl flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="p-6 sm:p-8 bg-slate-950 text-white rounded-2xl border border-slate-800 flex flex-col md:flex-row items-center justify-between gap-6 shadow-md">
           <div className="space-y-2 max-w-xl">
-            <span className="text-[10px] font-mono uppercase tracking-wider text-blue-400 font-bold bg-blue-950/60 px-2 py-0.5 rounded border border-blue-800">
+            <span className="text-[10px] font-mono uppercase tracking-wider text-blue-400 font-bold bg-blue-950/60 px-2.5 py-0.5 rounded border border-blue-800 inline-block">
               LIVE MACHINE DEMONSTRATION
             </span>
             <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-white">

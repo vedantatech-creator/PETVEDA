@@ -144,16 +144,24 @@ export default function TurnkeyPage({ onOpenQuote }) {
           </p>
         </div>
 
-        {/* Turnkey Packages Grid */}
+        {/* Turnkey Packages Grid (Consistent Buttons & Distinct Best-Seller Border) */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-14 sm:mb-20">
           {packages.map((pkg, idx) => (
             <div
               key={pkg.code}
-              className="industrial-card p-5 sm:p-8 bg-white border border-slate-200 flex flex-col justify-between hover:border-blue-700 transition-all hover:shadow-sm"
+              className={`p-5 sm:p-8 bg-white rounded-2xl flex flex-col justify-between transition-all ${
+                idx === 1
+                  ? 'border-2 border-blue-700 shadow-sm'
+                  : 'border border-slate-300 hover:border-slate-400'
+              }`}
             >
               <div>
                 <div className="flex justify-between items-start gap-3 mb-3 sm:mb-4">
-                  <span className="text-[11px] sm:text-xs font-mono font-bold text-blue-800 bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-200">
+                  <span className={`text-[11px] sm:text-xs font-mono font-bold px-2.5 py-0.5 rounded-full border ${
+                    idx === 1
+                      ? 'text-blue-900 bg-blue-100 border-blue-300 font-extrabold'
+                      : 'text-slate-700 bg-slate-100 border-slate-200'
+                  }`}>
                     {pkg.tag}
                   </span>
                   <span className="text-xs text-slate-500 font-mono">
@@ -194,11 +202,7 @@ export default function TurnkeyPage({ onOpenQuote }) {
 
               <button
                 onClick={() => onOpenQuote(pkg.code)}
-                className={`w-full flex items-center justify-center gap-2 font-semibold text-xs py-3 rounded-full transition-all cursor-pointer ${
-                  idx === 1
-                    ? 'bg-blue-700 hover:bg-blue-800 text-white shadow-sm'
-                    : 'bg-white hover:bg-slate-50 text-slate-800 border border-slate-300 shadow-2xs'
-                }`}
+                className="w-full flex items-center justify-center gap-2 bg-blue-700 hover:bg-blue-800 text-white font-semibold text-xs py-3 rounded-full shadow-sm hover:shadow transition-all cursor-pointer"
               >
                 <FileText className="w-3.5 h-3.5" />
                 <span>Request Project Proposal & CAD Layout</span>
@@ -209,12 +213,12 @@ export default function TurnkeyPage({ onOpenQuote }) {
 
         {/* Dedicated Gateway to Interactive CAD Plant Layout */}
         <div className="mb-16 sm:mb-24">
-          <div className="industrial-card p-6 sm:p-10 bg-slate-900 text-white rounded-2xl sm:rounded-3xl flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 sm:gap-8">
+          <div className="p-6 sm:p-10 bg-slate-950 text-white rounded-2xl sm:rounded-3xl border border-slate-800 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 sm:gap-8 shadow-md">
             <div className="space-y-3 max-w-2xl">
               <span className="text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider text-blue-400 bg-blue-950 px-3 py-1 rounded-full border border-blue-800 inline-block">
                 INTERACTIVE ENGINEERING BLUEPRINT
               </span>
-              <h3 className="text-xl sm:text-3xl font-extrabold tracking-tight">
+              <h3 className="text-xl sm:text-3xl font-extrabold tracking-tight text-white">
                 Inspect the 8-Stage Turnkey Bottling Plant CAD Flow
               </h3>
               <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">

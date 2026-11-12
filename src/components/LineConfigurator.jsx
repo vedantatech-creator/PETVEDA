@@ -325,116 +325,108 @@ export default function LineConfigurator({ onOpenQuote, hideHeader = false }) {
           </div>
 
           {/* Right Side: Recommended Line & CapEx Summary */}
-          <div className="lg:col-span-7 industrial-card p-6 sm:p-7 bg-white border border-slate-200 space-y-6 shadow-md">
-            <div className="flex justify-between items-center border-b border-slate-100 pb-3">
+          <div className="lg:col-span-7 bg-white border border-slate-300 rounded-2xl p-5 sm:p-7 space-y-5 shadow-xs">
+            <div className="flex justify-between items-center border-b border-slate-200 pb-3">
               <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
                 <Check className="w-4 h-4 text-blue-700" />
-                2. Recommended Vedanta Turnkey Machine Configuration
+                2. Recommended Machine Line & Investment
               </h3>
               <span className="text-xs font-mono font-bold text-blue-800 bg-blue-50 px-2.5 py-0.5 rounded border border-blue-200">
-                Turnkey Match
+                Matched Setup
               </span>
             </div>
 
-            {/* Primary Machinery Modules */}
+            {/* Primary Machinery Modules (Clean & Streamlined) */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-              <div className="p-3.5 rounded-lg bg-slate-50 border border-slate-200">
-                <div className="flex justify-between items-start">
-                  <div className="text-slate-500 flex items-center gap-1.5 font-semibold text-[11px]">
-                    <Settings className="w-3.5 h-3.5 text-blue-700" />
-                    RECOMMENDED BLOWER
-                  </div>
-                  <span className="font-mono text-xs font-bold text-blue-800">
-                    {recommendedBlower.price}
-                  </span>
+              <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                <div className="text-[10px] text-slate-500 uppercase font-mono font-semibold flex items-center gap-1.5">
+                  <Settings className="w-3.5 h-3.5 text-blue-700" />
+                  PET Blow Moulder
                 </div>
-                <div className="text-sm font-extrabold text-slate-900 mt-1">
+                <div className="text-sm font-bold text-slate-900 mt-1">
                   {recommendedBlower.name}
                 </div>
-                <div className="text-slate-600 text-[11px] mt-1 font-mono">
-                  Rated Speed: <span className="text-slate-900 font-bold">{recommendedBlower.speed}</span>
+                <div className="text-blue-800 text-xs mt-1 font-mono font-bold">
+                  {recommendedBlower.price} • {recommendedBlower.speed}
                 </div>
               </div>
 
-              <div className="p-3.5 rounded-lg bg-slate-50 border border-slate-200">
-                <div className="flex justify-between items-start">
-                  <div className="text-slate-500 flex items-center gap-1.5 font-semibold text-[11px]">
-                    <Droplets className="w-3.5 h-3.5 text-blue-700" />
-                    RFC MONOBLOCK
-                  </div>
-                  <span className="font-mono text-xs font-bold text-blue-800">
-                    {recommendedRFC.price}
-                  </span>
+              <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                <div className="text-[10px] text-slate-500 uppercase font-mono font-semibold flex items-center gap-1.5">
+                  <Droplets className="w-3.5 h-3.5 text-blue-700" />
+                  RFC Filling Monoblock
                 </div>
-                <div className="text-sm font-extrabold text-slate-900 mt-1">
+                <div className="text-sm font-bold text-slate-900 mt-1">
                   {recommendedRFC.name}
                 </div>
-                <div className="text-slate-600 text-[11px] mt-1 font-mono">
-                  Line Speed: <span className="text-slate-900 font-bold">{recommendedRFC.speed}</span>
+                <div className="text-blue-800 text-xs mt-1 font-mono font-bold">
+                  {recommendedRFC.price} • {recommendedRFC.speed}
                 </div>
               </div>
 
-              <div className="p-3.5 rounded-lg bg-slate-50 border border-slate-200">
-                <div className="text-slate-500 flex items-center gap-1.5 font-semibold text-[11px]">
+              <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                <div className="text-[10px] text-slate-500 uppercase font-mono font-semibold flex items-center gap-1.5">
                   <Droplets className="w-3.5 h-3.5 text-blue-700" />
-                  WATER PURIFICATION (RO)
+                  Water Purification (RO)
                 </div>
-                <div className="text-xs font-bold text-slate-800 mt-1">
+                <div className="text-sm font-bold text-slate-900 mt-1">
                   {recommendedRO}
                 </div>
               </div>
 
-              <div className="p-3.5 rounded-lg bg-slate-50 border border-slate-200">
-                <div className="text-slate-500 flex items-center gap-1.5 font-semibold text-[11px]">
+              <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                <div className="text-[10px] text-slate-500 uppercase font-mono font-semibold flex items-center gap-1.5">
                   <Wind className="w-3.5 h-3.5 text-blue-700" />
-                  HIGH PRESSURE COMPRESSOR & CHILLER
+                  Compressor & Chiller
                 </div>
-                <div className="text-xs font-bold text-slate-800 mt-1">
+                <div className="text-sm font-bold text-slate-900 mt-1">
                   {recommendedCompressor}
                 </div>
-                <div className="text-[11px] text-slate-600 mt-0.5">
-                  Cooling: <span className="font-semibold text-slate-900">{recommendedChiller}</span>
+                <div className="text-[11px] text-slate-600 mt-0.5 font-mono">
+                  {recommendedChiller}
                 </div>
               </div>
             </div>
 
             {/* Utility Requirements Grid */}
-            <div className="grid grid-cols-3 gap-3 pt-1 text-center text-xs">
-              <div className="bg-slate-50 p-3 rounded-lg border border-slate-200">
+            <div className="grid grid-cols-3 gap-2.5 pt-1 text-center text-xs">
+              <div className="bg-slate-50 p-3 rounded-xl border border-slate-200">
                 <div className="text-[10px] text-slate-500 uppercase font-mono flex items-center justify-center gap-1 font-semibold">
-                  <Zap className="w-3 h-3 text-blue-700" /> Connected Load
+                  <Zap className="w-3 h-3 text-blue-700" /> Power Load
                 </div>
-                <div className="text-base font-extrabold text-slate-900 font-mono mt-1">
+                <div className="text-sm sm:text-base font-black text-slate-900 font-mono mt-1">
                   ~{totalConnectedKW} kW
                 </div>
               </div>
 
-              <div className="bg-slate-50 p-3 rounded-lg border border-slate-200">
+              <div className="bg-slate-50 p-3 rounded-xl border border-slate-200">
                 <div className="text-[10px] text-slate-500 uppercase font-mono flex items-center justify-center gap-1 font-semibold">
                   <Maximize2 className="w-3 h-3 text-blue-700" /> Factory Area
                 </div>
-                <div className="text-base font-extrabold text-slate-900 font-mono mt-1">
+                <div className="text-sm sm:text-base font-black text-slate-900 font-mono mt-1">
                   {estimatedFloorArea}
                 </div>
               </div>
 
-              <div className="bg-slate-50 p-3 rounded-lg border border-slate-200">
+              <div className="bg-slate-50 p-3 rounded-xl border border-slate-200">
                 <div className="text-[10px] text-slate-500 uppercase font-mono flex items-center justify-center gap-1 font-semibold">
-                  <TrendingUp className="w-3 h-3 text-emerald-700" /> Indicative CapEx
+                  <TrendingUp className="w-3 h-3 text-emerald-700" /> Total CapEx
                 </div>
-                <div className="text-base font-extrabold text-blue-800 font-mono mt-1">
+                <div className="text-sm sm:text-base font-black text-blue-800 font-mono mt-1">
                   {estimatedTurnkeyCapEx}
                 </div>
               </div>
             </div>
 
-            {/* Turnkey Assurance Callout */}
-            <div className="bg-blue-50 border border-blue-200 p-3.5 rounded-lg text-xs text-blue-900 flex items-start gap-2.5">
-              <Layers className="w-5 h-5 text-blue-700 shrink-0 mt-0.5" />
-              <div>
-                <span className="font-bold text-blue-950">Complete Turnkey Package Scope:</span> Includes RO plant, automated preform blower, RFC monoblock, BOPP labeler, shrink bundler, civil CAD layout drawing, and complete BIS IS:14543 microbiology lab equipment setup.
-                <div className="mt-1 font-mono text-[11px] text-blue-950 font-semibold">
-                  Est. Gross Margin Potential: ~₹{estimatedMonthlyGrossMarginLakhs} Lakhs/month @ 26 working days.
+            {/* Turnkey Scope Summary (Clean, human, uncluttered) */}
+            <div className="bg-slate-50 border border-slate-200 p-3.5 rounded-xl text-xs text-slate-700 flex items-start gap-2.5">
+              <Layers className="w-4 h-4 text-blue-700 shrink-0 mt-0.5" />
+              <div className="space-y-1">
+                <div className="font-semibold text-slate-900">
+                  Turnkey Scope: RO Water + Blow Moulder + Monoblock + BOPP Labeler + Packaging + BIS Lab.
+                </div>
+                <div className="font-mono text-[11px] text-emerald-700 font-bold">
+                  Estimated Operating Gross Margin: ~₹{estimatedMonthlyGrossMarginLakhs} Lakhs/month (@ 26 working days)
                 </div>
               </div>
             </div>
@@ -443,20 +435,21 @@ export default function LineConfigurator({ onOpenQuote, hideHeader = false }) {
             <div className="flex flex-col sm:flex-row gap-3 pt-2">
               <button
                 onClick={() => onOpenQuote(recommendedBlower.code)}
-                className="flex-1 flex items-center justify-center gap-2 bg-blue-700 hover:bg-blue-800 text-white font-semibold text-xs py-3.5 px-4 rounded-lg shadow-sm transition-all"
+                className="flex-1 flex items-center justify-center gap-2 bg-blue-700 hover:bg-blue-800 text-white font-semibold text-xs py-3 px-4 rounded-full shadow-sm transition-all cursor-pointer"
               >
                 <FileText className="w-4 h-4" />
-                <span>Request Itemized Project Quotation (PDF)</span>
+                <span>Request Project Quotation & CAD Layout</span>
               </button>
 
               <a
                 href={`https://wa.me/918850848971?text=Hi%20Vedanta%20Technologies,%20I%20configured%20a%20turnkey%20line%20for%20${dailyBottles}%20bottles/day%20(${beverageType}).%20Recommended%20model:%20${recommendedBlower.code}.%20Please%20share%20quotation%20and%20factory%20CAD%20layout.`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-300 font-semibold text-xs py-3.5 px-4 rounded-lg transition-all"
+                className="flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs py-3 px-4 rounded-full transition-all"
+                title="Send configuration to WhatsApp"
               >
-                <MessageSquare className="w-4 h-4 text-emerald-700" />
-                <span>WhatsApp to Engineer</span>
+                <MessageSquare className="w-4 h-4" />
+                <span>WhatsApp Sizing</span>
               </a>
             </div>
           </div>

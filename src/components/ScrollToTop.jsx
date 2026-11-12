@@ -2,9 +2,10 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 export default function ScrollToTop() {
-  const { pathname, search, hash } = useLocation();
+  const { pathname, hash } = useLocation();
 
   useEffect(() => {
+    // Only scroll to top on actual route/page changes, never on query parameter / filter changes
     if (!hash) {
       window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     } else {
@@ -13,7 +14,7 @@ export default function ScrollToTop() {
         elem.scrollIntoView({ behavior: 'smooth' });
       }
     }
-  }, [pathname, search, hash]);
+  }, [pathname, hash]);
 
   return null;
 }
