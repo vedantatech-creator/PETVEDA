@@ -164,7 +164,7 @@ export default function MachinesPage({ onOpenQuote }) {
             Industrial PET Blow Moulding Machines & Downstream Automation
           </h1>
           <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">
-            All equipment engineered in our Vasai plant with Schneider/Delta PLC, infrared quartz oven, and genuine factory warranties. Default catalog sorted by capacity & power (High to Low).
+            All equipment engineered in our Vasai plant with Schneider/Delta PLC, infrared quartz oven, and genuine factory warranties.
           </p>
         </div>
 
@@ -337,9 +337,9 @@ export default function MachinesPage({ onOpenQuote }) {
                     ? 'bg-blue-700 text-white font-bold'
                     : 'bg-white hover:bg-slate-100 text-slate-700 border border-slate-300'
                 }`}
-                title="Default: High to Low Output, Power, and Price"
+                title="Sort Bottle Output High to Low"
               >
-                High → Low (Default)
+                Output (High → Low)
               </button>
 
               <button
