@@ -144,24 +144,16 @@ export default function TurnkeyPage({ onOpenQuote }) {
           </p>
         </div>
 
-        {/* Turnkey Packages Grid (Consistent Buttons & Distinct Best-Seller Border) */}
+        {/* Turnkey Packages Grid (Uniform Industrial Card Scheme) */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-14 sm:mb-20">
-          {packages.map((pkg, idx) => (
+          {packages.map((pkg) => (
             <div
               key={pkg.code}
-              className={`p-5 sm:p-8 bg-white rounded-2xl flex flex-col justify-between transition-all ${
-                idx === 1
-                  ? 'border-2 border-blue-700 shadow-sm'
-                  : 'border border-slate-300 hover:border-slate-400'
-              }`}
+              className="p-5 sm:p-8 bg-white rounded-2xl flex flex-col justify-between transition-all border border-slate-300 hover:border-slate-400 shadow-2xs"
             >
               <div>
                 <div className="flex justify-between items-start gap-3 mb-3 sm:mb-4">
-                  <span className={`text-[11px] sm:text-xs font-mono font-bold px-2.5 py-0.5 rounded-full border ${
-                    idx === 1
-                      ? 'text-blue-900 bg-blue-100 border-blue-300 font-extrabold'
-                      : 'text-slate-700 bg-slate-100 border-slate-200'
-                  }`}>
+                  <span className="text-[11px] sm:text-xs font-mono font-bold px-2.5 py-0.5 rounded-full border text-slate-700 bg-slate-100 border-slate-200">
                     {pkg.tag}
                   </span>
                   <span className="text-xs text-slate-500 font-mono">

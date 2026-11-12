@@ -125,19 +125,11 @@ export default function TurnkeySolutions({ onOpenQuote }) {
           {packages.map((pkg, idx) => (
             <div
               key={idx}
-              className={`industrial-card p-7 flex flex-col justify-between transition-all ${
-                idx === 1 
-                  ? 'border-blue-600 ring-2 ring-blue-600/20 shadow-lg' 
-                  : 'bg-white'
-              }`}
+              className="industrial-card p-7 flex flex-col justify-between transition-all bg-white hover:border-slate-400"
             >
               <div>
                 <div className="flex justify-between items-center mb-3">
-                  <span className={`text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full ${
-                    idx === 1 
-                      ? 'bg-blue-700 text-white' 
-                      : 'bg-slate-100 text-slate-700'
-                  }`}>
+                  <span className="text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700">
                     {pkg.tag}
                   </span>
                   <span className="text-xs font-mono text-slate-500 font-semibold">{pkg.speed}</span>
