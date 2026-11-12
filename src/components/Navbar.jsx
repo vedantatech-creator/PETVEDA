@@ -15,6 +15,15 @@ import {
 
 export default function Navbar({ onOpenQuote }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 8);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navLinkClasses = ({ isActive }) =>
     `text-xs tracking-tight transition-colors font-medium py-1.5 px-3 rounded-full ${
@@ -24,9 +33,13 @@ export default function Navbar({ onOpenQuote }) {
     }`;
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200/90 transition-all">
+    <header className={`sticky top-0 z-50 transition-all duration-200 ${
+      isScrolled 
+        ? 'bg-white/94 backdrop-blur-md border-b border-slate-200/90 shadow-sm' 
+        : 'bg-white/96 backdrop-blur-md border-b border-slate-200/70 shadow-2xs'
+    }`}>
       {/* Top Bar for Industrial Credentials & Factory Notice (Single Line Clean Bar) */}
-      <div className="bg-slate-50/90 border-b border-slate-200/70 text-[11px] text-slate-500 py-1.5 px-4 sm:px-8">
+      <div className="bg-slate-50/85 border-b border-slate-200/60 text-[11px] text-slate-500 py-1.5 px-4 sm:px-8">
         <div className="max-w-7xl mx-auto flex justify-between items-center gap-2">
           <div className="flex items-center gap-2 sm:gap-3 truncate">
             <a

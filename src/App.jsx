@@ -36,7 +36,7 @@ export default function App() {
     <BrowserRouter>
       {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
       <ScrollToTop />
-      <div className="min-h-screen bg-white text-slate-900 flex flex-col font-sans selection:bg-blue-700 selection:text-white overflow-x-hidden">
+      <div className="min-h-screen bg-white text-slate-900 flex flex-col font-sans selection:bg-blue-700 selection:text-white overflow-x-clip">
         {/* Navigation Header */}
         <Navbar onOpenQuote={() => handleOpenQuote()} />
 
