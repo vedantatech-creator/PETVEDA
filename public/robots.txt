@@ -1,0 +1,25 @@
+# Vedanta Technologies Enterprise SEO robots.txt
+# High-Speed PET Blow Moulding Machines & Turnkey Packaged Drinking Water Plants
+# OEM Manufacturer: Vasai, Palghar, Maharashtra, India
+
+User-agent: *
+Allow: /
+Allow: /machines
+Allow: /machine/*
+Allow: /turnkey
+Allow: /calculator
+Allow: /compliance
+Allow: /factory
+Allow: /contact
+Allow: /images/
+Allow: /vedanta-logo.png
+
+# Disallow internal assets or private builds if any
+Disallow: /api/
+Disallow: /*?*preview=true
+
+# Host directive for search indexing canonicalization
+Host: https://vedantatechnologies.in
+
+# Master Sitemap (Static & Dynamic Product Catalog Index)
+Sitemap: https://vedantatechnologies.in/sitemap.xml

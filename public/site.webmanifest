@@ -1,0 +1,21 @@
+{
+  "name": "Vedanta Technologies | PET Machinery & Bottling Plants",
+  "short_name": "Vedanta Technologies",
+  "description": "OEM Manufacturer of PET Blow Moulding Machines, Turnkey Packaged Drinking Water Plants & Downstream Packaging Automation in Vasai, Maharashtra.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1d4ed8",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/vedanta-logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

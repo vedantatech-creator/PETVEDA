@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --primary-blue: #1D4ED8;
+    --primary-blue-hover: #1E40AF;
+    --navy-ink: #0F172A;
+    --navy-slate: #1E293B;
+    --border-subtle: #E2E8F0;
+    --border-strong: #CBD5E1;
+    --surface-white: #FFFFFF;
+    --surface-light: #F8FAFC;
+    --surface-muted: #F1F5F9;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: #FFFFFF;
+    color: #0F172A;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: #FFFFFF;
+    color: #1E293B;
+    overflow-x: hidden;
+    width: 100%;
+    min-height: 100vh;
+    touch-action: manipulation;
+  }
+
+  /* Prevent automatic zooming on iOS Safari when tapping input fields */
+  @media (max-width: 640px) {
+    input, select, textarea {
+      font-size: 16px !important;
+    }
+  }
+
+  /* Universal Keyboard Navigation Focus Ring (WCAG 2.1 AA Compliant) */
+  :focus-visible {
+    outline: 2px solid #1D4ED8 !important;
+    outline-offset: 2px !important;
+  }
+}
+
+/* Crisp Industrial Enterprise Panels */
+.industrial-card {
+  background-color: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 0.875rem;
+  box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.05);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.industrial-card:hover {
+  border-color: #93C5FD;
+  box-shadow: 0 10px 25px -5px rgba(29, 78, 216, 0.08), 0 8px 10px -6px rgba(29, 78, 216, 0.04);
+  transform: translateY(-2px);
+}
+
+.subtle-grid {
+  background-image: radial-gradient(#E2E8F0 1.2px, transparent 1.2px);
+  background-size: 24px 24px;
+}
+
+/* Mobile Smooth Inertia Scrolling for Tables & Chips */
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* Clean Professional Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F8FAFC;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
