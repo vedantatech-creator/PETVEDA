@@ -16,6 +16,7 @@ import IndustrialBottlingWorkflow from '../components/IndustrialBottlingWorkflow
 import { VEDANTA_FAQS } from '../data/faqs';
 import { VEDANTA_CATALOG } from '../data/catalog';
 import ScrollReveal, { StaggerGrid } from '../components/ScrollReveal';
+import PricingDisclaimer from '../components/PricingDisclaimer';
 
 const HERO_ROTATING_PHRASES = [
   'Flawless Bottling Automation.',
@@ -197,6 +198,9 @@ export default function Home({ onOpenQuote }) {
                 <img
                   src="/images/products/automatic_pet_blowing_machine.jpeg"
                   alt="Vedanta Technologies VT-BLOW-A4 4-Cavity Fully Automatic PET Blow Moulding Machine Vasai Maharashtra"
+                  width="480"
+                  height="360"
+                  loading="lazy"
                   className="max-h-56 sm:max-h-72 w-auto object-contain filter contrast-105 hover:scale-105 transition-transform duration-500"
                 />
               </div>
@@ -279,10 +283,10 @@ export default function Home({ onOpenQuote }) {
         <div className="max-w-7xl mx-auto px-4 sm:px-8">
           <ScrollReveal className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 sm:mb-12 gap-3 sm:gap-4">
             <div>
-              <span className="text-[11px] sm:text-xs font-mono font-bold text-blue-800 uppercase tracking-wider">
-                FEATURED PRODUCTION EQUIPMENT
+              <span className="text-xs font-semibold text-blue-700 bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-200">
+                Featured Production Equipment
               </span>
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-950 mt-1">
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-950 mt-2">
                 Popular Machines & Turnkey Packages
               </h2>
             </div>
@@ -307,6 +311,9 @@ export default function Home({ onOpenQuote }) {
                     <img
                       src={prod.image}
                       alt={`Vedanta ${prod.name} ${prod.model_code}`}
+                      width="320"
+                      height="240"
+                      loading="lazy"
                       className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300 ease-out"
                     />
                     <div className="absolute top-2.5 left-2.5 bg-white/95 px-2 py-0.5 rounded-full text-[10px] font-mono font-bold text-slate-700 border border-slate-200">
@@ -352,10 +359,7 @@ export default function Home({ onOpenQuote }) {
 
           {/* Pricing Notice */}
           <ScrollReveal delay={0.1}>
-            <div className="mt-8 p-3.5 sm:p-4 bg-white border border-slate-200 rounded-xl text-[11px] font-mono text-slate-500 space-y-1 shadow-2xs">
-              <p className="font-semibold text-slate-700">• Notice: Displayed machinery and turnkey plant prices are indicative factory benchmarks and subject to raw material and customization revisions.</p>
-              <p className="text-slate-500">• Please submit an official inquiry or speak with our sales engineering desk for a verified commercial quotation before placing orders.</p>
-            </div>
+            <PricingDisclaimer className="mt-8" />
           </ScrollReveal>
         </div>
       </section>
@@ -366,8 +370,8 @@ export default function Home({ onOpenQuote }) {
           <ScrollReveal>
             <div className="p-6 sm:p-12 bg-slate-950 text-white flex flex-col md:flex-row justify-between items-start md:items-center gap-6 sm:gap-8 rounded-2xl sm:rounded-3xl border border-slate-800 shadow-md">
               <div className="space-y-2.5 sm:space-y-3 max-w-2xl">
-                <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-blue-400 bg-blue-950 px-3 py-1 rounded-full border border-blue-800 inline-block">
-                  DYNAMIC CAPEX ESTIMATOR
+                <span className="text-xs font-semibold text-blue-300 bg-blue-900/60 px-3 py-1 rounded-full border border-blue-700/60 inline-block">
+                  Dynamic CapEx Estimator
                 </span>
                 <h3 className="text-xl sm:text-3xl font-extrabold tracking-tight leading-snug">
                   Calculate Your Bottling Plant Investment & Daily ROI

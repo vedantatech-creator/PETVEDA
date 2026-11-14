@@ -22,7 +22,7 @@ export default function Hero({ onOpenQuote, onExploreMachines, onOpenCalculator 
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-600 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-700"></span>
           </span>
-          <span className="font-bold tracking-wide uppercase text-[11px] font-mono text-blue-950">
+          <span className="font-semibold text-xs tracking-normal text-blue-950">
             2026 High-Efficiency Series
           </span>
           <span className="text-blue-300">|</span>
@@ -105,8 +105,8 @@ export default function Hero({ onOpenQuote, onExploreMachines, onOpenCalculator 
               {/* Top Badge & Live Price */}
               <div className="flex justify-between items-start mb-4">
                 <div>
-                  <span className="text-[11px] font-mono font-bold tracking-wider text-blue-800 bg-blue-50 px-2.5 py-1 rounded border border-blue-200">
-                    FLAGSHIP MODEL: VT-BLOW-A4
+                  <span className="text-xs font-semibold text-blue-800 bg-blue-50 px-2.5 py-1 rounded-full border border-blue-200">
+                    Flagship Model: VT-BLOW-A4
                   </span>
                   <div className="text-xs text-slate-500 font-medium mt-1">
                     4-Cavity Fully Automatic Stretch Blower
@@ -127,6 +127,9 @@ export default function Hero({ onOpenQuote, onExploreMachines, onOpenCalculator 
                 <img
                   src="/images/products/automatic_pet_blowing_machine.jpeg"
                   alt="Vedanta V-Blow A4 Fully Automatic PET Blowing Machine"
+                  width="500"
+                  height="375"
+                  fetchPriority="high"
                   className="w-full h-full object-contain filter contrast-105 transition-transform duration-300 hover:scale-105"
                 />
                 <div className="absolute top-2.5 left-2.5 bg-white/95 px-2.5 py-1 rounded text-[11px] text-slate-700 font-mono font-bold border border-slate-200 shadow-2xs">
@@ -140,15 +143,15 @@ export default function Hero({ onOpenQuote, onExploreMachines, onOpenCalculator 
               {/* Technical Matrix */}
               <div className="grid grid-cols-3 gap-2.5 text-center text-xs mb-5">
                 <div className="bg-slate-50 border border-slate-200 p-2.5 rounded-lg">
-                  <div className="text-[10px] text-slate-500 uppercase font-mono font-semibold">Clamping</div>
+                  <div className="text-[11px] text-slate-500 font-medium">Clamping Force</div>
                   <div className="text-slate-900 font-bold font-mono text-xs">180 kN</div>
                 </div>
                 <div className="bg-slate-50 border border-slate-200 p-2.5 rounded-lg">
-                  <div className="text-[10px] text-slate-500 uppercase font-mono font-semibold">Blowing Air</div>
+                  <div className="text-[11px] text-slate-500 font-medium">Blowing Air</div>
                   <div className="text-slate-900 font-bold font-mono text-xs">28 - 35 Bar</div>
                 </div>
                 <div className="bg-slate-50 border border-slate-200 p-2.5 rounded-lg">
-                  <div className="text-[10px] text-slate-500 uppercase font-mono font-semibold">Lead Time</div>
+                  <div className="text-[11px] text-slate-500 font-medium">Lead Time</div>
                   <div className="text-blue-800 font-bold font-mono text-xs">20 - 25 Days</div>
                 </div>
               </div>

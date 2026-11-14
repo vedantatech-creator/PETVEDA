@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { CheckCircle2, FileText, ArrowRight } from 'lucide-react';
 import MetaSEO from '../components/MetaSEO';
 import ScrollReveal, { StaggerGrid } from '../components/ScrollReveal';
+import PricingDisclaimer from '../components/PricingDisclaimer';
 
 export default function TurnkeyPage({ onOpenQuote }) {
   const packages = [
@@ -134,8 +135,8 @@ export default function TurnkeyPage({ onOpenQuote }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-8">
         {/* Header */}
         <div className="max-w-3xl mb-8 sm:mb-12">
-          <span className="text-[10px] sm:text-xs font-mono font-bold text-blue-800 uppercase tracking-wider block mb-2">
-            COMPLETE INDUSTRIAL PROJECTS
+          <span className="text-xs font-semibold text-blue-700 bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-200 inline-block mb-3">
+            Complete Turnkey Projects
           </span>
           <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black text-slate-950 tracking-tight leading-tight">
             Turnkey Packaged Drinking Water & CSD Bottling Plants
@@ -273,14 +274,7 @@ export default function TurnkeyPage({ onOpenQuote }) {
               <span>Request Turnkey Plant Feasibility Proposal & CAD Layout</span>
             </button>
 
-            <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 sm:p-5 text-xs font-mono text-slate-700 space-y-1.5 text-left max-w-4xl mx-auto shadow-2xs">
-              <p className="font-semibold text-slate-900">
-                • Clause 1: Turnkey plant investment figures and machinery pricing are indicative factory benchmarks based on 2026 raw material pricing and standard configurations, subject to change.
-              </p>
-              <p className="text-slate-600">
-                • Clause 2: Please request an itemized project proposal or consult with our senior application engineers in Vasai for a verified commercial quotation tailored to your source water analysis and civil layout.
-              </p>
-            </div>
+            <PricingDisclaimer className="max-w-4xl mx-auto text-left" />
           </ScrollReveal>
         </div>
       </div>

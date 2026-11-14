@@ -10,6 +10,7 @@ import {
   ChevronDown
 } from 'lucide-react';
 import { VEDANTA_CATALOG } from '../data/catalog';
+import { submitRfq } from '../lib/submitRfq';
 
 export default function FastEnquirySection() {
   const [formData, setFormData] = useState({
@@ -22,19 +23,21 @@ export default function FastEnquirySection() {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.name || !formData.phone) {
-      alert('Please fill in your name and phone number.');
-      return;
+    setSubmitting(true);
+    setSubmitError('');
+    try {
+      await submitRfq(formData);
+      setSubmitted(true);
+    } catch (error) {
+      setSubmitError(error.message);
+    } finally {
+      setSubmitting(false);
     }
-
-    const existing = JSON.parse(localStorage.getItem('vedanta_web_leads') || '[]');
-    existing.push({ ...formData, timestamp: new Date().toISOString() });
-    localStorage.setItem('vedanta_web_leads', JSON.stringify(existing));
-
-    setSubmitted(true);
   };
 
   const handleWhatsApp = () => {
@@ -57,8 +60,8 @@ export default function FastEnquirySection() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             {/* Left Column: Direct Factory Helpline */}
             <div className="lg:col-span-5 space-y-6">
-              <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-blue-800 bg-blue-100 px-2.5 py-1 rounded">
-                DIRECT OEM SALES & TECHNICAL HELPLINE
+              <span className="text-xs font-semibold text-blue-800 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full">
+                OEM Technical & Sales Helpline
               </span>
 
               <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-950 tracking-tight leading-tight">
@@ -75,7 +78,7 @@ export default function FastEnquirySection() {
                     <Phone className="w-4 h-4" />
                   </div>
                   <div>
-                    <span className="text-slate-500 text-[10px] block font-mono">Direct Technical Helpline:</span>
+                    <span className="text-slate-500 text-xs block font-medium">Direct Technical Helpline:</span>
                     <a href="tel:+918850848971" className="text-slate-900 font-bold font-mono text-sm hover:text-blue-700">
                       +91 8850848971
                     </a>
@@ -87,7 +90,7 @@ export default function FastEnquirySection() {
                     <Mail className="w-4 h-4" />
                   </div>
                   <div>
-                    <span className="text-slate-500 text-[10px] block font-mono">Email for Official RFP / Tenders:</span>
+                    <span className="text-slate-500 text-xs block font-medium">Email for Official RFP / Tenders:</span>
                     <a href="mailto:vedantatechn@gmail.com" className="text-slate-900 font-mono text-sm hover:text-blue-700">
                       vedantatechn@gmail.com
                     </a>
@@ -99,7 +102,7 @@ export default function FastEnquirySection() {
                     <Clock className="w-4 h-4" />
                   </div>
                   <div>
-                    <span className="text-slate-500 text-[10px] block font-mono">Factory Working Hours:</span>
+                    <span className="text-slate-500 text-xs block font-medium">Factory Working Hours:</span>
                     <span className="text-slate-900 font-medium">Monday to Saturday: 9:00 AM – 7:00 PM IST</span>
                   </div>
                 </div>
@@ -185,13 +188,15 @@ export default function FastEnquirySection() {
 
                   <div>
                     <label className="block text-slate-700 font-semibold text-xs mb-1">Target Daily Production</label>
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+                    <div role="radiogroup" aria-label="Target Daily Production" className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
                       {['10K Bottles', '25K Bottles', '60K Bottles', '20L Jars'].map((target) => (
                         <button
                           key={target}
                           type="button"
+                          role="radio"
+                          aria-checked={formData.dailyTarget === target}
                           onClick={() => setFormData({ ...formData, dailyTarget: target })}
-                          className={`py-2 px-2 text-center rounded border font-semibold transition-all ${
+                          className={`py-2 px-2 text-center rounded-lg border font-semibold transition-all ${
                             formData.dailyTarget === target
                               ? 'bg-blue-700 text-white border-blue-700'
                               : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
@@ -204,8 +209,9 @@ export default function FastEnquirySection() {
                   </div>
 
                   <div>
-                    <label className="block text-slate-700 font-semibold text-xs mb-1">Additional Project Details</label>
+                    <label htmlFor="rfq-notes" className="block text-slate-700 font-semibold text-xs mb-1">Additional Project Details</label>
                     <textarea
+                      id="rfq-notes"
                       rows={2}
                       placeholder="Specify container sizes (e.g. 500ml/1L), raw water source TDS, or floor space available..."
                       value={formData.notes}
@@ -217,12 +223,14 @@ export default function FastEnquirySection() {
                   <div className="pt-2 flex flex-col gap-2">
                     <button
                       type="submit"
+                      disabled={submitting}
                       className="w-full bg-blue-700 hover:bg-blue-800 text-white font-semibold text-xs py-3 rounded-lg shadow-sm transition-all flex items-center justify-center gap-2 cursor-pointer"
                     >
                       <FileText className="w-4 h-4" />
-                      <span>Submit RFQ & Get Instant PDF Proposal</span>
+                      <span>{submitting ? 'Sending your inquiry…' : 'Send RFQ'}</span>
                     </button>
-                    <p className="text-[11px] text-slate-500 font-mono text-center pt-1 leading-tight">
+                    {submitError && <p role="alert" className="text-sm text-red-700 text-center">{submitError}</p>}
+                    <p className="text-[11px] text-slate-500 text-center pt-1 leading-relaxed">
                       *Notice: Displayed machinery prices are indicative benchmarks subject to raw material and customization revisions. Official commercial quotation will be confirmed upon RFQ review.
                     </p>
                   </div>
@@ -233,10 +241,10 @@ export default function FastEnquirySection() {
                     <CheckCircle2 className="w-6 h-6" />
                   </div>
                   <h3 className="text-xl font-bold text-slate-950">
-                    RFQ Received Successfully!
+                    RFQ Saved Successfully!
                   </h3>
                   <p className="text-xs text-slate-600 max-w-md mx-auto">
-                    Thank you, <strong className="text-slate-900">{formData.name}</strong>. Our Vasai engineering team has received your project details for <strong className="text-blue-800 font-mono">{formData.modelCode}</strong>.
+                    Thank you, <strong className="text-slate-900">{formData.name}</strong>. Your inquiry for <strong className="text-blue-800 font-mono">{formData.modelCode}</strong> is saved. Use WhatsApp below to contact the sales team directly.
                   </p>
 
                   <div className="flex flex-col sm:flex-row gap-3 max-w-sm mx-auto pt-2">

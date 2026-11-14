@@ -27,6 +27,9 @@ export default function Footer({ onOpenQuote }) {
               <img 
                 src="/vedanta-logo.png" 
                 alt="Vedanta Technologies Logo" 
+                width="40"
+                height="40"
+                loading="lazy"
                 className="h-10 w-auto object-contain"
               />
               <div className="border-l border-slate-200 pl-3">

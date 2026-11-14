@@ -11,6 +11,7 @@ import {
 import MetaSEO from '../components/MetaSEO';
 import { VEDANTA_CATALOG } from '../data/catalog';
 import ScrollReveal, { StaggerGrid } from '../components/ScrollReveal';
+import PricingDisclaimer from '../components/PricingDisclaimer';
 
 export default function MachinesPage({ onOpenQuote }) {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -154,12 +155,12 @@ export default function MachinesPage({ onOpenQuote }) {
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-8">
-        {/* Page Header (Apple & 21st.dev Style: High-Signal, Solid Colors) */}
+        {/* Page Header (High-Signal Industrial Design) */}
         <div className="max-w-3xl mb-8 sm:mb-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-900 text-xs font-mono font-semibold mb-3">
-            <span>VASAI OEM MANUFACTURING</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-900 text-xs font-semibold mb-3">
+            <span>Vasai OEM Manufacturing</span>
             <span className="text-slate-300">|</span>
-            <span>15 INDUSTRIAL MODELS</span>
+            <span className="font-mono text-blue-700 font-bold">15 Industrial Models</span>
           </div>
           <h1 className="text-3xl sm:text-5xl font-black text-slate-950 tracking-tight leading-tight">
             Industrial PET Blow Moulding Machines & Downstream Automation
@@ -170,17 +171,17 @@ export default function MachinesPage({ onOpenQuote }) {
         </div>
 
         {/* ============================================================== */}
-        {/* BEST SELLERS TOP SHELF (Requested High-Priority Interface) */}
+        {/* BEST SELLERS TOP SHELF */}
         {/* ============================================================== */}
         <section className="mb-12 sm:mb-16">
           <div className="flex items-center justify-between gap-3 mb-4">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-blue-700 shrink-0" />
-              <h2 className="text-sm sm:text-base font-bold text-slate-950 uppercase font-mono tracking-wider">
+              <h2 className="text-sm sm:text-base font-bold text-slate-950 tracking-tight font-sans">
                 Best Sellers & Flagships
               </h2>
             </div>
-            <span className="text-xs font-mono text-slate-500">
+            <span className="text-xs text-slate-500 font-medium">
               High-Demand OEM Production Lines
             </span>
           </div>
@@ -196,6 +197,9 @@ export default function MachinesPage({ onOpenQuote }) {
                     <img
                       src={item.image}
                       alt={item.name}
+                      width="280"
+                      height="160"
+                      loading="lazy"
                       className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300 ease-out"
                     />
                     <div className="absolute top-2 left-2 bg-blue-700 text-white px-2 py-0.5 rounded text-[10px] font-mono font-bold">
@@ -412,6 +416,9 @@ export default function MachinesPage({ onOpenQuote }) {
                   <img
                     src={prod.image}
                     alt={`Vedanta Technologies ${prod.name} ${prod.model_code} manufactured in Vasai Maharashtra`}
+                    width="380"
+                    height="208"
+                    loading="lazy"
                     className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300 ease-out"
                   />
                   <div className="absolute top-3 left-3 bg-white px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold text-slate-800 border border-slate-200 shadow-2xs">
@@ -515,14 +522,7 @@ export default function MachinesPage({ onOpenQuote }) {
 
         {/* Transparent Pricing Disclaimer (2-Clause Regulatory Notice) */}
         <ScrollReveal>
-          <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 sm:p-5 mb-10 text-xs font-mono text-slate-700 space-y-1.5 shadow-2xs">
-            <p className="font-semibold text-slate-900">
-              • Clause 1: Displayed machinery and turnkey plant prices are indicative factory benchmarks and are subject to revision based on raw material costs, component availability, and specific bottle/mold customization.
-            </p>
-            <p className="text-slate-600">
-              • Clause 2: Please submit a direct inquiry or contact our sales engineering desk for a verified commercial quotation before finalizing orders or relying on pricing.
-            </p>
-          </div>
+          <PricingDisclaimer className="mb-10" />
         </ScrollReveal>
 
         {/* Clean Sizing Helper Bar */}

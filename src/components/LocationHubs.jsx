@@ -9,39 +9,39 @@ import {
   Calendar 
 } from 'lucide-react';
 
-export default function LocationHubs({ onOpenQuote }) {
-  const hubs = [
-    {
-      region: 'Maharashtra (Primary Hub)',
-      cities: ['Vasai (HQ & Factory)', 'Mumbai', 'Thane', 'Pune', 'Nashik', 'Aurangabad', 'Nagpur', 'Kolhapur'],
-      highlight: 'Direct factory pickup, live showroom trials, and same-day service dispatch.'
-    },
-    {
-      region: 'Gujarat Industrial Belt',
-      cities: ['Ahmedabad', 'Rajkot', 'Surat', 'Vadodara', 'Vapi', 'Morbi', 'Bhavnagar'],
-      highlight: 'Dedicated field engineers stationed across South and Central Gujarat.'
-    },
-    {
-      region: 'North & Central India',
-      cities: ['Delhi-NCR', 'Faridabad', 'Jaipur', 'Kanpur', 'Lucknow', 'Indore', 'Bhopal'],
-      highlight: 'Fast road freight connectivity and scheduled plant commissioning visits.'
-    },
-    {
-      region: 'South India Distribution',
-      cities: ['Hyderabad', 'Bengaluru', 'Chennai', 'Coimbatore', 'Vijayawada', 'Kochi'],
-      highlight: 'Full turnkey project supply including reverse osmosis and jar filling plants.'
-    }
-  ];
+const HUBS = [
+  {
+    region: 'Maharashtra (Primary Hub)',
+    cities: ['Vasai (HQ & Factory)', 'Mumbai', 'Thane', 'Pune', 'Nashik', 'Aurangabad', 'Nagpur', 'Kolhapur'],
+    highlight: 'Direct factory pickup, live showroom trials, and same-day service dispatch.'
+  },
+  {
+    region: 'Gujarat Industrial Belt',
+    cities: ['Ahmedabad', 'Rajkot', 'Surat', 'Vadodara', 'Vapi', 'Morbi', 'Bhavnagar'],
+    highlight: 'Dedicated field engineers stationed across South and Central Gujarat.'
+  },
+  {
+    region: 'North & Central India',
+    cities: ['Delhi-NCR', 'Faridabad', 'Jaipur', 'Kanpur', 'Lucknow', 'Indore', 'Bhopal'],
+    highlight: 'Fast road freight connectivity and scheduled plant commissioning visits.'
+  },
+  {
+    region: 'South India Distribution',
+    cities: ['Hyderabad', 'Bengaluru', 'Chennai', 'Coimbatore', 'Vijayawada', 'Kochi'],
+    highlight: 'Full turnkey project supply including reverse osmosis and jar filling plants.'
+  }
+];
 
+export default function LocationHubs({ onOpenQuote }) {
   return (
     <section id="contact" className="py-16 lg:py-24 bg-slate-50/70 border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Left: Factory Headquarter Details */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-800 text-xs font-mono font-semibold">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-800 text-xs font-semibold">
               <MapPin className="w-3.5 h-3.5 text-blue-700" />
-              FACTORY & HEAD OFFICE
+              <span>Factory & Head Office</span>
             </div>
 
             <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-950 tracking-tight">
@@ -72,7 +72,7 @@ export default function LocationHubs({ onOpenQuote }) {
               <div className="flex items-center gap-3 pt-3 border-t border-slate-100">
                 <Phone className="w-4 h-4 text-emerald-700 shrink-0" />
                 <div className="text-xs">
-                  <span className="text-slate-500 block text-[10px]">Direct Sales & Technical Helpline:</span>
+                  <span className="text-slate-500 block text-xs font-medium">Direct Sales & Technical Helpline:</span>
                   <a href="tel:+918850848971" className="text-slate-900 font-mono font-bold hover:text-blue-700 transition-colors">
                     +91 8850848971
                   </a>
@@ -82,7 +82,7 @@ export default function LocationHubs({ onOpenQuote }) {
               <div className="flex items-center gap-3 pt-3 border-t border-slate-100">
                 <Mail className="w-4 h-4 text-blue-700 shrink-0" />
                 <div className="text-xs">
-                  <span className="text-slate-500 block text-[10px]">Official Technical Inquiries:</span>
+                  <span className="text-slate-500 block text-xs font-medium">Official Technical Inquiries:</span>
                   <a href="mailto:vedantatechn@gmail.com" className="text-slate-900 font-mono hover:text-blue-700 transition-colors">
                     vedantatechn@gmail.com
                   </a>
@@ -92,7 +92,7 @@ export default function LocationHubs({ onOpenQuote }) {
               <div className="flex items-center gap-3 pt-3 border-t border-slate-100">
                 <Clock className="w-4 h-4 text-slate-500 shrink-0" />
                 <div className="text-xs text-slate-600">
-                  <span className="text-slate-500 block text-[10px]">Working Hours:</span>
+                  <span className="text-slate-500 block text-xs font-medium">Working Hours:</span>
                   Monday to Saturday: 9:00 AM – 7:00 PM IST
                 </div>
               </div>
@@ -119,7 +119,7 @@ export default function LocationHubs({ onOpenQuote }) {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {hubs.map((hub, idx) => (
+              {HUBS.map((hub, idx) => (
                 <div 
                   key={idx}
                   className="industrial-card p-5 bg-white border border-slate-200 space-y-3"

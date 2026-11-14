@@ -12,6 +12,17 @@ import {
 import MetaSEO from '../components/MetaSEO';
 import FaqSection from '../components/FaqSection';
 import { VEDANTA_CATALOG } from '../data/catalog';
+import PricingDisclaimer from '../components/PricingDisclaimer';
+import SpecTooltip from '../components/SpecTooltip';
+
+const SPEC_DEFINITIONS = {
+  'Theoretical Output': 'Maximum blown containers per hour under optimal cycle timing and standard 500ml preform weight.',
+  'Blowing Air Pressure': 'High-pressure air (25 to 35 Bar / ~500 PSI) delivered by a dedicated 3-stage compressor to form the bottle in the mould.',
+  'Low Pressure Air': 'Standard 8-10 Bar utility air used for pneumatic cylinder movements, toggle clamping, and auto-ejection.',
+  'Total Connected Load': 'Total peak electrical power (kW) required to run the infrared heating ovens, servo motors, and electronics.',
+  'Clamping Force': 'Hydraulic or mechanical toggle tonnage required to keep mold platens sealed tight against blowing pressure with zero parting-line flash.',
+  'Heating Zones': 'Independent infrared quartz heating channels that can be fine-tuned along the preform neck, body, and base.'
+};
 
 export default function ProductDetailPage({ onOpenQuote }) {
   const { modelCode } = useParams();
@@ -215,6 +226,9 @@ export default function ProductDetailPage({ onOpenQuote }) {
             <img
               src={product.image}
               alt={`Vedanta Technologies ${product.name} ${product.model_code} manufactured in Vasai Maharashtra`}
+              width="600"
+              height="450"
+              fetchPriority="high"
               className="max-h-full max-w-full object-contain filter contrast-105"
             />
             <div className="absolute top-3 left-3 bg-white/95 px-2.5 py-0.5 rounded-full text-[11px] text-slate-700 border border-slate-200 font-mono font-semibold shadow-2xs">
@@ -321,7 +335,11 @@ export default function ProductDetailPage({ onOpenQuote }) {
                       {Object.entries(product.specifications).map(([key, val], idx) => (
                         <tr key={idx} className={idx % 2 === 0 ? 'bg-white' : 'bg-slate-50'}>
                           <td className="p-3 border border-slate-200 font-semibold text-slate-800 w-1/3">
-                            {key}
+                            {SPEC_DEFINITIONS[key] ? (
+                              <SpecTooltip term={key} definition={SPEC_DEFINITIONS[key]} />
+                            ) : (
+                              key
+                            )}
                           </td>
                           <td className="p-3 border border-slate-200 text-slate-700 font-mono">
                             {val}
@@ -335,11 +353,8 @@ export default function ProductDetailPage({ onOpenQuote }) {
                 <p className="text-xs text-slate-500">Contact factory engineers for custom CAD drawings and parameter sheets.</p>
               )}
 
-              {/* Price Disclaimer Clause (Single Clean Regulatory Notice at Machine Specs) */}
-              <div className="mt-5 p-3.5 bg-slate-50 border border-slate-200 rounded-xl text-[11px] font-mono text-slate-500 space-y-1">
-                <p className="font-semibold text-slate-700">• Notice: Listed machinery prices and technical outputs are indicative factory benchmarks and subject to change based on raw material costs, component availability, and container customization.</p>
-                <p className="text-slate-500">• Action: Please submit a direct inquiry or contact our sales engineering desk for a verified commercial quotation before finalizing orders.</p>
-              </div>
+              {/* Price Disclaimer Clause */}
+              <PricingDisclaimer className="mt-5" />
             </div>
           )}
 
@@ -393,6 +408,9 @@ export default function ProductDetailPage({ onOpenQuote }) {
                     <img
                       src={rel.image}
                       alt={`Vedanta ${rel.name}`}
+                      width="240"
+                      height="160"
+                      loading="lazy"
                       className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform"
                     />
                   </div>

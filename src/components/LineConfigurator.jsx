@@ -10,8 +10,10 @@ import {
   MessageSquare, 
   FileText, 
   Check, 
-  Layers 
+  Layers,
+  Info
 } from 'lucide-react';
+import PricingDisclaimer from './PricingDisclaimer';
 
 export default function LineConfigurator({ onOpenQuote, hideHeader = false }) {
   // State variables for buyer requirements
@@ -175,9 +177,9 @@ export default function LineConfigurator({ onOpenQuote, hideHeader = false }) {
         {/* Section Header (Only shown when not embedded in dedicated page) */}
         {!hideHeader && (
           <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-800 text-xs font-mono font-semibold">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-900 text-xs font-semibold">
               <Calculator className="w-3.5 h-3.5 text-blue-700" />
-              DYNAMIC SIZING & CAPEX ENGINE
+              <span>Dynamic Plant Sizing & CapEx Engine</span>
             </div>
             <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-950 tracking-tight">
               Interactive Bottling Line Configurator
@@ -199,10 +201,10 @@ export default function LineConfigurator({ onOpenQuote, hideHeader = false }) {
 
             {/* Beverage Type */}
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-2">
+              <label id="beverage-category-label" className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-2">
                 Beverage Category
               </label>
-              <div className="grid grid-cols-2 gap-2 text-xs">
+              <div role="radiogroup" aria-labelledby="beverage-category-label" className="grid grid-cols-2 gap-2 text-xs">
                 {[
                   { id: 'water', label: 'Packaged Water (ISI)' },
                   { id: 'csd', label: 'CSD Soda & Soft Drinks' },
@@ -211,6 +213,9 @@ export default function LineConfigurator({ onOpenQuote, hideHeader = false }) {
                 ].map((item) => (
                   <button
                     key={item.id}
+                    type="button"
+                    role="radio"
+                    aria-checked={beverageType === item.id}
                     onClick={() => {
                       setBeverageType(item.id);
                       if (item.id === 'jar') setBottleSize('20L');
@@ -230,14 +235,17 @@ export default function LineConfigurator({ onOpenQuote, hideHeader = false }) {
 
             {/* Bottle Volume */}
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-2">
+              <label id="container-size-label" className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-2">
                 Target Container Size
               </label>
-              <div className="flex flex-wrap gap-2 text-xs">
+              <div role="radiogroup" aria-labelledby="container-size-label" className="flex flex-wrap gap-2 text-xs">
                 {beverageType === 'jar' ? (
                   ['5 Litre Can', '20 Litre Jar (5 Gallon)'].map((s) => (
                     <button
                       key={s}
+                      type="button"
+                      role="radio"
+                      aria-checked={bottleSize === s}
                       onClick={() => setBottleSize(s)}
                       className="py-2 px-3.5 rounded-lg border bg-blue-700 text-white border-blue-700 font-semibold"
                     >
@@ -248,6 +256,9 @@ export default function LineConfigurator({ onOpenQuote, hideHeader = false }) {
                   ['200ml - 250ml', '500ml (Standard)', '1000ml (1 Litre)', '2000ml (2 Litre)'].map((s) => (
                     <button
                       key={s}
+                      type="button"
+                      role="radio"
+                      aria-checked={bottleSize === s}
                       onClick={() => setBottleSize(s)}
                       className={`py-2 px-3.5 rounded-lg border text-xs font-semibold transition-all ${
                         bottleSize === s
@@ -265,7 +276,7 @@ export default function LineConfigurator({ onOpenQuote, hideHeader = false }) {
             {/* Target Output Slider */}
             <div>
               <div className="flex justify-between items-center mb-2">
-                <label className="text-xs font-semibold uppercase tracking-wider text-slate-700">
+                <label htmlFor="config-production-slider" className="text-xs font-semibold uppercase tracking-wider text-slate-700">
                   Target Daily Production
                 </label>
                 <span className="text-sm font-mono font-bold text-blue-800">
@@ -273,11 +284,16 @@ export default function LineConfigurator({ onOpenQuote, hideHeader = false }) {
                 </span>
               </div>
               <input
+                id="config-production-slider"
                 type="range"
                 min={beverageType === 'jar' ? 500 : 5000}
                 max={beverageType === 'jar' ? 5000 : 100000}
                 step={beverageType === 'jar' ? 100 : 2500}
                 value={dailyBottles}
+                aria-label="Target Daily Production"
+                aria-valuemin={beverageType === 'jar' ? 500 : 5000}
+                aria-valuemax={beverageType === 'jar' ? 5000 : 100000}
+                aria-valuenow={dailyBottles}
                 onChange={(e) => setDailyBottles(Number(e.target.value))}
                 className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-700"
               />
@@ -290,13 +306,16 @@ export default function LineConfigurator({ onOpenQuote, hideHeader = false }) {
 
             {/* Daily Operational Shift */}
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-2">
+              <label id="operational-hours-label" className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-2">
                 Daily Operational Hours
               </label>
-              <div className="grid grid-cols-4 gap-2 text-xs">
+              <div role="radiogroup" aria-labelledby="operational-hours-label" className="grid grid-cols-4 gap-2 text-xs">
                 {[8, 10, 16, 24].map((hrs) => (
                   <button
                     key={hrs}
+                    type="button"
+                    role="radio"
+                    aria-checked={shiftHours === hrs}
                     onClick={() => setShiftHours(hrs)}
                     className={`py-2 rounded-lg border text-center font-mono font-bold transition-all ${
                       shiftHours === hrs
@@ -331,9 +350,17 @@ export default function LineConfigurator({ onOpenQuote, hideHeader = false }) {
                 <Check className="w-4 h-4 text-blue-700" />
                 2. Recommended Machine Line & Investment
               </h3>
-              <span className="text-xs font-mono font-bold text-blue-800 bg-blue-50 px-2.5 py-0.5 rounded border border-blue-200">
+              <span className="text-xs font-semibold text-blue-800 bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-200">
                 Matched Setup
               </span>
+            </div>
+
+            {/* First-Time Buyer Plain Language Plant Summary */}
+            <div className="p-3.5 bg-blue-50/70 border border-blue-200/80 rounded-xl text-xs text-blue-950 flex items-start gap-2.5">
+              <Info className="w-4 h-4 text-blue-700 shrink-0 mt-0.5" />
+              <p className="leading-relaxed">
+                <strong>First-Time Buyer Summary:</strong> Sizing for <strong>{dailyBottles.toLocaleString()} {beverageType === 'jar' ? 'jars/day' : 'bottles/day'}</strong> ({requiredBPM} BPM) requires a factory shed area of approx. <strong>{estimatedFloorArea}</strong> and an electrical power connection of <strong>{totalConnectedKW} kW</strong>.
+              </p>
             </div>
 
             {/* Primary Machinery Modules (Clean & Streamlined) */}
@@ -454,10 +481,7 @@ export default function LineConfigurator({ onOpenQuote, hideHeader = false }) {
             </div>
 
             {/* 2-Clause Sizing & CapEx Pricing Notice */}
-            <div className="mt-4 p-3 bg-slate-50 border border-slate-200 rounded-xl text-[11px] font-mono text-slate-500 space-y-1">
-              <p className="font-semibold text-slate-700">• Notice: Machinery, power load, and CapEx estimates are indicative engineering benchmarks based on standard factory setups and subject to change.</p>
-              <p className="text-slate-500">• Please submit a project inquiry or contact our sales engineering desk for a verified commercial quotation based on your exact layout and water test parameters.</p>
-            </div>
+            <PricingDisclaimer className="mt-4" />
           </div>
         </div>
       </div>

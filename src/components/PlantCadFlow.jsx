@@ -6,118 +6,118 @@ import {
   Factory
 } from 'lucide-react';
 
+const FLOW_STEPS = [
+  {
+    id: 0,
+    short: '01. Raw Water',
+    name: 'Raw Water Source & Multi-Media Pre-Filtration',
+    category: 'Water Treatment',
+    equipment: 'Raw Water Tanks + Dual Media Sand & Carbon Filters',
+    specs: 'Removes suspended solids, turbidity, color, odor, and heavy organic matter down to 10 microns.',
+    power: '3.5 kW',
+    pressure: '3 - 4 Bar',
+    labor: 'Automated backwash cycle',
+    bisClause: 'IS:14543 Clause 4.1 (Source Water Quality Standards)'
+  },
+  {
+    id: 1,
+    short: '02. RO & Ozone',
+    name: 'Dual-Pass RO Purification & Ozone Sterilization',
+    category: 'Water Purification',
+    equipment: 'Industrial RO System (3,000 - 10,000 LPH) + UV & Ozone Generator',
+    specs: 'Dow/Toray TFC membranes reduce TDS to < 100 ppm, followed by 0.2 micron sterile filtration and ozone injection.',
+    power: '7.5 - 15 kW',
+    pressure: '12 - 14 Bar High Pressure RO Pump',
+    labor: 'PLC automated conductivity & pH monitoring',
+    bisClause: 'IS:14543 Table 1 (Microbiological & Chemical Limits)'
+  },
+  {
+    id: 2,
+    short: '03. V-Blow Blower',
+    name: 'V-Blow Automated Linear PET Stretch Blow Moulder',
+    category: 'Bottle Manufacturing',
+    equipment: 'Vedanta VT-BLOW-A4 / A6 Series (3,600 - 8,000 BPH)',
+    specs: 'Preforms automatically fed, oriented, heated in 8-zone NIR quartz ovens, and blown into sterile crystal-clear bottles.',
+    power: '36 - 60 kW',
+    pressure: '28 - 35 Bar High-Pressure Blowing Air',
+    labor: '1 Operator for preform hopper replenishment',
+    bisClause: 'IS:14543 Clause 5.2 (Food-Grade Virgin PET Packaging)'
+  },
+  {
+    id: 3,
+    short: '04. Air Conveyor',
+    name: 'Pneumatic Stainless Steel Neck Air Conveyor',
+    category: 'Bottle Transfer',
+    equipment: 'SS304 Overhead Air Conveyor with Centrifugal Blower',
+    specs: 'Transfers lightweight blown bottles by their neck ring without base touching, maintaining cleanroom sterility.',
+    power: '2.2 kW',
+    pressure: 'Low-pressure filtered laminar air',
+    labor: 'Fully unattended automated buffer transfer',
+    bisClause: 'IS:14543 Hygienic Cleanroom Zoning (Class 10,000)'
+  },
+  {
+    id: 4,
+    short: '05. RFC Monoblock',
+    name: 'Automatic Rinsing, Filling & Capping (RFC) Monoblock',
+    category: 'Core Bottling',
+    equipment: 'Vedanta RFC 16-16-5 / 24-24-8 Monoblock (SS316 Contact Parts)',
+    specs: 'Inverted bottle ozonated water rinsing, zero-drip gravity/isobaric filling, and magnetic torque chuck capping.',
+    power: '5.5 - 11 kW',
+    pressure: '2 - 3 Bar rinse pressure + 6 Bar cap hopper pneumatics',
+    labor: '1 Operator supervising cap elevator and fill levels',
+    bisClause: 'IS:14543 Clause 6.1 (Hermetic Closure & Sanitization)'
+  },
+  {
+    id: 5,
+    short: '06. Visual Inspection & CIJ',
+    name: 'Online Visual Inspection Booth & Continuous Inkjet Coding',
+    category: 'Quality Gate & Traceability',
+    equipment: 'High-Lumen Inspection Screen + Continuous Inkjet (CIJ) Batch Coder',
+    specs: 'Illuminated background for foreign particle inspection; CIJ codes MRP, batch number, date, and time on the bottle neck.',
+    power: '1.2 kW',
+    pressure: 'Electronic non-contact ink drop deflection',
+    labor: '1 Trained quality inspector',
+    bisClause: 'Legal Metrology & FSSAI Mandatory Batch Coding'
+  },
+  {
+    id: 6,
+    short: '07. BOPP Labeler',
+    name: 'Automatic Rotary Hot-Melt BOPP Labeling Machine',
+    category: 'Secondary Packaging',
+    equipment: 'Vedanta VT-LABEL-BOPP (Up to 150 BPM)',
+    specs: 'Applies roll-fed wrap-around plastic labels with hot-melt glue drum, reducing label cost to ₹0.15/bottle.',
+    power: '7.5 kW',
+    pressure: '6 Bar pneumatic vacuum drum',
+    labor: '1 Operator replenishing label rolls and adhesive pellets',
+    bisClause: 'Packaging Cost Reduction (-60% vs Sticker Labels)'
+  },
+  {
+    id: 7,
+    short: '08. Shrink Bundler',
+    name: 'Automatic Web-Sealer Shrink Bundling Machine & Tunnel',
+    category: 'Tertiary Bundling',
+    equipment: 'Vedanta VT-PACK-SHRINK (8 - 14 Packs/Minute)',
+    specs: 'Collates bottles into 6, 12, or 24 matrices, seals LDPE shrink film, and shrinks through recirculating heat tunnel.',
+    power: '18 - 24 kW (Tunnel heating elements)',
+    pressure: '6 - 8 Bar pneumatic pusher',
+    labor: '1 Operator stacking finished packs onto wooden pallets',
+    bisClause: 'Eliminates corrugated carton boxes (saves ₹10/pack)'
+  }
+];
+
 export default function PlantCadFlow({ onOpenQuote }) {
   const [activeStep, setActiveStep] = useState(2); // Default to Blow Moulding
 
-  const flowSteps = [
-    {
-      id: 0,
-      short: '01. Raw Water',
-      name: 'Raw Water Source & Multi-Media Pre-Filtration',
-      category: 'Water Treatment',
-      equipment: 'Raw Water Tanks + Dual Media Sand & Carbon Filters',
-      specs: 'Removes suspended solids, turbidity, color, odor, and heavy organic matter down to 10 microns.',
-      power: '3.5 kW',
-      pressure: '3 - 4 Bar',
-      labor: 'Automated backwash cycle',
-      bisClause: 'IS:14543 Clause 4.1 (Source Water Quality Standards)'
-    },
-    {
-      id: 1,
-      short: '02. RO & Ozone',
-      name: 'Dual-Pass RO Purification & Ozone Sterilization',
-      category: 'Water Purification',
-      equipment: 'Industrial RO System (3,000 - 10,000 LPH) + UV & Ozone Generator',
-      specs: 'Dow/Toray TFC membranes reduce TDS to < 100 ppm, followed by 0.2 micron sterile filtration and ozone injection.',
-      power: '7.5 - 15 kW',
-      pressure: '12 - 14 Bar High Pressure RO Pump',
-      labor: 'PLC automated conductivity & pH monitoring',
-      bisClause: 'IS:14543 Table 1 (Microbiological & Chemical Limits)'
-    },
-    {
-      id: 2,
-      short: '03. V-Blow Blower',
-      name: 'V-Blow Automated Linear PET Stretch Blow Moulder',
-      category: 'Bottle Manufacturing',
-      equipment: 'Vedanta VT-BLOW-A4 / A6 Series (3,600 - 8,000 BPH)',
-      specs: 'Preforms automatically fed, oriented, heated in 8-zone NIR quartz ovens, and blown into sterile crystal-clear bottles.',
-      power: '36 - 60 kW',
-      pressure: '28 - 35 Bar High-Pressure Blowing Air',
-      labor: '1 Operator for preform hopper replenishment',
-      bisClause: 'IS:14543 Clause 5.2 (Food-Grade Virgin PET Packaging)'
-    },
-    {
-      id: 3,
-      short: '04. Air Conveyor',
-      name: 'Pneumatic Stainless Steel Neck Air Conveyor',
-      category: 'Bottle Transfer',
-      equipment: 'SS304 Overhead Air Conveyor with Centrifugal Blower',
-      specs: 'Transfers lightweight blown bottles by their neck ring without base touching, maintaining cleanroom sterility.',
-      power: '2.2 kW',
-      pressure: 'Low-pressure filtered laminar air',
-      labor: 'Fully unattended automated buffer transfer',
-      bisClause: 'IS:14543 Hygienic Cleanroom Zoning (Class 10,000)'
-    },
-    {
-      id: 4,
-      short: '05. RFC Monoblock',
-      name: 'Automatic Rinsing, Filling & Capping (RFC) Monoblock',
-      category: 'Core Bottling',
-      equipment: 'Vedanta RFC 16-16-5 / 24-24-8 Monoblock (SS316 Contact Parts)',
-      specs: 'Inverted bottle ozonated water rinsing, zero-drip gravity/isobaric filling, and magnetic torque chuck capping.',
-      power: '5.5 - 11 kW',
-      pressure: '2 - 3 Bar rinse pressure + 6 Bar cap hopper pneumatics',
-      labor: '1 Operator supervising cap elevator and fill levels',
-      bisClause: 'IS:14543 Clause 6.1 (Hermetic Closure & Sanitization)'
-    },
-    {
-      id: 5,
-      short: '06. Visual Inspection & CIJ',
-      name: 'Online Visual Inspection Booth & Continuous Inkjet Coding',
-      category: 'Quality Gate & Traceability',
-      equipment: 'High-Lumen Inspection Screen + Continuous Inkjet (CIJ) Batch Coder',
-      specs: 'Illuminated background for foreign particle inspection; CIJ codes MRP, batch number, date, and time on the bottle neck.',
-      power: '1.2 kW',
-      pressure: 'Electronic non-contact ink drop deflection',
-      labor: '1 Trained quality inspector',
-      bisClause: 'Legal Metrology & FSSAI Mandatory Batch Coding'
-    },
-    {
-      id: 6,
-      short: '07. BOPP Labeler',
-      name: 'Automatic Rotary Hot-Melt BOPP Labeling Machine',
-      category: 'Secondary Packaging',
-      equipment: 'Vedanta VT-LABEL-BOPP (Up to 150 BPM)',
-      specs: 'Applies roll-fed wrap-around plastic labels with hot-melt glue drum, reducing label cost to ₹0.15/bottle.',
-      power: '7.5 kW',
-      pressure: '6 Bar pneumatic vacuum drum',
-      labor: '1 Operator replenishing label rolls and adhesive pellets',
-      bisClause: 'Packaging Cost Reduction (-60% vs Sticker Labels)'
-    },
-    {
-      id: 7,
-      short: '08. Shrink Bundler',
-      name: 'Automatic Web-Sealer Shrink Bundling Machine & Tunnel',
-      category: 'Tertiary Bundling',
-      equipment: 'Vedanta VT-PACK-SHRINK (8 - 14 Packs/Minute)',
-      specs: 'Collates bottles into 6, 12, or 24 matrices, seals LDPE shrink film, and shrinks through recirculating heat tunnel.',
-      power: '18 - 24 kW (Tunnel heating elements)',
-      pressure: '6 - 8 Bar pneumatic pusher',
-      labor: '1 Operator stacking finished packs onto wooden pallets',
-      bisClause: 'Eliminates corrugated carton boxes (saves ₹10/pack)'
-    }
-  ];
-
-  const current = flowSteps[activeStep];
+  const current = FLOW_STEPS[activeStep];
 
   return (
     <section id="line-flow" className="py-16 lg:py-24 bg-white border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-800 text-xs font-mono font-semibold">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-800 text-xs font-semibold">
             <Factory className="w-3.5 h-3.5 text-blue-700" />
-            FACTORY FLOORPLAN & ENGINEERING CAD SCHEMATIC
+            <span>Factory Floorplan & Engineering CAD Blueprint</span>
           </div>
           <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-950 tracking-tight">
             Interactive Turnkey Bottling Line Blueprint
@@ -129,11 +129,11 @@ export default function PlantCadFlow({ onOpenQuote }) {
 
         {/* Step Navigation Pill Strip */}
         <div className="flex items-center gap-1.5 overflow-x-auto pb-4 mb-8 scrollbar-none text-xs">
-          {flowSteps.map((step) => (
+          {FLOW_STEPS.map((step) => (
             <button
               key={step.id}
               onClick={() => setActiveStep(step.id)}
-              className={`px-3.5 py-2 rounded-lg font-mono font-bold whitespace-nowrap transition-all text-xs ${
+              className={`px-3.5 py-2 rounded-lg font-medium whitespace-nowrap transition-all text-xs ${
                 activeStep === step.id
                   ? 'bg-blue-700 text-white shadow-2xs'
                   : 'bg-slate-50 text-slate-700 border border-slate-200 hover:bg-slate-100 hover:border-slate-300'
@@ -197,8 +197,8 @@ export default function PlantCadFlow({ onOpenQuote }) {
               </span>
 
               <button
-                disabled={activeStep === flowSteps.length - 1}
-                onClick={() => setActiveStep(prev => Math.min(flowSteps.length - 1, prev + 1))}
+                disabled={activeStep === FLOW_STEPS.length - 1}
+                onClick={() => setActiveStep(prev => Math.min(FLOW_STEPS.length - 1, prev + 1))}
                 className="text-xs font-semibold px-3 py-1.5 rounded border border-slate-300 bg-white hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed text-slate-700"
               >
                 Next Stage
@@ -223,7 +223,7 @@ export default function PlantCadFlow({ onOpenQuote }) {
             {/* Metrics Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
               <div className="bg-slate-50 p-3 rounded-lg border border-slate-200">
-                <span className="text-[10px] text-slate-500 uppercase font-mono block font-semibold">
+                <span className="text-[11px] text-slate-500 font-medium block">
                   Connected Power Load
                 </span>
                 <span className="text-sm font-bold text-slate-900 font-mono mt-0.5 block">
@@ -232,7 +232,7 @@ export default function PlantCadFlow({ onOpenQuote }) {
               </div>
 
               <div className="bg-slate-50 p-3 rounded-lg border border-slate-200">
-                <span className="text-[10px] text-slate-500 uppercase font-mono block font-semibold">
+                <span className="text-[11px] text-slate-500 font-medium block">
                   Operating Pressure
                 </span>
                 <span className="text-sm font-bold text-blue-800 font-mono mt-0.5 block">
@@ -241,7 +241,7 @@ export default function PlantCadFlow({ onOpenQuote }) {
               </div>
 
               <div className="bg-slate-50 p-3 rounded-lg border border-slate-200">
-                <span className="text-[10px] text-slate-500 uppercase font-mono block font-semibold">
+                <span className="text-[11px] text-slate-500 font-medium block">
                   Labor & Oversight Requirement
                 </span>
                 <span className="text-xs font-bold text-slate-800 mt-0.5 block">
@@ -250,7 +250,7 @@ export default function PlantCadFlow({ onOpenQuote }) {
               </div>
 
               <div className="bg-slate-50 p-3 rounded-lg border border-slate-200">
-                <span className="text-[10px] text-slate-500 uppercase font-mono block font-semibold">
+                <span className="text-[11px] text-slate-500 font-medium block">
                   BIS Compliance Reference
                 </span>
                 <span className="text-xs font-bold text-slate-800 mt-0.5 block">

@@ -4,23 +4,23 @@ import ResourceArticles from '../components/ResourceArticles';
 import FaqSection from '../components/FaqSection';
 import { ShieldCheck } from 'lucide-react';
 
+const LAB_EQUIP_MICRO = [
+  { name: 'Laminar Air Flow (LAF) Bench', purpose: 'Class 100 sterile cabinet for culture inoculation and plating.' },
+  { name: 'Vertical High-Pressure Autoclave', purpose: 'Sterilization of glassware, pipette tips, and nutrient agar media.' },
+  { name: 'BOD / Bacteriological Incubator', purpose: 'Precision 37°C and 44°C incubation for total coliform and E. Coli tests.' },
+  { name: 'Membrane Filtration Funnel System', purpose: 'Vacuum manifold for 0.45 micron microbiological water retention.' },
+  { name: 'Digital Colony Counter', purpose: 'Illuminated magnifying grid for accurate bacterial colony quantification.' }
+];
+
+const LAB_EQUIP_CHEM = [
+  { name: 'UV-Visible Spectrophotometer', purpose: 'Quantitative analysis of nitrates, sulphates, fluorides, and trace minerals.' },
+  { name: 'Digital Benchtop pH & Temperature Meter', purpose: 'Continuous pH measurement calibrated with pH 4.0, 7.0, and 9.2 buffers.' },
+  { name: 'Microprocessor Conductivity / TDS Meter', purpose: 'Verification of total dissolved solids in purified permeate.' },
+  { name: 'Nephelometric Turbidity Meter', purpose: 'Measurement of suspended colloidal particles (< 1 NTU standard).' },
+  { name: 'Analytical Electronic Balance (0.1mg)', purpose: 'High-precision reagent weighing with internal motorized calibration.' }
+];
+
 export default function CompliancePage({ onOpenQuote }) {
-  const labEquipMicro = [
-    { name: 'Laminar Air Flow (LAF) Bench', purpose: 'Class 100 sterile cabinet for culture inoculation and plating.' },
-    { name: 'Vertical High-Pressure Autoclave', purpose: 'Sterilization of glassware, pipette tips, and nutrient agar media.' },
-    { name: 'BOD / Bacteriological Incubator', purpose: 'Precision 37°C and 44°C incubation for total coliform and E. Coli tests.' },
-    { name: 'Membrane Filtration Funnel System', purpose: 'Vacuum manifold for 0.45 micron microbiological water retention.' },
-    { name: 'Digital Colony Counter', purpose: 'Illuminated magnifying grid for accurate bacterial colony quantification.' }
-  ];
-
-  const labEquipChem = [
-    { name: 'UV-Visible Spectrophotometer', purpose: 'Quantitative analysis of nitrates, sulphates, fluorides, and trace minerals.' },
-    { name: 'Digital Benchtop pH & Temperature Meter', purpose: 'Continuous pH measurement calibrated with pH 4.0, 7.0, and 9.2 buffers.' },
-    { name: 'Microprocessor Conductivity / TDS Meter', purpose: 'Verification of total dissolved solids in purified permeate.' },
-    { name: 'Nephelometric Turbidity Meter', purpose: 'Measurement of suspended colloidal particles (< 1 NTU standard).' },
-    { name: 'Analytical Electronic Balance (0.1mg)', purpose: 'High-precision reagent weighing with internal motorized calibration.' }
-  ];
-
   const complianceSchema = {
     "@context": "https://schema.org",
     "@type": "HowTo",
@@ -68,9 +68,9 @@ export default function CompliancePage({ onOpenQuote }) {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-8 mb-16">
         <div className="text-center max-w-3xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-800 text-xs font-mono font-semibold">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-800 text-xs font-semibold">
             <ShieldCheck className="w-3.5 h-3.5 text-blue-700" />
-            REGULATORY INFRASTRUCTURE & ISI MARK
+            <span>Regulatory Infrastructure & ISI Mark</span>
           </div>
           <h1 className="text-3xl sm:text-5xl font-black text-slate-950 tracking-tight">
             BIS IS:14543 Compliance & In-House Testing Laboratory Setup
@@ -95,7 +95,7 @@ export default function CompliancePage({ onOpenQuote }) {
             </div>
 
             <div className="space-y-3 text-xs">
-              {labEquipMicro.map((item, idx) => (
+              {LAB_EQUIP_MICRO.map((item, idx) => (
                 <div key={idx} className="p-3 bg-slate-50 rounded-lg border border-slate-200">
                   <div className="font-bold text-slate-900">{item.name}</div>
                   <div className="text-slate-600 text-[11px] mt-0.5">{item.purpose}</div>
@@ -117,7 +117,7 @@ export default function CompliancePage({ onOpenQuote }) {
             </div>
 
             <div className="space-y-3 text-xs">
-              {labEquipChem.map((item, idx) => (
+              {LAB_EQUIP_CHEM.map((item, idx) => (
                 <div key={idx} className="p-3 bg-slate-50 rounded-lg border border-slate-200">
                   <div className="font-bold text-slate-900">{item.name}</div>
                   <div className="text-slate-600 text-[11px] mt-0.5">{item.purpose}</div>
@@ -130,7 +130,7 @@ export default function CompliancePage({ onOpenQuote }) {
         {/* Turnkey Lab Callout */}
         <div className="industrial-card p-6 sm:p-8 bg-slate-50 border border-slate-200 flex flex-col md:flex-row justify-between items-center gap-6 mb-16">
           <div className="space-y-2">
-            <div className="text-xs font-mono font-bold text-blue-800 uppercase">
+            <div className="text-xs font-semibold text-blue-800">
               Model Code: VT-LAB-BIS
             </div>
             <h3 className="text-xl font-bold text-slate-950">

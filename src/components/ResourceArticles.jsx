@@ -9,10 +9,7 @@ import {
   CheckCircle2 
 } from 'lucide-react';
 
-export default function ResourceArticles({ onOpenQuote }) {
-  const [openIndex, setOpenIndex] = useState(0);
-
-  const articles = [
+const ARTICLES = [
     {
       title: 'Packaged Drinking Water Plant Setup Cost in India (2026/2027 Complete Guide)',
       category: 'Project Feasibility',
@@ -167,13 +164,16 @@ export default function ResourceArticles({ onOpenQuote }) {
     }
   ];
 
+export default function ResourceArticles({ onOpenQuote }) {
+  const [openIndex, setOpenIndex] = useState(0);
+
   return (
     <section id="resources" className="py-16 lg:py-24 bg-white border-b border-slate-200">
       <div className="max-w-5xl mx-auto px-4 sm:px-8">
         <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-800 text-xs font-mono font-semibold">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-800 text-xs font-semibold">
             <BookOpen className="w-3.5 h-3.5 text-blue-700" />
-            ENGINEERING & REGULATORY KNOWLEDGE BASE
+            <span>Engineering & Regulatory Knowledge Base</span>
           </div>
           <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-950 tracking-tight">
             Industry Guides, Compliance & Plant Planning
@@ -185,7 +185,7 @@ export default function ResourceArticles({ onOpenQuote }) {
 
         {/* Accordion List */}
         <div className="space-y-4">
-          {articles.map((art, idx) => (
+          {ARTICLES.map((art, idx) => (
             <div
               key={idx}
               className="industrial-card border border-slate-200 overflow-hidden bg-white"
@@ -198,7 +198,7 @@ export default function ResourceArticles({ onOpenQuote }) {
                 aria-controls={`article-content-${idx}`}
               >
                 <div>
-                  <span className="text-[10px] font-mono font-bold uppercase text-blue-800 bg-blue-50 px-2 py-0.5 rounded border border-blue-200 inline-block mb-2">
+                  <span className="text-xs font-semibold text-blue-800 bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-200 inline-block mb-2">
                     {art.category}
                   </span>
                   <h3 className="text-base sm:text-lg font-bold text-slate-900">

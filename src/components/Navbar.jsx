@@ -80,6 +80,8 @@ export default function Navbar({ onOpenQuote }) {
           <img 
             src="/vedanta-logo.png" 
             alt="Vedanta Technologies Logo" 
+            width="40"
+            height="40"
             className="h-8 sm:h-10 w-auto object-contain transition-transform group-hover:scale-[1.02]"
           />
           <div className="border-l border-slate-200 pl-2.5 sm:pl-3">

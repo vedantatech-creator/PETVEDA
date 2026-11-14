@@ -29,6 +29,10 @@ Official production web platform for **Vedanta Technologies**, an Indian OEM man
 
 ## 💻 Local Development
 
+### RFQ delivery
+
+RFQ forms POST to the Vercel Function at `/api/rfq`; submissions are saved to the `rfq_submissions` Postgres table and are not kept in browser storage. Provision a Postgres resource from the Vercel Marketplace (Neon works with the included `@neondatabase/serverless` driver) and connect it to Preview and Production so Vercel injects `DATABASE_URL`. Copy `.env.example` to `.env.local` for local function development, and run the app with `vercel dev` so the `/api` function is available; plain `vite dev` only serves the frontend. You can inspect and manage rows using the Vercel database Query/Data Editor.
+
 ```bash
 # Install dependencies
 npm install

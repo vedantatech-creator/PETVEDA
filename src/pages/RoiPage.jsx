@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import MetaSEO from '../components/MetaSEO';
 import UnitEconomics from '../components/UnitEconomics';
+import PricingDisclaimer from '../components/PricingDisclaimer';
 import { Coins, Calculator, ArrowRight, BookOpen, FileText } from 'lucide-react';
 
 export default function RoiPage({ onOpenQuote }) {
@@ -38,9 +39,9 @@ export default function RoiPage({ onOpenQuote }) {
       {/* Page Header (Apple Style: Generous whitespace, calm single title, zero clutter) */}
       <div className="max-w-7xl mx-auto px-4 sm:px-8 mb-8 sm:mb-12">
         <div className="text-center max-w-3xl mx-auto space-y-3 sm:space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-800 text-xs font-mono font-semibold">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-800 text-xs font-semibold">
             <Coins className="w-3.5 h-3.5 text-blue-700" />
-            COMMERCIAL FEASIBILITY & ROI MODEL
+            <span>Commercial Feasibility & ROI Model</span>
           </div>
           <h1 className="text-3xl sm:text-5xl font-black text-slate-950 tracking-tight leading-tight">
             Bottle Profit & ROI Calculator
@@ -74,8 +75,8 @@ export default function RoiPage({ onOpenQuote }) {
               <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center">
                 <Calculator className="w-5 h-5 text-blue-700" />
               </div>
-              <span className="text-[10px] font-mono font-bold text-blue-800 uppercase tracking-wider block">
-                MACHINERY SIZING
+              <span className="text-xs font-semibold text-blue-800 block">
+                Machinery Sizing
               </span>
               <h3 className="text-lg sm:text-xl font-bold text-slate-950">
                 Bottling Line Sizer & Utility Estimator
@@ -102,8 +103,8 @@ export default function RoiPage({ onOpenQuote }) {
               <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center">
                 <BookOpen className="w-5 h-5 text-blue-700" />
               </div>
-              <span className="text-[10px] font-mono font-bold text-blue-800 uppercase tracking-wider block">
-                BUYER INTEL & CAPEX
+              <span className="text-xs font-semibold text-blue-800 block">
+                Buyer Intel & CapEx
               </span>
               <h3 className="text-lg sm:text-xl font-bold text-slate-950">
                 Bottling Machinery Buyer Guides
@@ -133,11 +134,8 @@ export default function RoiPage({ onOpenQuote }) {
           </div>
         </div>
 
-        {/* Transparent Pricing Disclaimer (2-Clause Regulatory Notice) */}
-        <div className="mt-10 p-4 bg-slate-50 border border-slate-200 rounded-2xl text-[11px] font-mono text-slate-500 space-y-1 shadow-2xs">
-          <p className="font-semibold text-slate-700">• Notice: Operational costs, bottle margins, and CapEx figures are indicative financial models based on standard market rates and subject to variance.</p>
-          <p className="text-slate-500">• Please submit a project inquiry for an official site-specific financial model and machinery quotation before making capital investment decisions.</p>
-        </div>
+        {/* Unified Transparent Pricing Disclaimer */}
+        <PricingDisclaimer className="mt-10" />
       </div>
     </div>
   );
