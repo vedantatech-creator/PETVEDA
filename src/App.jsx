@@ -6,6 +6,7 @@ import ScrollToTop from './components/ScrollToTop';
 import QuoteModal from './components/QuoteModal';
 import MobileBottomNav from './components/MobileBottomNav';
 import LoadingScreen from './components/LoadingScreen';
+import ErrorBoundary from './components/ErrorBoundary';
 
 // Separate Dedicated Pages (Multi-Page Architecture)
 import Home from './pages/Home';
@@ -19,11 +20,12 @@ import CompliancePage from './pages/CompliancePage';
 import FactoryPage from './pages/FactoryPage';
 import ContactPage from './pages/ContactPage';
 import BuyerGuidesPage from './pages/BuyerGuidesPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 import { MessageSquare } from 'lucide-react';
 
 export default function App() {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [quoteModalOpen, setQuoteModalOpen] = useState(false);
   const [quoteDefaultModel, setQuoteDefaultModel] = useState('');
 
@@ -40,22 +42,24 @@ export default function App() {
         {/* Navigation Header */}
         <Navbar onOpenQuote={() => handleOpenQuote()} />
 
-        {/* Multi-Page Routes with Safe Mobile Bottom Padding */}
+        {/* Multi-Page Routes with Scoped ErrorBoundary */}
         <main className="flex-1 bg-white pb-20 lg:pb-0">
-          <Routes>
-            <Route path="/" element={<Home onOpenQuote={handleOpenQuote} />} />
-            <Route path="/machines" element={<MachinesPage onOpenQuote={handleOpenQuote} />} />
-            <Route path="/machine/:modelCode" element={<ProductDetailPage onOpenQuote={handleOpenQuote} />} />
-            <Route path="/turnkey" element={<TurnkeyPage onOpenQuote={handleOpenQuote} />} />
-            <Route path="/plant-layout" element={<PlantLayoutPage onOpenQuote={handleOpenQuote} />} />
-            <Route path="/calculator" element={<CalculatorPage onOpenQuote={handleOpenQuote} />} />
-            <Route path="/roi" element={<RoiPage onOpenQuote={handleOpenQuote} />} />
-            <Route path="/compliance" element={<CompliancePage onOpenQuote={handleOpenQuote} />} />
-            <Route path="/factory" element={<FactoryPage onOpenQuote={handleOpenQuote} />} />
-            <Route path="/guides" element={<BuyerGuidesPage onOpenQuote={handleOpenQuote} />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="*" element={<Home onOpenQuote={handleOpenQuote} />} />
-          </Routes>
+          <ErrorBoundary>
+            <Routes>
+              <Route path="/" element={<Home onOpenQuote={handleOpenQuote} />} />
+              <Route path="/machines" element={<MachinesPage onOpenQuote={handleOpenQuote} />} />
+              <Route path="/machine/:modelCode" element={<ProductDetailPage onOpenQuote={handleOpenQuote} />} />
+              <Route path="/turnkey" element={<TurnkeyPage onOpenQuote={handleOpenQuote} />} />
+              <Route path="/plant-layout" element={<PlantLayoutPage onOpenQuote={handleOpenQuote} />} />
+              <Route path="/calculator" element={<CalculatorPage onOpenQuote={handleOpenQuote} />} />
+              <Route path="/roi" element={<RoiPage onOpenQuote={handleOpenQuote} />} />
+              <Route path="/compliance" element={<CompliancePage onOpenQuote={handleOpenQuote} />} />
+              <Route path="/factory" element={<FactoryPage onOpenQuote={handleOpenQuote} />} />
+              <Route path="/guides" element={<BuyerGuidesPage onOpenQuote={handleOpenQuote} />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+          </ErrorBoundary>
         </main>
 
         {/* Global Footer */}

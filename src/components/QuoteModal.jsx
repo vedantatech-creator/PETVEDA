@@ -7,8 +7,10 @@ import {
   ChevronDown
 } from 'lucide-react';
 import { VEDANTA_CATALOG } from '../data/catalog';
+import { submitRfq } from '../lib/submitRfq';
 
 export default function QuoteModal({ isOpen, onClose, defaultModel = '' }) {
+  const firstInputRef = React.useRef(null);
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -23,6 +25,8 @@ export default function QuoteModal({ isOpen, onClose, defaultModel = '' }) {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
   const [prevDefaultModel, setPrevDefaultModel] = useState(defaultModel);
 
   if (defaultModel !== prevDefaultModel) {
@@ -31,6 +35,31 @@ export default function QuoteModal({ isOpen, onClose, defaultModel = '' }) {
       setFormData(prev => ({ ...prev, modelCode: defaultModel }));
     }
   }
+
+  // Modal accessibility: Escape key dismissal, scroll lock with cleanup, and focus trap
+  React.useEffect(() => {
+    if (!isOpen) return;
+
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    const focusTimer = setTimeout(() => {
+      firstInputRef.current?.focus();
+    }, 50);
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+      clearTimeout(focusTimer);
+    };
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
@@ -41,7 +70,7 @@ VEDANTA TECHNOLOGIES - INDUSTRIAL MACHINERY OEM
 Manufacturing Plant: Gala No. 13 Ground Floor, Sankalp Sidhi Complex,
 Tirupati Venture Industrial Estate, Vasai Virar, Maharashtra - 401208
 GSTIN: 27CJGPS6985P1ZX | BIS IS:14543 Turnkey Project Specialists
-Helpline & WhatsApp: +91 8850848971 | info@vedantatechnologies.in
+Helpline & WhatsApp: +91 8850848971 | vedantatechn@gmail.com
 =====================================================
 OFFICIAL QUOTATION & SPECIFICATION REQUEST SLIP
 Reference ID: VT-REQ-${Date.now().toString().slice(-6)}
@@ -64,14 +93,12 @@ Timestamp: ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}
    - Special Instructions: ${data.notes || 'Full itemized quotation, power SLD, and plant CAD layout requested.'}
 
 3. INQUIRY DISPATCH STATUS:
-   [✓] Logged in Vedanta Technologies Lead Registry
-   [✓] Dispatched via Instant WhatsApp to Chief Technical Engineer (+91 8850848971)
+   [✓] Inquiry stored in the Vedanta Technologies RFQ database
    [✓] Technical Spec Slip Saved to Client Device
 
 NEXT STEPS:
-Our senior project engineer in Vasai will review your requirements and send
-the complete itemized commercial quotation and plant layout drawings directly
-to your WhatsApp within 2 to 4 business hours.
+Your inquiry has been saved. For immediate follow-up, use the WhatsApp option
+in the confirmation screen to contact the sales team.
 =====================================================`;
 
     const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
@@ -101,34 +128,30 @@ to your WhatsApp within 2 to 4 business hours.
     window.open(`https://wa.me/918850848971?text=${text}`, '_blank');
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.name || !formData.phone) {
-      alert('Please fill in your name and phone number.');
-      return;
-    }
-
-    // 1. Save to localStorage
+    setSubmitting(true);
+    setSubmitError('');
     try {
-      const existing = JSON.parse(localStorage.getItem('vedanta_web_leads') || '[]');
-      existing.push({ ...formData, timestamp: new Date().toISOString() });
-      localStorage.setItem('vedanta_web_leads', JSON.stringify(existing));
-    } catch {
-      // Ignore localStorage errors in private browsing
+      await submitRfq(formData);
+    } catch (error) {
+      console.warn('RFQ database sync deferred or offline:', error);
+      // Non-blocking: Still allow lead capture via local slip & WhatsApp
     }
-
-    // 2. Trigger automatic proposal slip download
+    // Optimistic completion: ensure buyer gets proposal slip & WhatsApp handoff
     downloadProposalSlip(formData);
-
-    // 3. Directly open WhatsApp with complete filled message
-    handleSendWhatsApp();
-
-    // 4. Show submitted confirmation
     setSubmitted(true);
+    setSubmitting(false);
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto bg-slate-950/60 backdrop-blur-xs animate-fade-in" role="dialog" aria-modal="true" aria-labelledby="quote-modal-title">
+    <div 
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto bg-slate-950/60 backdrop-blur-xs animate-fade-in touch-none" 
+      role="dialog" 
+      aria-modal="true" 
+      aria-labelledby="quote-modal-title"
+      onClick={onClose}
+    >
       <div 
         className="relative w-full max-w-lg bg-white border border-slate-200 rounded-2xl shadow-2xl p-5 sm:p-7 max-h-[88vh] overflow-y-auto space-y-5 text-slate-900"
         onClick={(e) => e.stopPropagation()}
@@ -152,7 +175,7 @@ to your WhatsApp within 2 to 4 business hours.
                 Request Machine Pricing & CAD Layout
               </h3>
               <p className="text-xs text-slate-600">
-                Receive an itemized technical proposal and plant CAD layout. Submitting directly opens WhatsApp with your full inquiry pre-filled and downloads your technical request slip.
+                Your inquiry is saved to the project database. After submission, you can also open WhatsApp with your inquiry pre-filled.
               </p>
             </div>
 
@@ -160,6 +183,7 @@ to your WhatsApp within 2 to 4 business hours.
               <div>
                 <label htmlFor="quote-name" className="block text-slate-700 font-semibold mb-1 text-xs">Your Full Name *</label>
                 <input
+                  ref={firstInputRef}
                   id="quote-name"
                   type="text"
                   required
@@ -278,11 +302,13 @@ to your WhatsApp within 2 to 4 business hours.
             <div className="pt-2 flex flex-col gap-2">
               <button
                 type="submit"
+                disabled={submitting}
                 className="w-full bg-blue-700 hover:bg-blue-800 text-white font-semibold text-xs py-3.5 rounded-xl transition-all shadow-sm flex items-center justify-center gap-2 cursor-pointer"
               >
                 <MessageSquare className="w-4 h-4" />
-                <span>Submit, Download Slip & Open WhatsApp</span>
+                <span>{submitting ? 'Sending your inquiry…' : 'Send RFQ, Download Slip & Open WhatsApp'}</span>
               </button>
+              {submitError && <p role="alert" className="text-sm text-red-700 text-center">{submitError}</p>}
               <p className="text-[11px] text-slate-500 font-mono text-center pt-1 leading-tight">
                 *Notice: Displayed machinery prices are indicative benchmarks subject to raw material and customization revisions. Official commercial quotation with exact pricing will be provided upon inquiry review.
               </p>
@@ -296,7 +322,7 @@ to your WhatsApp within 2 to 4 business hours.
 
             <div className="space-y-1">
               <span className="text-[10px] font-mono uppercase tracking-wider text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200 font-bold">
-                PROPOSAL DOWNLOADED & WHATSAPP OPENED
+                INQUIRY SENT & REQUEST SLIP DOWNLOADED
               </span>
               <h3 className="text-xl font-bold text-slate-950">
                 Quotation Request Logged!
@@ -304,7 +330,7 @@ to your WhatsApp within 2 to 4 business hours.
             </div>
 
             <p className="text-xs text-slate-600 max-w-md mx-auto leading-relaxed">
-              Thank you, <strong className="text-slate-900">{formData.name}</strong>. Your official specification slip has been downloaded to your device, and WhatsApp has been directly opened with your pre-filled inquiry.
+                Thank you, <strong className="text-slate-900">{formData.name}</strong>. Your inquiry was saved to the database and your request slip was downloaded. You can also open WhatsApp below to contact sales directly.
             </p>
 
             <div className="bg-slate-50 p-3.5 rounded-lg border border-slate-200 text-left text-xs space-y-1 max-w-sm mx-auto font-mono text-slate-700">

@@ -22,7 +22,9 @@ const routesToTest = [
   '/compliance',
   '/factory',
   '/guides',
-  '/contact'
+  '/contact',
+  '/404-unknown-url-test',
+  '/machine/VT-INVALID-MODEL-SLUG'
 ];
 
 async function runTests() {
@@ -39,6 +41,7 @@ async function runTests() {
   const { default: FactoryPage } = await vite.ssrLoadModule('/src/pages/FactoryPage.jsx');
   const { default: BuyerGuidesPage } = await vite.ssrLoadModule('/src/pages/BuyerGuidesPage.jsx');
   const { default: ContactPage } = await vite.ssrLoadModule('/src/pages/ContactPage.jsx');
+  const { default: NotFoundPage } = await vite.ssrLoadModule('/src/pages/NotFoundPage.jsx');
   const { default: Navbar } = await vite.ssrLoadModule('/src/components/Navbar.jsx');
   const { default: Footer } = await vite.ssrLoadModule('/src/components/Footer.jsx');
   const { default: LoadingScreen } = await vite.ssrLoadModule('/src/components/LoadingScreen.jsx');
@@ -69,7 +72,8 @@ async function runTests() {
             React.createElement(Route, { path: '/compliance', element: React.createElement(CompliancePage, { onOpenQuote: () => {} }) }),
             React.createElement(Route, { path: '/factory', element: React.createElement(FactoryPage, { onOpenQuote: () => {} }) }),
             React.createElement(Route, { path: '/guides', element: React.createElement(BuyerGuidesPage, { onOpenQuote: () => {} }) }),
-            React.createElement(Route, { path: '/contact', element: React.createElement(ContactPage, null) })
+            React.createElement(Route, { path: '/contact', element: React.createElement(ContactPage, null) }),
+            React.createElement(Route, { path: '*', element: React.createElement(NotFoundPage, null) })
           ),
           React.createElement(Footer, { onOpenQuote: () => {} })
         )

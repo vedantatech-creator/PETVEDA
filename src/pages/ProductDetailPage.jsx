@@ -6,7 +6,8 @@ import {
   MessageSquare, 
   ShieldCheck, 
   ChevronRight,
-  Play
+  Play,
+  Layers
 } from 'lucide-react';
 import MetaSEO from '../components/MetaSEO';
 import FaqSection from '../components/FaqSection';
@@ -20,7 +21,46 @@ export default function ProductDetailPage({ onOpenQuote }) {
   const product = VEDANTA_CATALOG.find(
     m => m.model_code.toLowerCase() === (modelCode || '').toLowerCase() ||
          m.slug.toLowerCase() === (modelCode || '').toLowerCase()
-  ) || VEDANTA_CATALOG[0];
+  );
+
+  // Early null guard to prevent unhandled TypeError on invalid slugs
+  if (!product) {
+    return (
+      <div className="min-h-[70vh] flex flex-col items-center justify-center px-4 py-16 text-center max-w-2xl mx-auto">
+        <MetaSEO 
+          title="Machine Model Not Found | Vedanta Technologies"
+          description="The requested machinery model could not be found. Browse our full PET blow moulding catalog."
+          canonicalUrl="https://vedantatechnologies.in/machines"
+        />
+        <div className="w-16 h-16 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-400 mb-4 border border-slate-200 shadow-2xs">
+          <Layers className="w-8 h-8 text-slate-500" />
+        </div>
+        <span className="text-xs font-semibold text-blue-700 bg-blue-50 px-3.5 py-1 rounded-full border border-blue-200 mb-3">
+          Catalog Resolution Notice
+        </span>
+        <h1 className="text-2xl sm:text-3xl font-bold text-slate-950 mb-2">
+          Machine Model Not Found
+        </h1>
+        <p className="text-xs sm:text-sm text-slate-600 mb-6 max-w-md">
+          The requested model "{modelCode}" does not match our current production catalog or has been moved.
+        </p>
+        <div className="flex flex-wrap items-center justify-center gap-3">
+          <Link
+            to="/machines"
+            className="inline-flex items-center gap-2 bg-blue-700 hover:bg-blue-800 text-white font-semibold text-xs py-2.5 px-5 rounded-full transition-colors shadow-2xs"
+          >
+            <span>Browse Active Machinery Catalog</span>
+          </Link>
+          <Link
+            to="/contact"
+            className="inline-flex items-center gap-2 bg-white hover:bg-slate-50 text-slate-800 font-semibold text-xs py-2.5 px-5 rounded-full border border-slate-300 transition-colors shadow-2xs"
+          >
+            <span>Inquire with Factory Sales</span>
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   const handleWhatsApp = () => {
     const text = encodeURIComponent(
